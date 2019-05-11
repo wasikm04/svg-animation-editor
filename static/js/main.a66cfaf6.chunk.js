@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[0],[,,,function(e,n,t){e.exports=t(11)},,,,,,function(e,n,t){},function(e,n,t){},function(e,n,t){"use strict";t.r(n);var a=t(0),r=t.n(a),o=t(2),c=t.n(o);t(9),t(10);var i=function(){return r.a.createElement("div",{className:"App"},r.a.createElement("header",{className:"App-header"},"SVG Animation Editor"))};c.a.render(r.a.createElement(i,null),document.getElementById("root"))}],[[3,1,2]]]);
-//# sourceMappingURL=main.a66cfaf6.chunk.js.map

@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "681c05fb6fa34c8074a3674c98f56bc8",
+    "revision": "046a6815da6503adb12e9e3562af626f",
     "url": "/svg-animation-editor/index.html"
   },
   {
-    "revision": "81e0a47350b717b87d77",
-    "url": "/svg-animation-editor/static/css/main.2cce8147.chunk.css"
+    "revision": "b7f9a46402add5f76e12",
+    "url": "/svg-animation-editor/static/css/main.42a8a582.chunk.css"
   },
   {
     "revision": "2315f74ce3c99316133d",
     "url": "/svg-animation-editor/static/js/2.3310f33a.chunk.js"
   },
   {
-    "revision": "81e0a47350b717b87d77",
-    "url": "/svg-animation-editor/static/js/main.a66cfaf6.chunk.js"
+    "revision": "b7f9a46402add5f76e12",
+    "url": "/svg-animation-editor/static/js/main.874c6750.chunk.js"
   },
   {
     "revision": "baaee94267b0620ba2bf",
