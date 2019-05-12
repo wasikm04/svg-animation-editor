@@ -2,7 +2,6 @@ import React from 'react';
 import Upload from "./Upload.js";
 import "./styles/App.css"
 
-
 var DataSet = {
   elements: [
     {
@@ -43,7 +42,7 @@ class ElementsList extends React.Component {
   }
     render() {
       return (       
-        <div className="container row">
+        <div height='calc(100vh/2)' className="container row">
           <h2 className="container row" >SVG Editor</h2>
           <br></br>
           <ul className="nav nav-tabs justify-content-center nav-justified nav-fill container row" role="tablist">

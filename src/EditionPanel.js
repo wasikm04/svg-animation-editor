@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const nameStyle = {
   float: 'left',
   display: 'inline',
@@ -66,7 +67,7 @@ class EditionPanel extends React.Component {
 
     render() {
       return (      
-        <div className="container">
+        <div height='calc(100vh/2)' className="container">
         <div className="row">
                 <EditingTitle
         elemName="Element 1" />
