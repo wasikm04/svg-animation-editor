@@ -8,6 +8,13 @@ const nameStyle = {
   fontSize: '1em',
 };
 
+const nameColorStyle = {
+  float: 'left',
+  display: 'inline',
+  marginBottom: "5px",
+  fontSize: '1em',
+};
+
 const inputStyle = {
   float: 'left',
   display: 'inline',
@@ -67,7 +74,7 @@ class FiledInput extends React.Component {
         <div>
         <div className="row">
         <fieldset>
-          <legend style={nameStyle}>{title}</legend>
+          <legend style={nameColorStyle}>{title}</legend>
         </fieldset>
         </div>
         <div className="row">
@@ -128,11 +135,11 @@ class EditionPanel extends React.Component {
           onValueChange={this.handleYPositionChange} />
           <ColorInput
           valueChange={this.state.baseColor}
-          fieldName= 'Change Base colour: '
+          fieldName= 'Change Base color: '
           onValueChange={this.handleBaseColorChange} />
           <ColorInput
           valueChange={this.state.borderColor}
-          fieldName= 'Change Border colour: '
+          fieldName= 'Change Border color: '
           onValueChange={this.handleBorderColorChange} />
           <FiledInput
           valueChange={this.state.xposition}
