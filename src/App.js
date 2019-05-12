@@ -1,16 +1,18 @@
 import React from 'react';
-import './App.css';
+import SVGWindow from "./SVGWindow.js";
+import Editor from "./Editor.js";
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        SVG Animation Editor
-      </header>
-      <footer>
-      <p>Authors: Maciej Wasik, Jakub Rejent</p>
-      </footer>
-      
+    <div className="col-12 row">
+    <div  className="col-6">
+    <Editor/>
+      </div>
+      <div className="col-6">
+      <SVGWindow/>
+      </div>
     </div>
   );
 }
