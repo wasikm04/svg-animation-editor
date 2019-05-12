@@ -14,6 +14,11 @@ const inputStyle = {
   marginTop: "5px",
 };
 
+const heightBox = {
+  maxHeight:'250px',
+  overflowY: 'scroll',
+};
+
 function EditingTitle(props) {
   return (
     <p>Edytujesz element: <strong>{props.elemName}</strong></p>
@@ -66,10 +71,74 @@ class EditionPanel extends React.Component {
                 <EditingTitle
         elemName="Element 1" />
         </div>
+        <div style={heightBox} className="container">
         <FiledInput
           valueChange={this.state.xposition}
           fieldName= 'Change X Postion: '
           onValueChange={this.handleXPositionChange} />
+          <FiledInput
+          valueChange={this.state.xposition}
+          fieldName= 'Change X Postion: '
+          onValueChange={this.handleXPositionChange} />
+          <FiledInput
+          valueChange={this.state.xposition}
+          fieldName= 'Change X Postion: '
+          onValueChange={this.handleXPositionChange} />
+          <FiledInput
+          valueChange={this.state.xposition}
+          fieldName= 'Change X Postion: '
+          onValueChange={this.handleXPositionChange} />
+          <FiledInput
+          valueChange={this.state.xposition}
+          fieldName= 'Change X Postion: '
+          onValueChange={this.handleXPositionChange} />
+          <FiledInput
+          valueChange={this.state.xposition}
+          fieldName= 'Change X Postion: '
+          onValueChange={this.handleXPositionChange} />
+          <FiledInput
+          valueChange={this.state.xposition}
+          fieldName= 'Change X Postion: '
+          onValueChange={this.handleXPositionChange} />
+          <FiledInput
+          valueChange={this.state.xposition}
+          fieldName= 'Change X Postion: '
+          onValueChange={this.handleXPositionChange} />
+          <FiledInput
+          valueChange={this.state.xposition}
+          fieldName= 'Change X Postion: '
+          onValueChange={this.handleXPositionChange} />
+          <FiledInput
+          valueChange={this.state.xposition}
+          fieldName= 'Change X Postion: '
+          onValueChange={this.handleXPositionChange} />
+          <FiledInput
+          valueChange={this.state.xposition}
+          fieldName= 'Change X Postion: '
+          onValueChange={this.handleXPositionChange} />
+          <FiledInput
+          valueChange={this.state.xposition}
+          fieldName= 'Change X Postion: '
+          onValueChange={this.handleXPositionChange} />
+          <FiledInput
+          valueChange={this.state.xposition}
+          fieldName= 'Change X Postion: '
+          onValueChange={this.handleXPositionChange} />
+          <FiledInput
+          valueChange={this.state.xposition}
+          fieldName= 'Change X Postion: '
+          onValueChange={this.handleXPositionChange} />
+          <FiledInput
+          valueChange={this.state.xposition}
+          fieldName= 'Change X Postion: '
+          onValueChange={this.handleXPositionChange} />
+          <FiledInput
+          valueChange={this.state.xposition}
+          fieldName= 'Change X Postion: '
+          onValueChange={this.handleXPositionChange} />
+
+         
+          </div>
           <p>posX: {this.state.xposition}</p>
           </div>
       );
