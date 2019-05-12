@@ -19,10 +19,12 @@ class Upload extends React.Component {
     handleLoad(event) {
       var content = this.reader.result;
       var parser = new DOMParser();
+      console.log(content)
       content = parser.parseFromString(content, "image/svg+xml"); 
       var arr = Array.from(content.children)
       console.log(arr)
-      console.log(content.firstElementChild)
+      console.log(content.documentElement)
+      console.log(content.documentElement.attributes)
       this.setState({
         file: content.firstElementChild
       });

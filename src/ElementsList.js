@@ -44,7 +44,7 @@ class ElementsList extends React.Component {
     render() {
       return (       
         <div className="container row">
-          <h2 className="container row" >SVG Editor</h2>
+          <h2 className="text-center container  " >SVG Editor</h2>
           <br></br>
           <ul className="nav nav-tabs justify-content-center nav-justified nav-fill container row" role="tablist">
               <li className="nav-item">
@@ -74,12 +74,12 @@ class ElementsList extends React.Component {
               </select>
             </div>
             <div id="import" className="container tab-pane fade">    
-            <h3>Importuj plik SVG</h3>
+            <h3 className="text-center">Importuj plik SVG</h3>
               <p>import z onChange podpiętym do funkcji przekazanej z App.js</p>
               <Upload/>     
             </div>
             <div id="export" className="container tab-pane fade">  
-            <h3>Eksportuj plik SVG</h3>
+            <h3 className="text-center">Eksportuj plik SVG</h3>
               <p>Zrzut całego state do pliku</p>  
             </div>
           </div>
