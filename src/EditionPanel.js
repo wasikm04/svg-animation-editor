@@ -1,5 +1,19 @@
 import React from 'react';
 
+const nameStyle = {
+  float: 'left',
+  display: 'inline',
+  width: '60%',
+  marginBottom: "0px",
+};
+
+const inputStyle = {
+  float: 'left',
+  display: 'inline',
+  width: '40%',
+  marginTop: "5px",
+};
+
 function EditingTitle(props) {
   return (
     <p>Edytujesz element: <strong>{props.elemName}</strong></p>
@@ -21,9 +35,9 @@ class FiledInput extends React.Component {
     const title = this.props.fieldName;
     return (
       <div className="row">
-      <fieldset>
-        <legend>{title}</legend>
-        <input value={valueChange}
+      <fieldset className="inline">
+        <legend style={nameStyle}>{title}</legend>
+        <input style={inputStyle} value={valueChange}
                onChange={this.handleChange} />
               
       </fieldset>
