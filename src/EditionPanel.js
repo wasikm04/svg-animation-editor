@@ -1,5 +1,7 @@
 import React from 'react';
 import { HuePicker } from 'react-color';
+import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
 
 const nameStyle = {
   float: 'left',
@@ -15,6 +17,13 @@ const nameColorStyle = {
   fontSize: '1em',
 };
 
+const nameSliderStyle = {
+  float: 'left',
+  display: 'inline',
+  marginBottom: "14px",
+  fontSize: '1em',
+};
+
 const inputStyle = {
   float: 'left',
   display: 'inline',
@@ -25,6 +34,10 @@ const heightBox = {
   maxHeight:'250px',
   overflowY: 'scroll',
 };
+
+const width60 = {
+  width: '55%'
+}
 
 function EditingTitle(props) {
   return (
@@ -89,6 +102,42 @@ class FiledInput extends React.Component {
 
   }
 
+
+  class SliderInput extends React.Component {
+    constructor(props) {
+      super(props);
+      this.handleChange = this.handleChange.bind(this);
+      this.state = {value:50};
+    }
+  
+    handleChange(e) {
+      this.setState(e)
+      this.props.onValueChange(this.state.value);
+    }
+  
+    render() {
+      const title = this.props.fieldName;
+      const min = this.props.min;
+      const max = this.props.max;
+      return (
+        <div>
+        <div className="row">
+        <fieldset className="inline">
+          <legend style={nameSliderStyle}>{title}</legend>
+          </fieldset>
+         </div>
+         <div style={width60} className="row ">
+         <InputRange
+        maxValue={max}
+        minValue={min}
+        value={this.state.value}
+        onChange={value => this.handleChange({ value })} />
+        </div>
+        </div>
+      );
+    }
+  }
+
 class EditionPanel extends React.Component {
 
   constructor(props) {
@@ -97,7 +146,8 @@ class EditionPanel extends React.Component {
     this.handleYPositionChange = this.handleYPositionChange.bind(this);
     this.handleBaseColorChange = this.handleBaseColorChange.bind(this);
     this.handleBorderColorChange = this.handleBorderColorChange.bind(this);
-    this.state = {xposition: 50, yposition: 250, baseColor: '#ffa900', borderColor: '#00ff42'};
+    this.handleSizeChange = this.handleSizeChange.bind(this);
+    this.state = {xposition: 50, yposition: 250, baseColor: '#ffa900', borderColor: '#00ff42', size: 50};
   }
 
   handleXPositionChange(valueChange) {
@@ -114,6 +164,10 @@ class EditionPanel extends React.Component {
 
   handleBorderColorChange(valueChange) {
     this.setState({borderColor: valueChange});
+  }
+
+  handleSizeChange(valueChange) {
+    this.setState({size: valueChange});
   }
 
     render() {
@@ -141,10 +195,12 @@ class EditionPanel extends React.Component {
           valueChange={this.state.borderColor}
           fieldName= 'Change Border color: '
           onValueChange={this.handleBorderColorChange} />
-          <FiledInput
-          valueChange={this.state.xposition}
-          fieldName= 'Change X Postion: '
-          onValueChange={this.handleXPositionChange} />
+          <SliderInput
+          valueChange={this.state.size}
+          min = {1}
+          max = {100}
+          fieldName= 'Change size: '
+          onValueChange={this.handleSizeChange} />
           <FiledInput
           valueChange={this.state.xposition}
           fieldName= 'Change X Postion: '
@@ -196,7 +252,7 @@ class EditionPanel extends React.Component {
 
          
           </div>
-          <p>posX: {this.state.xposition} posY: {this.state.yposition} baseColour: {this.state.baseColor} borderColour: {this.state.borderColor}</p>
+          <p>posX: {this.state.xposition} posY: {this.state.yposition} baseColour: {this.state.baseColor} borderColour: {this.state.borderColor}  size: {this.state.size}</p>
           </div>
           </div>
       );
