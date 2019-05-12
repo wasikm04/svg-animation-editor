@@ -26,20 +26,21 @@ class Upload extends React.Component {
       this.setState({
         file: content.firstElementChild
       });
+    /*Zamiast set state > this.props.HandleNewFile(file) */
     }
   
     render() {
       return (
-        <div>
+        <div className="custom-file">
           <input
+            className="custom-file-input" 
+            id="SVGFile"
             type="file"
             onChange={e => {
               this.handleChoose(e);
             }}
           />
-          <div>
-          {this.state.file ? <div></div> : <p>Załaduj plik</p>}
-          </div>
+          <label className="custom-file-label" htmlFor="SVGFile">Wybierz plik</label>
         </div>
       );
     }
