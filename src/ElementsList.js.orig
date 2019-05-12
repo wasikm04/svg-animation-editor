@@ -42,8 +42,13 @@ class ElementsList extends React.Component {
   }
     render() {
       return (       
-        <div height='calc(100vh/2)' className="container row">
+<<<<<<< HEAD
+        <div className="container row">
           <h2 className="text-center container  " >SVG Editor</h2>
+=======
+        <div height='calc(100vh/2)' className="container row">
+          <h2 className="container row" >SVG Editor</h2>
+>>>>>>> b43814fb8e536ac446738c612e550f20adcb85fc
           <br></br>
           <ul className="nav nav-tabs justify-content-center nav-justified nav-fill container row" role="tablist">
               <li className="nav-item">
