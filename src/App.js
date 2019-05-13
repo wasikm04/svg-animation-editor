@@ -9,7 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       selectedElement : null,
-      file: null
+      file: {xposition : 50, yposition : 100, size: 45}
     };
     this.handleChange = this.handleChange.bind(this);
     this.loadSVG = this.loadSVG.bind(this);
@@ -21,7 +21,7 @@ class App extends React.Component {
 /*event,propertyName,propertyValue,elementID */
   handleChange(propertyName,propertyValue,elementID ) {
     this.setState({
-      file:  [{ [propertyName] : propertyValue}]
+      file:  { [propertyName] : propertyValue}
     });
   };
   
@@ -29,7 +29,7 @@ render(){
   return (
     <div className="col-12 row">
       <div  className="col-6">
-        <Editor file={this.state} handleChange = {this.handleChange} loadSVG = {this.loadSVG}/>
+        <Editor file={this.state.file} handleChange = {this.handleChange} loadSVG = {this.loadSVG}/>
       </div>
       <div className="col-6">
         <SVGWindow file={this.state.file}/>

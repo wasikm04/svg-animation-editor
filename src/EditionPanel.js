@@ -51,18 +51,19 @@ class FiledInput extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e) {
-    this.props.onValueChange(e.target.value);
+  handleChange(event) {
+    this.props.onValueChange(event);
   }
 
   render() {
     const valueChange = this.props.valueChange;
     const title = this.props.fieldName;
+    const name = this.props.name;
     return (
       <div className="row">
       <fieldset className="inline">
         <legend style={nameStyle}>{title}</legend>
-        <input style={inputStyle} value={valueChange}
+        <input name = {name} style={inputStyle} value={valueChange}
                onChange={this.handleChange} />
               
       </fieldset>
@@ -70,44 +71,43 @@ class FiledInput extends React.Component {
     );
   }
 }
-  class ColorInput extends React.Component {
-    constructor(props) {
-      super(props);
-      this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange = (color, event) => {
-      this.props.onValueChange(color.hex);
-    };
-  
-    render() {
-      const valueChange = this.props.valueChange;
-      const title = this.props.fieldName;
-      return (
-        <div>
-        <div className="row">
-        <fieldset>
-          <legend style={nameColorStyle}>{title}</legend>
-        </fieldset>
-        </div>
-        <div className="row">
-        <HuePicker
-          color={valueChange}
-           onChangeComplete={ this.handleChange }
-          />
-        </div>
-        </div>
-      );
-    }
-
+class ColorInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
   }
 
+  handleChange = (color, event) => {
+    this.props.onValueChange(color.hex);
+  };
+
+  render() {
+    const valueChange = this.props.valueChange;
+    const title = this.props.fieldName;
+    return (
+      <div>
+      <div className="row">
+      <fieldset>
+        <legend style={nameColorStyle}>{title}</legend>
+      </fieldset>
+      </div>
+      <div className="row">
+      <HuePicker
+        color={valueChange}
+         onChangeComplete={ this.handleChange }
+        />
+      </div>
+      </div>
+    );
+  }
+
+}
 
   class SliderInput extends React.Component {
     constructor(props) {
       super(props);
       this.handleChange = this.handleChange.bind(this);
-      this.state = {value:50};
+      this.state = {value:this.props.valueChange};
     }
   
     handleChange(e) {
@@ -142,34 +142,28 @@ class EditionPanel extends React.Component {
 
   constructor(props) {
     super(props);
-    this.handleXPositionChange = this.handleXPositionChange.bind(this);
-    this.handleYPositionChange = this.handleYPositionChange.bind(this);
-    this.handleBaseColorChange = this.handleBaseColorChange.bind(this);
-    this.handleBorderColorChange = this.handleBorderColorChange.bind(this);
-    this.handleSizeChange = this.handleSizeChange.bind(this);
-    this.state = {xposition: 50, yposition: 250, baseColor: '#ffa900', borderColor: '#00ff42', size: 50};
+    this.handleChange = this.handleChange.bind(this);
+    this.handleColorBaseChange = this.handleColorBaseChange.bind(this);
+    this.handleColorBorderChange = this.handleColorBorderChange.bind(this);
+    this.handlesizeChange = this.handlesizeChange.bind(this);
   }
 
-  handleXPositionChange(valueChange) {
-    this.props.handleChange("xposition",valueChange,this.props.file.selectedElement);
-    this.setState({xposition: valueChange});
+  handleChange(event) {
+    this.props.handleChange(event.target.name,event.target.value,this.props.file.selectedElement);
   }
 
-  handleYPositionChange(valueChange) {
-    this.setState({yposition: valueChange});
+  handleColorBaseChange(value) {
+    this.props.handleChange("basecolor",value,this.props.file.selectedElement);
   }
 
-  handleBaseColorChange(valueChange) {
-    this.setState({baseColor: valueChange});
+  handleColorBorderChange(value) {
+    this.props.handleChange("bordercolor",value,this.props.file.selectedElement);
   }
 
-  handleBorderColorChange(valueChange) {
-    this.setState({borderColor: valueChange});
+  handlesizeChange(size) {
+    this.props.handleChange("size",size,this.props.file.selectedElement);
   }
 
-  handleSizeChange(valueChange) {
-    this.setState({size: valueChange});
-  }
 
     render() {
       return (      
@@ -181,79 +175,35 @@ class EditionPanel extends React.Component {
         </div>
         <div style={heightBox} className="container">
           <FiledInput
-          valueChange={this.state.xposition}
+          name = "xposition"
+          valueChange={this.props.file.xposition}
           fieldName= 'Change X Postion: '
-          onValueChange={this.handleXPositionChange} />
+          onValueChange={this.handleChange} />
           <FiledInput
-          valueChange={this.state.yposition}
+          name = "yposition"
+          valueChange={this.props.file.yposition}
           fieldName= 'Change Y Postion: '
-          onValueChange={this.handleYPositionChange} />
+          onValueChange={this.handleChange} />
           <ColorInput
-          valueChange={this.state.baseColor}
+          valueChange={this.props.file.basecolor}
           fieldName= 'Change Base color: '
-          onValueChange={this.handleBaseColorChange} />
+          onValueChange={this.handleColorBaseChange} />
           <ColorInput
-          valueChange={this.state.borderColor}
+          valueChange={this.props.file.bordercolor}
           fieldName= 'Change Border color: '
-          onValueChange={this.handleBorderColorChange} />
+          onValueChange={this.handleColorBorderChange} />
           <SliderInput
-          valueChange={this.state.size}
+          valueChange={this.props.file.size}
           min = {1}
           max = {100}
           fieldName= 'Change size: '
-          onValueChange={this.handleSizeChange} />
+          onValueChange={this.handlesizeChange} />
           <FiledInput
-          valueChange={this.state.xposition}
+          valueChange={this.props.file.xposition}
           fieldName= 'Change X Postion: '
-          onValueChange={this.handleXPositionChange} />
-          <FiledInput
-          valueChange={this.state.xposition}
-          fieldName= 'Change X Postion: '
-          onValueChange={this.handleXPositionChange} />
-          <FiledInput
-          valueChange={this.state.xposition}
-          fieldName= 'Change X Postion: '
-          onValueChange={this.handleXPositionChange} />
-          <FiledInput
-          valueChange={this.state.xposition}
-          fieldName= 'Change X Postion: '
-          onValueChange={this.handleXPositionChange} />
-          <FiledInput
-          valueChange={this.state.xposition}
-          fieldName= 'Change X Postion: '
-          onValueChange={this.handleXPositionChange} />
-          <FiledInput
-          valueChange={this.state.xposition}
-          fieldName= 'Change X Postion: '
-          onValueChange={this.handleXPositionChange} />
-          <FiledInput
-          valueChange={this.state.xposition}
-          fieldName= 'Change X Postion: '
-          onValueChange={this.handleXPositionChange} />
-          <FiledInput
-          valueChange={this.state.xposition}
-          fieldName= 'Change X Postion: '
-          onValueChange={this.handleXPositionChange} />
-          <FiledInput
-          valueChange={this.state.xposition}
-          fieldName= 'Change X Postion: '
-          onValueChange={this.handleXPositionChange} />
-          <FiledInput
-          valueChange={this.state.xposition}
-          fieldName= 'Change X Postion: '
-          onValueChange={this.handleXPositionChange} />
-          <FiledInput
-          valueChange={this.state.xposition}
-          fieldName= 'Change X Postion: '
-          onValueChange={this.handleXPositionChange} />
-          <FiledInput
-          valueChange={this.state.xposition}
-          fieldName= 'Change X Postion: '
-          onValueChange={this.handleXPositionChange} />
-
-         
-          </div>
-          <p>posX: {this.state.xposition} posY: {this.state.yposition} baseColour: {this.state.baseColor} borderColour: {this.state.borderColor}  size: {this.state.size}</p>
+          onValueChange={this.handleChange} />
+         </div>
+          <p>posX: {this.props.file.xposition} posY: {this.props.file.yposition} baseColour: {this.props.file.baseColor} borderColour: {this.props.file.borderColor}  size: {this.props.file.size}</p>
           </div>
           </div>
       );
