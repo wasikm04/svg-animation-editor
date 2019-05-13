@@ -1,5 +1,6 @@
 import React from 'react';
 import "./styles/App.css"
+import SvgComponent from "./test.js"
 class SVGWindow extends React.Component {
 
   
@@ -9,7 +10,10 @@ class SVGWindow extends React.Component {
             <div className="container fill panel panel-primary">
               <div className="panel-heading text-center">Plik SVG</div>
               <div className="panel-body container fill">
-                <div className="container fill text-center">*obraz*</div>
+                <div className="container fill text-center">
+                *obraz*
+                {/*<SvgComponent/>*/}
+                </div>
               </div>
               <div className="panel-footer">
                 <div className="text-center">

@@ -26,7 +26,7 @@ class Upload extends React.Component {
       console.log(content.documentElement)
       console.log(content.documentElement.attributes)
       this.setState({
-        file: content.firstElementChild
+        file: content.documentElement
       });
     /*Zamiast set state > this.props.HandleNewFile(file) */
     }
@@ -43,6 +43,7 @@ class Upload extends React.Component {
             }}
           />
           <label className="custom-file-label" htmlFor="SVGFile">Wybierz plik</label>
+          <img src={this.state.file} alt="Logo" />;
         </div>
       );
     }
