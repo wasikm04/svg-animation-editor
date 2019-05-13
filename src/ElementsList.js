@@ -27,18 +27,10 @@ var DataSet = {
   ]
 };
 class ElementsList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedElement: null
-    }
-  
-  };
+
   OnSelectedItem(e) {
     var id = e.target.value;
-    this.setState({
-      selectedElement: id
-    });
+    this.props.handleSelected(id);
   }
     render() {
       return (       
@@ -47,7 +39,7 @@ class ElementsList extends React.Component {
           <br></br>
           <ul className="nav nav-tabs justify-content-center nav-justified nav-fill container row" role="tablist">
               <li className="nav-item">
-                <a className="nav-link active" data-toggle="tab" href="#list">Lista Elementów</a>
+                <a className="nav-link   active" data-toggle="tab" href="#list">Lista Elementów</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" data-toggle="tab" href="#import">Import</a>
@@ -75,7 +67,7 @@ class ElementsList extends React.Component {
             <div id="import" className="container tab-pane fade">    
             <h3 className="text-center">Importuj plik SVG</h3>
               <p>import z onChange podpiętym do funkcji przekazanej z App.js</p>
-              <Upload/>     
+              <Upload loadSVG={this.props.loadSVG}/>     
             </div>
             <div id="export" className="container tab-pane fade">  
             <h3 className="text-center">Eksportuj plik SVG</h3>
