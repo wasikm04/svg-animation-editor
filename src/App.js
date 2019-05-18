@@ -29,8 +29,9 @@ class App extends React.Component {
   };
   
   handleChange(propertyName,propertyValue,elementID ) {
+    //tu trzeba jakieś ogarnięte wyszukiwanie zmiennych i ustawianie
     var prevState = this.state.file;
-    prevState.circle[0]._attributes.cx = propertyValue;
+    prevState.rect._attributes.x = propertyValue;
 
     this.setState({
       file:  prevState 

@@ -151,7 +151,7 @@ class EditionPanel extends React.Component {
   }
 
   handleXPositionChange(valueChange) {
-    this.props.handleChange("xposition",valueChange,this.props.file.selectedElement);
+    this.props.handleChange("cx",valueChange,this.props.file.selectedElement);
     this.setState({xposition: valueChange});
   }
 

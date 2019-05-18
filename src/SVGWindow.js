@@ -1,10 +1,36 @@
 import React from 'react';
 import "./styles/App.css";
-import { ReactComponent as SVGExample} from "./svg/example.svg";
 class SVGWindow extends React.Component {
   constructor(props) {
     super(props);
     this.convertState = this.convertState.bind(this);
+    this.createElements = this.createElements.bind(this);
+    this.parseArray = this.parseArray.bind(this);
+  }
+
+  createElements(elements, Category){
+        var arr =[];
+        var tmpelement = null;
+         var tmpAnimates =[];
+         for(var arrelem in elements){
+           if(elements[arrelem].type === "animate"){
+              tmpAnimates.push(elements[arrelem]);
+           }else{
+             if(tmpelement){
+              arr.push(<Category key={tmpelement.id} {...tmpelement}>{tmpAnimates.map((el) => el)}</Category>)
+              tmpAnimates.length = 0;
+              tmpelement = elements[arrelem];
+            }else{
+               tmpelement = elements[arrelem] ;
+            }
+           }
+         }
+         if(tmpelement){
+          arr.push(<Category key={tmpelement.id} {...tmpelement}>{tmpAnimates.map((el) => el)}</Category>);
+         }
+         //console.log("Lista z createElements")
+         //console.log(arr);
+         return arr;
   }
 
   parseArray(elem){ //wczytywanie atrybutów z obiektów lub tablic obiektów
@@ -18,13 +44,15 @@ class SVGWindow extends React.Component {
                 //zamiana key na key bez '-'
                 attrobj[key3] = elem[obj][attr]._attributes[key3];
               }
-              resultarray.push(<animate {...attrobj}/>); 
+              resultarray.push(<animate key={attrobj.id} {...attrobj}/>); 
+              attrobj = {};
           } else{ //_attributes
               for(var key in elem[obj][attr]){
                 //zamiana key na key bez '-'
                 attrobj[key] = elem[obj][attr][key];
               }
               resultarray.push(attrobj);
+              attrobj = {};
           }
         }
       };
@@ -33,18 +61,17 @@ class SVGWindow extends React.Component {
         //zamiana key na key bez '-'
         attrobj[key2] = elem._attributes[key2];  
         }
-        resultarray.push(attrobj);    
+        resultarray.push(attrobj); 
+        attrobj = {};   
     }
-    console.log(resultarray);
+    //console.log("Lista z parseArray")
+    //console.log(resultarray);
     return resultarray;
   }
 
   convertState(file){
     var arr= [];
     var svgattributes = {};
-    //przykład 
-    arr.push(<div key="1">12123</div>);
-    arr.push(<div key="2">1we3</div>);
 
     for(var elem in file) { //główna pętla
       if( elem === "_attributes"){ //poszczególne elementy, tu svg
@@ -52,45 +79,56 @@ class SVGWindow extends React.Component {
           //zamiana key na key bez '-' 
           svgattributes[key2] = file[elem][key2];
         }
-        console.log(svgattributes);
+        continue;
       }
       if( elem === "circle"){
-         var circle = this.parseArray(file[elem])
-         
-         //arr.push();
-         // [{x:1,y2}, <animate asfkha/>]
-        // rysowanie elementu circle == "<cricle tab[0]>tab[1]</circle>"
+         var circles = this.parseArray(file[elem])
+         var arrayOfJsxCircles = this.createElements(circles, "circle");
+         arr = arr.concat(arrayOfJsxCircles);
+         continue;
       }
       if( elem === "rect"){
-
+         var rects = this.parseArray(file[elem])
+         var arrayOfJsxRects = this.createElements(rects, "rect");
+         arr = arr.concat(arrayOfJsxRects);
+         continue;
       }
       if( elem === "polygon"){
-
+        var polygons = this.parseArray(file[elem])
+        var arrayOfJsxpolygons = this.createElements(polygons, "polygon");
+        arr = arr.concat(arrayOfJsxpolygons);
+        continue;
       }
       if(elem === "ellipse"){
-        
+        var ellipses = this.parseArray(file[elem])
+        var arrayOfJsxellipses = this.createElements(ellipses, "ellipse");
+        arr = arr.concat(arrayOfJsxellipses);
+        continue;
+      }  
+      if(elem === "script"){
+        arr.push(<script type="text/ecmascript">{file[elem]._cdata}</script>);
+        continue;
       }
-      
-
+      if(elem === "style"){
+        arr.push(<style>{file[elem]._text}</style>);
+      }
     }
-    return <svg {...svgattributes}>{arr}</svg>;
+
+    //console.log("Lista z convertState")
+    //console.log(arr);
+    return <svg  {...svgattributes}>{arr}</svg>; 
   }
   
-
     render() {
-      //var rawSvg = '<?xml version="1.0" encoding="utf-8"?><!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="drawing" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 width="500px" height="500px" viewBox="0 0 500 500" enable-background="new 0 0 500 500" xml:space="preserve"><line id="line1234" fill="none" stroke="#FF7BAC" stroke-width="20" stroke-linecap="round" stroke-miterlimit="10" x1="138.682" y1="250" x2="293.248" y2="95.433"/><rect id="rect1235" x="22.48" y="19.078" fill="#F7931E" stroke="#C1272D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="94.972" height="94.972"/><path id="path1236" opacity="0.5" fill="#29ABE2" d="M189.519,131.983c0,5.523-4.477,10-10,10H92.257c-5.523,0-10-4.477-10-10V53.659	c0-5.523,4.477-10,10-10h87.262c5.523,0,10,4.477,10,10V131.983z"/><circle id="circle1237" opacity="0.8" fill="#8CC63F" cx="201.603" cy="159.508" r="69.067"/><polygon id="polygon1238" fill="none" stroke="#8C6239" stroke-width="20" stroke-linecap="round" stroke-miterlimit="10" points="286.331,287.025 	227.883,271.365 212.221,212.915 255.009,170.127 313.459,185.789 329.119,244.237 "/></svg>'
-      //var draw = SVG('#drawing')
-      //console.log(draw);
-      //var store = draw.svg(rawSvg);
-      //console.log(store);
-
       return (
         <div className="container mt-2 border rounded h-100 d-inline-block">
             <div className="container fill panel panel-primary">
               <div className="panel-heading text-center">Plik SVG</div>
               <div className="panel-body container fill">
                 <div className="container fill text-center">
-                {this.props.file ? this.convertState(this.props.file) : <SVGExample/>}
+                {this.props.file ? this.convertState(this.props.file) : null} 
+                {console.log("zmiana stanu!")}
+                {/*zamiast SVGexample wczytywać z pliku w upload na starcie aplikacji */}
                 </div>
               </div>
               <div className="panel-footer">
