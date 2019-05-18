@@ -2,30 +2,16 @@ import React from 'react';
 import Upload from "./Upload.js";
 import "./styles/App.css"
 
-var DataSet = {
-  elements: [
-    {
-      id: 1,
-      name: "Element 1"
-    },
-    {
-      id: 2,
-      name: "Element 2"
-    },
-    {
-      id: 3,
-      name: "Element 3"
-    },
-    {
-      id: 4,
-      name: "Element 4"
-    },
-    {
-      id: 5,
-      name: "Element 5"
-    },
-  ]
-};
+/*function findElements(file){
+  Object.keys(svg).map((s, idx) => {
+    console.log(svg[s]);
+    return (svg[s]._attributes && svg[s]._attributes.id) ?
+      <option key={idx} value={svg[s]} className="col-md">
+        {svg[s]._attributes.id}
+      </option>
+    : {{Array.isArray(svg[s])} ? findElements(svg[s]) : null}
+}
+*/
 class ElementsList extends React.Component {
 
   OnSelectedItem(e) {
@@ -33,6 +19,15 @@ class ElementsList extends React.Component {
     this.props.handleSelected(id);
   }
     render() {
+      let render1 = null;
+      let svg = null;
+      if(this.props.file === null) {
+        render1 = false;
+      } else {
+        render1 = true;
+         svg = this.props.file;
+      }
+
       return (       
         <div height='calc(100vh/2)' className="container row">
           <h2 className="text-center container  " >SVG Editor</h2>
@@ -49,29 +44,27 @@ class ElementsList extends React.Component {
               </li>
           </ul>
           <div className="tab-content container " style={{height: '200px'}}>
-            <div id="list" className="container tab-pane active">          
-              <p>Lista mapowana z tablicy z propsów</p>
+            <div id="list" className="container tab-pane active">     
+            <br></br>
               <select
                 className="custom-select" size="6"
-                onChange={e => this.OnSelectedItem(e)}
-              >
-                {DataSet.elements.map((s, id) => {
-                  return (
-                    <option key={id} value={s.id} className="col-md">
-                      {s.name}
+                onChange={e => this.OnSelectedItem(e)}>
+                {render1 ?
+                Object.keys(svg).map((s, idx) => {
+                  return (svg[s]._attributes && svg[s]._attributes.id) ?
+                    <option key={idx} value={svg[s]} className="col-md">
+                      {svg[s]._attributes.id}
                     </option>
-                  );
-                })}
+                  : null;
+                }) : ""};
               </select>
             </div>
             <div id="import" className="container tab-pane fade">    
             <h3 className="text-center">Importuj plik SVG</h3>
-              <p>import z onChange podpiętym do funkcji przekazanej z App.js</p>
               <Upload loadSVG={this.props.loadSVG}/>     
             </div>
             <div id="export" className="container tab-pane fade">  
             <h3 className="text-center">Eksportuj plik SVG</h3>
-              <p>Zrzut całego state do pliku</p>  
             </div>
           </div>
         </div>

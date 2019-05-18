@@ -1,4 +1,5 @@
 import React from 'react';
+import convert from 'xml-js';
 
 class Upload extends React.Component {
     constructor(props) {
@@ -16,26 +17,11 @@ class Upload extends React.Component {
   
     handleLoad(event) {
       var content = this.reader.result;
-      var parser = new DOMParser();
-      content = parser.parseFromString(content, "image/svg+xml");    
-      
-      /*
-      console.log(content)
-      var arr = Array.from(content.children)
-      console.log(arr)
-      console.log(content.documentElement.attributes)   
-      console.log(content.documentElement)
-      */
-      
-      console.log(content);
-      this.props.loadSVG(content); //xmldocument
-      //this.props.loadSVG(content.documentElement) //svgsvgelement
-      /*
-      this.setState({
-        file: content.documentElement
-      });
-    Zamiast set state > this.props.HandleNewFile(file) 
-    */
+      //var parser = new DOMParser();
+      //content = parser.parseFromString(content, "image/svg+xml");  
+      var result = convert.xml2json(content, {compact: true, spaces: 4, ignoreDeclaration: true});    
+      result = JSON.parse(result);
+      this.props.loadSVG(result) 
     }
   
     render() {

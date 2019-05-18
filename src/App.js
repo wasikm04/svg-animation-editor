@@ -9,40 +9,44 @@ class App extends React.Component {
     super(props);
     this.state = {
       selectedElement : null,
-      file: null
+      file: null,
     };
     this.handleChange = this.handleChange.bind(this);
     this.loadSVG = this.loadSVG.bind(this);
     this.handleSelected = this.handleSelected.bind(this);
   };
 
-  /*Tymczasowo w oddzielnej zmiennej żeby potestować a nie zaśmiecać tego file*/
   loadSVG(JSONFile){
     this.setState({
-      rawfile: JSONFile
+      file: JSONFile.svg
     });
   };
 
-  handleSelected(elementID){
+  handleSelected(element){
     this.setState({
-      selectedElement: elementID
+      selectedElement: element
     });
   };
-/*event,propertyName,propertyValue,elementID */
+  
   handleChange(propertyName,propertyValue,elementID ) {
+    var prevState = this.state.file;
+    prevState.circle[0]._attributes.cx = propertyValue;
+
     this.setState({
-      file:  [{ [propertyName] : propertyValue}]
+      file:  prevState 
     });
   };
+  
   
 render(){
   return (
     <div className="col-12 row">
       <div  className="col-6">
-        <Editor file={this.state} handleSelected={this.handleSelected} handleChange = {this.handleChange} loadSVG = {this.loadSVG}/>
+        <Editor file={this.state.file} handleSelected={this.handleSelected} handleChange = {this.handleChange} loadSVG = {this.loadSVG}/>
       </div>
       <div className="col-6">
-        <SVGWindow file={this.state.rawfile}/>
+        <SVGWindow file={this.state.file}/>
+       
       </div>
     </div>
   );
