@@ -269,6 +269,16 @@ class EditionPanel extends React.Component {
            </div>
           <div id="animations" className="container tab-pane"> 
  
+          <div className="col-12 row">
+      <div  className="col-6">
+        kontrolki
+        </div>
+        <div  className="col-6">
+          lista
+          {/* TUTAJ DODAJ LISTE   */}
+        </div>
+
+        </div>
 
         </div>
         </div> 
