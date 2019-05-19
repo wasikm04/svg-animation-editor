@@ -146,10 +146,11 @@ class EditionPanel extends React.Component {
     this.handleColorBaseChange = this.handleColorBaseChange.bind(this);
     this.handleColorBorderChange = this.handleColorBorderChange.bind(this);
     this.handlesizeChange = this.handlesizeChange.bind(this);
+    this.isEmpty = this.isEmpty.bind(this);
   }
 
   handleChange(event) {
-    this.props.handleChange(event.target.name,event.target.value,this.props.file.selectedElement);
+    this.props.handleChange(event.target.name,event.target.value,this.props.selectedElement._attributes.id);
   }
 
   handleColorBaseChange(value) {
@@ -164,8 +165,23 @@ class EditionPanel extends React.Component {
     this.props.handleChange("size",size,this.props.file.selectedElement);
   }
 
+  isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
 
     render() {
+      var rt = null;
+      if(this.props.selectedElement !== null && this.props.selectedElement._attributes.x){
+           rt = <FiledInput
+          name = "x"
+          valueChange={ this.props.selectedElement._attributes.x }
+          fieldName= 'Change X Postion: '
+          onValueChange={this.handleChange} />        
+      }
       return (      
         <div height='calc(100vh/2)' className="container">
         <ul className="nav nav-tabs justify-content-center nav-justified nav-fill container row" role="tablist">
@@ -178,45 +194,18 @@ class EditionPanel extends React.Component {
          </ul>
        <div style={heightBox} className=" tab-content container">
        <div id="css" className="container tab-pane active">    
-       {this.props.file?
        <div className ="container">
-        
-          <FiledInput
-          name = "xposition"
-          valueChange={this.props.selectedElement._atribiutes.cx}
-          fieldName= 'Change X Postion: '
-          onValueChange={this.handleChange} />
-          <FiledInput
-          name = "yposition"
-          valueChange={this.props.file.yposition}
-          fieldName= 'Change Y Postion: '
-          onValueChange={this.handleChange} />
-          <ColorInput
-          valueChange={this.props.file.basecolor}
-          fieldName= 'Change Base color: '
-          onValueChange={this.handleColorBaseChange} />
-          <ColorInput
-          valueChange={this.props.file.bordercolor}
-          fieldName= 'Change Border color: '
-          onValueChange={this.handleColorBorderChange} />
-          <SliderInput
-          valueChange={this.props.file.size}
-          min = {1}
-          max = {100}
-          fieldName= 'Change size: '
-          onValueChange={this.handlesizeChange} />
+          {rt}
           </div>
-          :null}
            </div>
           <div id="animations" className="container tab-pane"> 
  
 
         </div>
-               </div>
-         
-          </div>
+        </div> 
+        </div>
       );
-    }
-  }
-
+    
+  };
+}
   export default EditionPanel;

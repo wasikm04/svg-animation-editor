@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedElement : {},
+      selectedElement : null,
       file: null,
       elementCategory : null,
     };
@@ -35,14 +35,30 @@ class App extends React.Component {
     });
   };
   
+
   handleChange(propertyName,propertyValue,elementID ) {
-    //tu trzeba jakieś ogarnięte wyszukiwanie zmiennych i ustawianie
-    var prevSelected = this.state.selectedElement 
-    var prevState = this.state.file;
-    prevState.rect._attributes.x = propertyValue;
+    var prevSelected = null
+    var svg = this.state.file;
+    for(var elem in svg){
+      if(Array.isArray(svg[elem])){
+        for(var iter in svg[elem]){
+          if(svg[elem][iter]._attributes.id === elementID){
+            svg[elem][iter]._attributes[propertyName] = propertyValue;
+            prevSelected = svg[elem][iter]
+          }
+        }
+      }else if(svg[elem]._attributes && svg[elem]._attributes.id){
+        if(svg[elem]._attributes.id === elementID){
+          svg[elem]._attributes[propertyName] = propertyValue;
+          prevSelected = svg[elem];
+          break;
+        }
+      }
+    }
 
     this.setState({
-      file:  prevState 
+      file: svg,
+      selectedElement : prevSelected 
     });
   };
   
@@ -51,7 +67,7 @@ render(){
   return (
     <div className="col-12 row">
       <div  className="col-6">
-        <Editor file={this.state.file} handleSelected={this.handleSelected} handleChange = {this.handleChange} loadSVG = {this.loadSVG} handleElementCategory={this.handleElementCategory}/>
+        <Editor file={this.state.file} selectedElement={this.state.selectedElement} handleSelected={this.handleSelected} handleChange = {this.handleChange} loadSVG = {this.loadSVG} handleElementCategory={this.handleElementCategory}/>
       </div>
       <div className="col-6">
         <SVGWindow file={this.state.file}/>
