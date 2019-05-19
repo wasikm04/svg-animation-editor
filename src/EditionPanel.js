@@ -36,7 +36,13 @@ const heightBox = {
 };
 
 const width60 = {
-  width: '55%'
+  width: '55%',
+  marginBottom: '15px'
+}
+
+const title = {
+  marginLeft: '-15px',
+  marginBottom: '10px',
 }
 
 function EditingTitle(props) {
@@ -119,6 +125,7 @@ class ColorInput extends React.Component {
       const title = this.props.fieldName;
       const min = this.props.min;
       const max = this.props.max;
+      const step = this.props.step;
       return (
         <div>
         <div className="row">
@@ -129,6 +136,7 @@ class ColorInput extends React.Component {
          <div style={width60} className="row ">
          <InputRange
         maxValue={max}
+        step={step}
         minValue={min}
         value={this.state.value}
         onChange={value => this.handleChange({ value })} />
@@ -145,7 +153,8 @@ class EditionPanel extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handlefill = this.handlefill.bind(this);
     this.handlestroke = this.handlestroke.bind(this);
-    this.handlesizeChange = this.handlesizeChange.bind(this);
+    this.handlefillopacity = this.handlefillopacity.bind(this);
+    this.handlestrokeopacity = this.handlestrokeopacity.bind(this);
     this.isEmpty = this.isEmpty.bind(this);
   }
 
@@ -161,9 +170,14 @@ class EditionPanel extends React.Component {
     this.props.handleChange("stroke",value,this.props.selectedElement._attributes.id);
   }
 
-  handlesizeChange(size) {
-    this.props.handleChange("size",size,this.props.file.selectedElement);
+  handlefillopacity(value) {
+    this.props.handleChange("fill-opacity",value,this.props.selectedElement._attributes.id);
   }
+
+  handlestrokeopacity(value) {
+    this.props.handleChange("stroke-opacity",value,this.props.selectedElement._attributes.id);
+  }
+
 
   isEmpty(obj) {
     for(var key in obj) {
@@ -179,7 +193,12 @@ class EditionPanel extends React.Component {
        
       for(var propAttr in this.props.selectedElement._attributes ){
       if(this.props.selectedElement._attributes[propAttr]){   
-        if(propAttr==='fill'){
+        
+        if(propAttr==='id'){
+          var tempField = <div style={title}> Editing element id: <strong>{this.props.selectedElement._attributes[propAttr]}</strong></div>
+          editor.push(tempField)
+        }
+        else if(propAttr==='fill'){
 
           var tempField = <ColorInput
           valueChange={this.props.selectedElement._attributes[propAttr]}
@@ -197,6 +216,27 @@ class EditionPanel extends React.Component {
       
           editor.push(tempField)
 
+        }else if(propAttr==='fill-opacity'){
+          var tempField = <SliderInput
+          valueChange={this.props.selectedElement._attributes[propAttr]}
+          min = {0.01}
+          max = {1}
+          step = {0.01}
+          fieldName= {'Change '+ propAttr +':'}
+          onValueChange={this.handlefillopacity} />
+          
+          editor.push(tempField)
+
+        }else if(propAttr==='stroke-opacity'){
+          var tempField = <SliderInput
+          valueChange={this.props.selectedElement._attributes[propAttr]}
+          min = {0.01}
+          max = {1}
+          step = {0.01}
+          fieldName= {'Change '+ propAttr +':'}
+          onValueChange={this.handlestrokeopacity} />
+          
+          editor.push(tempField)
         }else{
 
           var tempField = <FiledInput
