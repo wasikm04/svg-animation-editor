@@ -174,14 +174,22 @@ class EditionPanel extends React.Component {
 }
 
     render() {
-      var rt = null;
-      if(this.props.selectedElement !== null && this.props.selectedElement._attributes.x){
-           rt = <FiledInput
-          name = "x"
-          valueChange={ this.props.selectedElement._attributes.x }
-          fieldName= 'Change X Postion: '
-          onValueChange={this.handleChange} />        
+      var editor = []
+      if(this.props.selectedElement !== null){
+       
+      for(var propAttr in this.props.selectedElement._attributes ){
+      if(this.props.selectedElement._attributes[propAttr]){   
+          var tempField = <FiledInput
+          name = {propAttr}
+          valueChange={ this.props.selectedElement._attributes[propAttr] }
+          fieldName= {'Change ' + propAttr + ' value:'}
+          onValueChange={this.handleChange} />   
+          
+          editor.push(tempField)
       }
+    }
+    }
+
       return (      
         <div height='calc(100vh/2)' className="container">
         <ul className="nav nav-tabs justify-content-center nav-justified nav-fill container row" role="tablist">
@@ -195,7 +203,7 @@ class EditionPanel extends React.Component {
        <div style={heightBox} className=" tab-content container">
        <div id="css" className="container tab-pane active">    
        <div className ="container">
-          {rt}
+          {editor}
           </div>
            </div>
           <div id="animations" className="container tab-pane"> 
