@@ -14,10 +14,15 @@ class SVGWindow extends React.Component {
     this.parseArray = this.parseArray.bind(this);
   }
 
-  fixName(){
-    var text = "position-pos"
+  fixName(text){
+   // var text = "position-pos"
     for (var i = 1; i <= text.length; i++) {
       if(text[i]==='-'){
+        text = setCharAt(text,i,'');
+        text = setCharAt(text,i,text[i].toUpperCase());
+        break;
+      }
+      if(text[i]===':'){
         text = setCharAt(text,i,'');
         text = setCharAt(text,i,text[i].toUpperCase());
         break;
@@ -59,15 +64,14 @@ class SVGWindow extends React.Component {
         for(var attr in elem[obj]){ //_attributes: animate:
           if(attr === "animate"){ //</animate>
               for(var key3 in elem[obj][attr]._attributes){
-                //zamiana key na key bez '-'
-                attrobj[key3] = elem[obj][attr]._attributes[key3];
+                attrobj[this.fixName(key3)] = elem[obj][attr]._attributes[key3];
+                //console.log(this.fixName(elem[obj][attr]._attributes[key3]));
               }
               resultarray.push(<animate key={attrobj.id} {...attrobj}/>); 
               attrobj = {};
           } else{ //_attributes
               for(var key in elem[obj][attr]){
-                //zamiana key na key bez '-'
-                attrobj[key] = elem[obj][attr][key];
+                attrobj[this.fixName(key)] = elem[obj][attr][key];
               }
               resultarray.push(attrobj);
               attrobj = {};
@@ -76,8 +80,7 @@ class SVGWindow extends React.Component {
       };
     }else{ //_attributes
         for(var key2 in elem._attributes){
-        //zamiana key na key bez '-'
-        attrobj[key2] = elem._attributes[key2];  
+        attrobj[this.fixName(key2)] = elem._attributes[key2];  
         }
         resultarray.push(attrobj); 
         attrobj = {};   
@@ -94,8 +97,7 @@ class SVGWindow extends React.Component {
     for(var elem in file) { //główna pętla
       if( elem === "_attributes"){ //poszczególne elementy, tu svg
         for(var key2 in file[elem]){
-          //zamiana key na key bez '-' 
-          svgattributes[key2] = file[elem][key2];
+          svgattributes[this.fixName(key2)] = file[elem][key2];
         }
         continue;
       }
@@ -124,11 +126,11 @@ class SVGWindow extends React.Component {
         continue;
       }  
       if(elem === "script"){
-        arr.push(<script type="text/ecmascript">{file[elem]._cdata}</script>);
+        arr.push(<script key={184} type="text/ecmascript">{file[elem]._cdata}</script>);
         continue;
       }
       if(elem === "style"){
-        arr.push(<style>{file[elem]._text}</style>);
+        arr.push(<style key={167}>{file[elem]._text}</style>);
       }
     }
 
@@ -145,7 +147,6 @@ class SVGWindow extends React.Component {
               <div className="panel-body container fill">
                 <div className="container fill text-center">
                 {this.props.file ? this.convertState(this.props.file) : null} 
-                {console.log("zmiana stanu!")}
                 {/*zamiast SVGexample wczytywać z pliku w upload na starcie aplikacji */}
                 </div>
               </div>
