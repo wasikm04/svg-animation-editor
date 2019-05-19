@@ -178,9 +178,12 @@ class EditionPanel extends React.Component {
          </ul>
        <div style={heightBox} className=" tab-content container">
        <div id="css" className="container tab-pane active">    
+       {this.props.file?
+       <div className ="container">
+        
           <FiledInput
           name = "xposition"
-          valueChange={this.props.file.xposition}
+          valueChange={this.props.selectedElement._atribiutes.cx}
           fieldName= 'Change X Postion: '
           onValueChange={this.handleChange} />
           <FiledInput
@@ -202,38 +205,15 @@ class EditionPanel extends React.Component {
           max = {100}
           fieldName= 'Change size: '
           onValueChange={this.handlesizeChange} />
-
+          </div>
+          :null}
            </div>
           <div id="animations" className="container tab-pane"> 
- <FiledInput
-          name = "xposition"
-          valueChange={this.props.file.xposition}
-          fieldName= 'Change X Postion: '
-          onValueChange={this.handleChange} />
-          <FiledInput
-          name = "yposition"
-          valueChange={this.props.file.yposition}
-          fieldName= 'Change Y Postion: '
-          onValueChange={this.handleChange} />
-          <ColorInput
-          valueChange={this.props.file.basecolor}
-          fieldName= 'Change Base color: '
-          onValueChange={this.handleColorBaseChange} />
-          <ColorInput
-          valueChange={this.props.file.bordercolor}
-          fieldName= 'Change Border color: '
-          onValueChange={this.handleColorBorderChange} />
-          <SliderInput
-          valueChange={this.props.file.size}
-          min = {1}
-          max = {100}
-          fieldName= 'Change size: '
-          onValueChange={this.handlesizeChange} />
+ 
 
         </div>
                </div>
-               <p>posX: {this.state.xposition} posY: {this.state.yposition} baseColour: {this.state.baseColor} borderColour: {this.state.borderColor}  size: {this.state.size} opacity: {this.state.opacity}</p>
-    
+         
           </div>
       );
     }
