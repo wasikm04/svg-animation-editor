@@ -168,12 +168,16 @@ class EditionPanel extends React.Component {
     render() {
       return (      
         <div height='calc(100vh/2)' className="container">
-        <div className="container">
-        <div className="row">
-                <EditingTitle
-        elemName="Element 1" />
-        </div>
-        <div style={heightBox} className="container">
+        <ul className="nav nav-tabs justify-content-center nav-justified nav-fill container row" role="tablist">
+             <li className="nav-item">
+               <a className="nav-link   active" data-toggle="tab" href="#css">Edycja Css</a>
+             </li>
+             <li className="nav-item">
+               <a className="nav-link" data-toggle="tab" href="#animations">Edycja animacji</a>
+             </li>
+         </ul>
+       <div style={heightBox} className=" tab-content container">
+       <div id="css" className="container tab-pane active">    
           <FiledInput
           name = "xposition"
           valueChange={this.props.file.xposition}
@@ -198,13 +202,38 @@ class EditionPanel extends React.Component {
           max = {100}
           fieldName= 'Change size: '
           onValueChange={this.handlesizeChange} />
-          <FiledInput
+
+           </div>
+          <div id="animations" className="container tab-pane"> 
+ <FiledInput
+          name = "xposition"
           valueChange={this.props.file.xposition}
           fieldName= 'Change X Postion: '
           onValueChange={this.handleChange} />
-         </div>
-          <p>posX: {this.props.file.xposition} posY: {this.props.file.yposition} baseColour: {this.props.file.baseColor} borderColour: {this.props.file.borderColor}  size: {this.props.file.size}</p>
-          </div>
+          <FiledInput
+          name = "yposition"
+          valueChange={this.props.file.yposition}
+          fieldName= 'Change Y Postion: '
+          onValueChange={this.handleChange} />
+          <ColorInput
+          valueChange={this.props.file.basecolor}
+          fieldName= 'Change Base color: '
+          onValueChange={this.handleColorBaseChange} />
+          <ColorInput
+          valueChange={this.props.file.bordercolor}
+          fieldName= 'Change Border color: '
+          onValueChange={this.handleColorBorderChange} />
+          <SliderInput
+          valueChange={this.props.file.size}
+          min = {1}
+          max = {100}
+          fieldName= 'Change size: '
+          onValueChange={this.handlesizeChange} />
+
+        </div>
+               </div>
+               <p>posX: {this.state.xposition} posY: {this.state.yposition} baseColour: {this.state.baseColor} borderColour: {this.state.borderColor}  size: {this.state.size} opacity: {this.state.opacity}</p>
+    
           </div>
       );
     }

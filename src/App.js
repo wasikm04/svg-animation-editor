@@ -3,58 +3,37 @@ import SVGWindow from "./SVGWindow.js";
 import Editor from "./Editor.js";
 
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedElement : {},
-      file: null
-      elementCategory : null,
+       file: null,
+     elementCategory : null,
     };
     this.handleChange = this.handleChange.bind(this);
     this.loadSVG = this.loadSVG.bind(this);
-    this.handleSelected = this.handleSelected.bind(this);
-    this.handleElementCategory = this.handleElementCategory.bind(this);
   };
 
-  handleElementCategory(category){
-    this.setState({
-      elementCategory: category
-    });
-  };
+  loadSVG(){
 
-  loadSVG(JSONFile){
-    this.setState({
-      file: JSONFile.svg
-    });
   };
-
-  handleSelected(element){
-    this.setState({
-      selectedElement: element
-    });
-  };
-  
+/*event,propertyName,propertyValue,elementID */
   handleChange(propertyName,propertyValue,elementID ) {
-    //tu trzeba jakieś ogarnięte wyszukiwanie zmiennych i ustawianie
-    var prevState = this.state.file;
-    prevState.rect._attributes.x = propertyValue;
-
     this.setState({
-      file:  prevState 
+      propertyName: propertyValue
     });
   };
-  
   
 render(){
   return (
     <div className="col-12 row">
       <div  className="col-6">
-        <Editor file={this.state.file} handleSelected={this.handleSelected} handleChange = {this.handleChange} loadSVG = {this.loadSVG} handleElementCategory={this.handleElementCategory}/>
+        <Editor file={this.state.file} handleChange = {this.handleChange} loadSVG = {this.loadSVG}/>
       </div>
       <div className="col-6">
         <SVGWindow file={this.state.file}/>
-       
       </div>
     </div>
   );
