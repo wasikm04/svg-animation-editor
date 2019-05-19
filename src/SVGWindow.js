@@ -1,11 +1,29 @@
 import React from 'react';
 import "./styles/App.css";
+
+function setCharAt(str,index,chr) {
+  if(index > str.length-1) return str;
+  return str.substr(0,index) + chr + str.substr(index+1);
+}
+
 class SVGWindow extends React.Component {
   constructor(props) {
     super(props);
     this.convertState = this.convertState.bind(this);
     this.createElements = this.createElements.bind(this);
     this.parseArray = this.parseArray.bind(this);
+  }
+
+  fixName(){
+    var text = "position-pos"
+    for (var i = 1; i <= text.length; i++) {
+      if(text[i]==='-'){
+        text = setCharAt(text,i,'');
+        text = setCharAt(text,i,text[i].toUpperCase());
+        break;
+      }
+    }
+    return text;
   }
 
   createElements(elements, Category){
