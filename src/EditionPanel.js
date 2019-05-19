@@ -143,8 +143,8 @@ class EditionPanel extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.handleColorBaseChange = this.handleColorBaseChange.bind(this);
-    this.handleColorBorderChange = this.handleColorBorderChange.bind(this);
+    this.handlefill = this.handlefill.bind(this);
+    this.handlestroke = this.handlestroke.bind(this);
     this.handlesizeChange = this.handlesizeChange.bind(this);
     this.isEmpty = this.isEmpty.bind(this);
   }
@@ -153,12 +153,12 @@ class EditionPanel extends React.Component {
     this.props.handleChange(event.target.name,event.target.value,this.props.selectedElement._attributes.id);
   }
 
-  handleColorBaseChange(value) {
-    this.props.handleChange("basecolor",value,this.props.file.selectedElement);
+  handlefill(value) {
+    this.props.handleChange("fill",value,this.props.selectedElement._attributes.id);
   }
 
-  handleColorBorderChange(value) {
-    this.props.handleChange("bordercolor",value,this.props.file.selectedElement);
+  handlestroke(value) {
+    this.props.handleChange("stroke",value,this.props.selectedElement._attributes.id);
   }
 
   handlesizeChange(size) {
@@ -179,13 +179,34 @@ class EditionPanel extends React.Component {
        
       for(var propAttr in this.props.selectedElement._attributes ){
       if(this.props.selectedElement._attributes[propAttr]){   
+        if(propAttr==='fill'){
+
+          var tempField = <ColorInput
+          valueChange={this.props.selectedElement._attributes[propAttr]}
+          fieldName= {'Change '+ propAttr +' color: '}
+          onValueChange={this.handlefill} />
+      
+          editor.push(tempField)
+
+        }else if(propAttr==='stroke'){
+
+          var tempField = <ColorInput
+          valueChange={this.props.selectedElement._attributes[propAttr]}
+          fieldName= {'Change '+ propAttr +' color: '}
+          onValueChange={this.handlestroke} />
+      
+          editor.push(tempField)
+
+        }else{
+
           var tempField = <FiledInput
           name = {propAttr}
           valueChange={ this.props.selectedElement._attributes[propAttr] }
           fieldName= {'Change ' + propAttr + ' value:'}
           onValueChange={this.handleChange} />   
-          
+      
           editor.push(tempField)
+        }
       }
     }
     }

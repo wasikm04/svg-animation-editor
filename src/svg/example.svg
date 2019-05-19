@@ -18,8 +18,8 @@ fill: #CC2954;
 }
   </style>
   
-  <polygon id="actor_1"  points="58.59,17.79 53.97,15.07 48.79,16.41 46.07,21.03 47.41,26.21 52.03,28.93 57.21,27.59 59.93,22.97" opacity="1" fill="rgba(44,42,86,1)" fill-opacity="1" stroke="rgba(111,13,30,1)" stroke-width="2" stroke-opacity="1" stroke-dasharray="" transform="translate(30,10) rotate(25)"></polygon>
-  <circle id="actor_2" cx="27" cy="46" r="10" opacity="1" fill="rgba(79,235,62,1)" fill-opacity="1" stroke="rgba(165,51,184,1)" stroke-width="3" stroke-opacity="1" stroke-dasharray="">
+  <polygon id="actor_1"  points="58.59,17.79 53.97,15.07 48.79,16.41 46.07,21.03 47.41,26.21 52.03,28.93 57.21,27.59 59.93,22.97" opacity="1" fill="#f4414d" fill-opacity="1" stroke="rgba(111,13,30,1)" stroke-width="2" stroke-opacity="1" stroke-dasharray="" transform="translate(30,10) rotate(25)"></polygon>
+  <circle id="actor_2" cx="27" cy="46" r="10" opacity="1" fill="#4286f4" fill-opacity="1" stroke="rgba(165,51,184,1)" stroke-width="3" stroke-opacity="1" stroke-dasharray="">
   <animate 
            xlink:href="#actor_2"
            attributeName="cx" 
@@ -31,8 +31,8 @@ fill: #CC2954;
            fill="freeze" 
            id="rect-anim"/>
            </circle>
-   <rect id="actor_4" x="10" y="10" width="16" height="16" opacity="1" fill="rgba(154,241,226,1)" fill-opacity="1" stroke="rgba(224,12,232,1)" stroke-width="2" stroke-opacity="1" stroke-dasharray=""></rect>
-<circle id="actor_3" cx="50" cy="75" r="5" opacity="1" fill="rgba(242,162,12,1)" fill-opacity="1" stroke="rgba(166,3,17,1)" stroke-width="1" stroke-opacity="1" stroke-dasharray="">
+   <rect id="actor_4" x="10" y="10" width="16" height="16" opacity="1" fill="#38c93f" fill-opacity="1" stroke="rgba(224,12,232,1)" stroke-width="2" stroke-opacity="1" stroke-dasharray=""></rect>
+<circle id="actor_3" cx="50" cy="75" r="5" opacity="1" fill="#e2e20f" fill-opacity="1" stroke="rgba(166,3,17,1)" stroke-width="1" stroke-opacity="1" stroke-dasharray="">
 <animate 
            xlink:href="#actor_3"
            attributeName="cy" 
