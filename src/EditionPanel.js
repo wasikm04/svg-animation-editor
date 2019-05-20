@@ -320,7 +320,10 @@ OnSelectedAnimation(e) {
                <a className="nav-link   active" data-toggle="tab" href="#css">Edycja obiektu</a>
              </li>
              <li className="nav-item">
-               <a className="nav-link" data-toggle="tab" href="#animations">Edycja animacji</a>
+               <a className="nav-link" data-toggle="tab" href="#animations">Lista animacji</a>
+             </li>
+             <li className="nav-item">
+               <a className="nav-link" data-toggle="tab" href="#editanimations">Edycja animacji</a>
              </li>
          </ul>
        <div style={heightBox} className=" tab-content container">
@@ -331,12 +334,9 @@ OnSelectedAnimation(e) {
            </div>
           <div id="animations" className="container tab-pane"> 
  
-          <div className="col-12 row">
-      <div  className="col-6">
-        kontrolki
-        {animation}
-        </div>
-        <div  className="col-6">
+    
+      
+        <div  className="col-12">
           <br/>
           <h5>Lista animacji elementu</h5>
           <select
@@ -346,8 +346,14 @@ OnSelectedAnimation(e) {
          </select>
         </div>
 
-        </div>
+  
 
+        </div>
+        <div id="editanimations" className="container tab-pane"> 
+        <div  className="col-12">
+        kontrolki
+        {animation}
+        </div>
         </div>
         </div> 
         </div>
