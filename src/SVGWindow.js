@@ -59,17 +59,29 @@ class SVGWindow extends React.Component {
   parseArray(elem){ //wczytywanie atrybutów z obiektów lub tablic obiektów
     var resultarray =[];
     var attrobj = {};
+    var keyval = 100;
     if( Array.isArray(elem)){ //arrays
       for(var obj in elem){ //0: 1:
         for(var attr in elem[obj]){ //_attributes: animate:
           if(attr === "animate"){ //</animate>
-              for(var key3 in elem[obj][attr]._attributes){
-                attrobj[this.fixName(key3)] = elem[obj][attr]._attributes[key3];
+            for(var i in elem[obj][attr]){
+              if(Array.isArray(elem[obj][attr])){
+              for(var key3 in elem[obj][attr][i]._attributes){
+                attrobj[this.fixName(key3)] = elem[obj][attr][i]._attributes[key3];
                 //console.log(this.fixName(elem[obj][attr]._attributes[key3]));
               }
-              resultarray.push(<animate key={attrobj.id} {...attrobj}/>); 
+              resultarray.push(<animate key={keyval++} {...attrobj}/>); 
               attrobj = {};
-          } else{ //_attributes
+            }else{
+              for(var key4 in elem[obj][attr]._attributes){
+                attrobj[this.fixName(key4)] = elem[obj][attr]._attributes[key4];
+                //console.log(this.fixName(elem[obj][attr]._attributes[key3]));
+              }
+              resultarray.push(<animate key={keyval++} {...attrobj}/>); 
+              attrobj = {};
+            }
+            }
+          }else{ //_attributes
               for(var key in elem[obj][attr]){
                 attrobj[this.fixName(key)] = elem[obj][attr][key];
               }
@@ -78,12 +90,34 @@ class SVGWindow extends React.Component {
           }
         }
       };
-    }else{ //_attributes
-        for(var key2 in elem._attributes){
-        attrobj[this.fixName(key2)] = elem._attributes[key2];  
-        }
-        resultarray.push(attrobj); 
-        attrobj = {};   
+    }else{ // single element
+      for(attr in elem){
+          if(attr === "animate"){ //</animate>
+            for(i in elem[attr]){
+              if(Array.isArray(elem[attr])){ //array of animates
+              for(var key5 in elem[attr][i]._attributes){
+                attrobj[this.fixName(key5)] = elem[attr][i]._attributes[key5];
+                //console.log(this.fixName(elem[attr]._attributes[key3]));
+              }
+              resultarray.push(<animate key={keyval++} {...attrobj}/>); 
+              attrobj = {};
+            }else{
+              for(var key6 in elem[attr]._attributes){
+                attrobj[this.fixName(key6)] = elem[attr]._attributes[key6];
+                //console.log(this.fixName(elem[attr]._attributes[key3]));
+              }
+              resultarray.push(<animate key={keyval++} {...attrobj}/>); 
+              attrobj = {};
+            }
+            }
+          }else{ //attributes
+            for(var key2 in elem._attributes){
+              attrobj[this.fixName(key2)] = elem._attributes[key2];  
+            }
+            resultarray.push(attrobj); 
+            attrobj = {};   
+          }
+    }
     }
     //console.log("Lista z parseArray")
     //console.log(resultarray);
@@ -131,6 +165,10 @@ class SVGWindow extends React.Component {
       }
       if(elem === "style"){
         arr.push(<style key={167}>{file[elem]._text}</style>);
+      }
+      if(elem === "animate"){
+        var animates = this.parseArray(file[elem]);
+        arr.push(<animate key={169} {...animates[0]}/>);
       }
     }
 

@@ -249,7 +249,14 @@ class EditionPanel extends React.Component {
         }
       }
     }
+    var animations = [];
+    for(var anmt in this.props.selectedElement){
+      
     }
+
+    }
+    
+
 
       return (      
         <div height='calc(100vh/2)' className="container">

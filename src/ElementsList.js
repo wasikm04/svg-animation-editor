@@ -67,6 +67,7 @@ class ElementsList extends React.Component {
             </div>
             <div id="export" className="container tab-pane fade">  
             <h3 className="text-center">Eksportuj plik SVG</h3>
+            
             </div>
           </div>
       {/*this.selected ? <p>Edytujesz element <b>{this.selected}</b></p> : null*/}
