@@ -156,6 +156,8 @@ class EditionPanel extends React.Component {
     this.handlefillopacity = this.handlefillopacity.bind(this);
     this.handlestrokeopacity = this.handlestrokeopacity.bind(this);
     this.isEmpty = this.isEmpty.bind(this);
+    this.createList = this.createList.bind(this);
+    this.OnSelectedAnimation = this.OnSelectedAnimation.bind(this);
   }
 
   handleChange(event) {
@@ -185,6 +187,27 @@ class EditionPanel extends React.Component {
             return false;
     }
     return true;
+}
+
+createList(svg){
+  var resultArr = [];
+  if(svg.animate && Array.isArray(svg.animate)){
+    for(var elem in svg.animate){ //0,1
+      for(var itr in svg.animate[elem]){
+        //var tmparr=[[elem],[itr]];
+        resultArr.push(<option key={elem} value={svg.animate[elem]._attributes.id} className="col-md">{svg.animate[elem]._attributes.id}</option>);
+      }
+    
+    }
+  }else if(svg.animate && svg.animate._attributes && svg.animate._attributes.id){
+    resultArr.push(<option key={svg.animate._attributes.id} value={svg.animate._attributes.id} className="col-md">{svg.animate._attributes.id}</option>);
+  }
+  return resultArr;
+}
+OnSelectedAnimation(e) {
+  var elem = e.target.value;
+  console.log(elem);
+  //Tu coś można zrobić z tym id animacji, wybrać po tym id z selected element daną animacje i działać
 }
 
     render() {
@@ -249,20 +272,12 @@ class EditionPanel extends React.Component {
         }
       }
     }
-    var animations = [];
-    for(var anmt in this.props.selectedElement){
-      
     }
-
-    }
-    
-
-
       return (      
         <div height='calc(100vh/2)' className="container">
         <ul className="nav nav-tabs justify-content-center nav-justified nav-fill container row" role="tablist">
              <li className="nav-item">
-               <a className="nav-link   active" data-toggle="tab" href="#css">Edycja Css</a>
+               <a className="nav-link   active" data-toggle="tab" href="#css">Edycja obiektu</a>
              </li>
              <li className="nav-item">
                <a className="nav-link" data-toggle="tab" href="#animations">Edycja animacji</a>
@@ -281,8 +296,13 @@ class EditionPanel extends React.Component {
         kontrolki
         </div>
         <div  className="col-6">
-          lista
-          {/* TUTAJ DODAJ LISTE   */}
+          <br/>
+          <h5>Lista animacji elementu</h5>
+          <select
+                className="custom-select" size="6"
+                onChange={this.OnSelectedAnimation}>
+                {(this.props.selectedElement !== null) ? this.createList(this.props.selectedElement) : null}
+         </select>
         </div>
 
         </div>
