@@ -10,16 +10,24 @@ class App extends React.Component {
       selectedElement : null,
       file: null,
       elementCategory : null,
+      selectedAnim: null,
     };
     this.handleChange = this.handleChange.bind(this);
     this.loadSVG = this.loadSVG.bind(this);
     this.handleSelected = this.handleSelected.bind(this);
     this.handleElementCategory = this.handleElementCategory.bind(this);
+    this.handleselectedAnim = this.handleselectedAnim.bind(this);
   };
 
   handleElementCategory(category){
     this.setState({
       elementCategory: category
+    });
+  };
+
+  handleselectedAnim(category){
+    this.setState({
+      selectedAnim: category
     });
   };
 
@@ -34,7 +42,7 @@ class App extends React.Component {
       selectedElement: element
     });
   };
-  
+ 
 
   handleChange(propertyName,propertyValue,elementID ) {
     var prevSelected = null
@@ -55,10 +63,11 @@ class App extends React.Component {
         }
       }
     }
+   
 
     this.setState({
       file: svg,
-      selectedElement : prevSelected 
+      selectedElement : prevSelected  
     });
   };
   
@@ -67,7 +76,7 @@ render(){
   return (
     <div className="col-12 row">
       <div  className="col-6">
-        <Editor file={this.state.file} selectedElement={this.state.selectedElement} handleSelected={this.handleSelected} handleChange = {this.handleChange} loadSVG = {this.loadSVG} handleElementCategory={this.handleElementCategory}/>
+      <Editor anim={this.state.selectedAnim} file={this.state.file} handleselectedAnim={this.handleselectedAnim} selectedElement={this.state.selectedElement} handleSelected={this.handleSelected} handleChange = {this.handleChange} loadSVG = {this.loadSVG} handleElementCategory={this.handleElementCategory}/>
       </div>
       <div className="col-6">
         <SVGWindow file={this.state.file}/>

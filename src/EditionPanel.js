@@ -204,16 +204,56 @@ createList(svg){
   }
   return resultArr;
 }
+
+createAnimationEdit(svg){
+  var resultArr = [];
+  if(svg.animate && Array.isArray(svg.animate)){
+    for(var elem in svg.animate){ //0,1
+      if(svg.animate[elem]._attributes.id === this.props.anim){
+      for(var itr in svg.animate[elem]){
+        for(var anim in svg.animate[elem][itr]){
+          var tempField = <FiledInput
+          name = {anim}
+          valueChange={ svg.animate[elem][itr][anim] }
+          fieldName= {'Change ' + anim + ' value:'}
+          onValueChange={this.handleChange} />   
+      
+          resultArr.push(tempField)
+        }
+        }
+    }
+  }
+  }else if(svg.animate && svg.animate._attributes && svg.animate._attributes.id){
+    for(var anim in svg.animate._attributes){
+      var tempField = <FiledInput
+      name = {anim}
+      valueChange={ svg.animate._attributes[anim]}
+      fieldName= {'Change ' +anim+ ' value:'}
+      onValueChange={this.handleChange} />   
+  
+      resultArr.push(tempField)
+    }
+   }
+  return resultArr;
+}
+
 OnSelectedAnimation(e) {
   var elem = e.target.value;
   console.log(elem);
+  this.props.handleselectedAnim(elem);
+  console.log('selected anim: ' + this.props.anim)
   //Tu coś można zrobić z tym id animacji, wybrać po tym id z selected element daną animacje i działać
 }
 
     render() {
+
       var editor = []
+      var animation = []
       if(this.props.selectedElement !== null){
-       
+
+        animation = this.createAnimationEdit(this.props.selectedElement)
+      
+
       for(var propAttr in this.props.selectedElement._attributes ){
       if(this.props.selectedElement._attributes[propAttr]){   
         
@@ -294,6 +334,7 @@ OnSelectedAnimation(e) {
           <div className="col-12 row">
       <div  className="col-6">
         kontrolki
+        {animation}
         </div>
         <div  className="col-6">
           <br/>

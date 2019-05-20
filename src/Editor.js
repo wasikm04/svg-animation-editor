@@ -7,7 +7,7 @@ class Editor extends React.Component {
       return (
         <div  className="container">
           <ElementsList file={this.props.file} handleSelected={this.props.handleSelected} loadSVG = {this.props.loadSVG} handleElementCategory={this.props.handleElementCategory}/>
-          <EditionPanel selectedElement={this.props.selectedElement} handleChange = {this.props.handleChange}/>
+          <EditionPanel anim = {this.props.anim} handleselectedAnim={this.props.handleselectedAnim} selectedElement={this.props.selectedElement} handleChange = {this.props.handleChange}/>
         </div>
       );
     }
