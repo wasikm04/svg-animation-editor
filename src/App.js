@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedElement : null,
+      selectedElement : <div>Choose animation before edit!</div>,
       file: null,
       elementCategory : null,
       selectedAnim: null,

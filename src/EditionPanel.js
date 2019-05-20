@@ -234,6 +234,9 @@ createAnimationEdit(svg){
       resultArr.push(tempField)
     }
    }
+   if(resultArr.length===0){
+    return <div>Choose animation before edit!</div>
+   }
   return resultArr;
 }
 
@@ -351,7 +354,6 @@ OnSelectedAnimation(e) {
         </div>
         <div id="editanimations" className="container tab-pane"> 
         <div  className="col-12">
-        kontrolki
         {animation}
         </div>
         </div>
