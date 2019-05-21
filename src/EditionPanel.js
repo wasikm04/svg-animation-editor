@@ -162,7 +162,7 @@ class EditionPanel extends React.Component {
   }
 
   handleChangeAnimation(event) {
-    this.props.handleChangeAnimation(event.target.value,this.props.anim,this.props.selectedElement._attributes.id,false);
+    this.props.handleChangeAnimation(event.target.name,event.target.value,this.props.anim,this.props.selectedElement._attributes.id,false);
   }
 
   handleChange(event) {

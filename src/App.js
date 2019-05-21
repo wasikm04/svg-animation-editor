@@ -72,21 +72,43 @@ class App extends React.Component {
     });
   };
 
-  handleChangeAnimation(value,animationId,elementID,deleteIt ) {
-    console.log('change animation '+animationId+' '+elementID+' '+value)
+
+  createAnimationEdit(svg, selectedAnim, target,value){
+    if(svg.animate && Array.isArray(svg.animate)){
+      for(var elem in svg.animate){ //0,1
+        if(svg.animate[elem]._attributes.id === selectedAnim){
+        for(var itr in svg.animate[elem]){
+          for(var anim in svg.animate[elem][itr]){
+            if(anim === target){
+              svg.animate[elem][itr][anim] = value;
+            }
+          }
+          }
+      }
+    }
+    }else if(svg.animate && svg.animate._attributes && svg.animate._attributes.id){
+      for(var anim in svg.animate._attributes){
+        if(anim === target){
+          svg.animate._attributes[anim] = value;
+        }
+      }
+     } 
+  }
+  
+
+  handleChangeAnimation(target,value,animationId,elementID,deleteIt ) {
     var prevSelected = null
     var svg = this.state.file;
     for(var elem in svg){
       if(Array.isArray(svg[elem])){
         for(var iter in svg[elem]){
           if(svg[elem][iter]._attributes.id === elementID){
-           
+            this.createAnimationEdit(svg[elem][iter],animationId,target,value)
           }
         }
       }else if(svg[elem]._attributes && svg[elem]._attributes.id){
         if(svg[elem]._attributes.id === elementID){
-         
-          break;
+          this.createAnimationEdit(svg[elem][iter],animationId,target,value)
         }
       }
     }
