@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedElement : <div>Choose animation before edit!</div>,
+      selectedElement : null,
       file: null,
       elementCategory : null,
       selectedAnim: null,
@@ -17,6 +17,7 @@ class App extends React.Component {
     this.handleSelected = this.handleSelected.bind(this);
     this.handleElementCategory = this.handleElementCategory.bind(this);
     this.handleselectedAnim = this.handleselectedAnim.bind(this);
+    this.handleChangeAnimation = this.handleChangeAnimation.bind(this);
   };
 
   handleElementCategory(category){
@@ -63,20 +64,45 @@ class App extends React.Component {
         }
       }
     }
-   
+  
 
     this.setState({
       file: svg,
       selectedElement : prevSelected  
     });
   };
+
+  handleChangeAnimation(value,animationId,elementID,deleteIt ) {
+    console.log('change animation '+animationId+' '+elementID+' '+value)
+    var prevSelected = null
+    var svg = this.state.file;
+    for(var elem in svg){
+      if(Array.isArray(svg[elem])){
+        for(var iter in svg[elem]){
+          if(svg[elem][iter]._attributes.id === elementID){
+           
+          }
+        }
+      }else if(svg[elem]._attributes && svg[elem]._attributes.id){
+        if(svg[elem]._attributes.id === elementID){
+         
+          break;
+        }
+      }
+    }
+
+      this.setState({
+        file: svg,
+        selectedElement : prevSelected  
+      });
+    };
   
   
 render(){
   return (
     <div className="col-12 row">
       <div  className="col-6">
-      <Editor anim={this.state.selectedAnim} file={this.state.file} handleselectedAnim={this.handleselectedAnim} selectedElement={this.state.selectedElement} handleSelected={this.handleSelected} handleChange = {this.handleChange} loadSVG = {this.loadSVG} handleElementCategory={this.handleElementCategory}/>
+      <Editor anim={this.state.selectedAnim} file={this.state.file} handleselectedAnim={this.handleselectedAnim} selectedElement={this.state.selectedElement} handleSelected={this.handleSelected} handleChange = {this.handleChange} handleChangeAnimation = {this.handleChangeAnimation} loadSVG = {this.loadSVG} handleElementCategory={this.handleElementCategory}/>
       </div>
       <div className="col-6">
         <SVGWindow file={this.state.file}/>

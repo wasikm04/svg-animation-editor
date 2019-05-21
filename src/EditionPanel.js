@@ -150,6 +150,7 @@ class EditionPanel extends React.Component {
 
   constructor(props) {
     super(props);
+    this.handleChangeAnimation = this.handleChangeAnimation.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handlefill = this.handlefill.bind(this);
     this.handlestroke = this.handlestroke.bind(this);
@@ -158,6 +159,10 @@ class EditionPanel extends React.Component {
     this.isEmpty = this.isEmpty.bind(this);
     this.createList = this.createList.bind(this);
     this.OnSelectedAnimation = this.OnSelectedAnimation.bind(this);
+  }
+
+  handleChangeAnimation(event) {
+    this.props.handleChangeAnimation(event.target.value,this.props.anim,this.props.selectedElement._attributes.id,false);
   }
 
   handleChange(event) {
@@ -216,7 +221,7 @@ createAnimationEdit(svg){
           name = {anim}
           valueChange={ svg.animate[elem][itr][anim] }
           fieldName= {'Change ' + anim + ' value:'}
-          onValueChange={this.handleChange} />   
+          onValueChange={this.handleChangeAnimation} />   
       
           resultArr.push(tempField)
         }
@@ -229,7 +234,7 @@ createAnimationEdit(svg){
       name = {anim}
       valueChange={ svg.animate._attributes[anim]}
       fieldName= {'Change ' +anim+ ' value:'}
-      onValueChange={this.handleChange} />   
+      onValueChange={this.handleChangeAnimation} />   
   
       resultArr.push(tempField)
     }
@@ -242,10 +247,7 @@ createAnimationEdit(svg){
 
 OnSelectedAnimation(e) {
   var elem = e.target.value;
-  console.log(elem);
   this.props.handleselectedAnim(elem);
-  console.log('selected anim: ' + this.props.anim)
-  //Tu coś można zrobić z tym id animacji, wybrać po tym id z selected element daną animacje i działać
 }
 
     render() {
@@ -254,7 +256,7 @@ OnSelectedAnimation(e) {
       var animation = []
       if(this.props.selectedElement !== null){
 
-        animation = this.createAnimationEdit(this.props.selectedElement)
+      animation = this.createAnimationEdit(this.props.selectedElement)
       
 
       for(var propAttr in this.props.selectedElement._attributes ){
