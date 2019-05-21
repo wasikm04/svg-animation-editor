@@ -159,6 +159,7 @@ class EditionPanel extends React.Component {
     this.isEmpty = this.isEmpty.bind(this);
     this.createList = this.createList.bind(this);
     this.OnSelectedAnimation = this.OnSelectedAnimation.bind(this);
+    this.handleopacity = this.handleopacity.bind(this);
   }
 
   handleChangeAnimation(event) {
@@ -185,6 +186,9 @@ class EditionPanel extends React.Component {
     this.props.handleChange("stroke-opacity",value,this.props.selectedElement._attributes.id);
   }
 
+  handleopacity(value) {
+    this.props.handleChange("opacity",value,this.props.selectedElement._attributes.id);
+  }
 
   isEmpty(obj) {
     for(var key in obj) {
@@ -305,6 +309,18 @@ OnSelectedAnimation(e) {
           onValueChange={this.handlestrokeopacity} />
           
           editor.push(tempField)
+
+        }else if(propAttr==='opacity'){
+        var tempField = <SliderInput
+        valueChange={this.props.selectedElement._attributes[propAttr]}
+        min = {0.01}
+        max = {1}
+        step = {0.01}
+        fieldName= {'Change '+ propAttr +':'}
+        onValueChange={this.handleopacity} />
+        
+        editor.push(tempField)
+
         }else{
 
           var tempField = <FiledInput
