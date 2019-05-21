@@ -93,8 +93,8 @@ class App extends React.Component {
         }
       }
      } 
+     return 
   }
-  
 
   handleChangeAnimation(target,value,animationId,elementID,deleteIt ) {
     var prevSelected = null
@@ -103,12 +103,14 @@ class App extends React.Component {
       if(Array.isArray(svg[elem])){
         for(var iter in svg[elem]){
           if(svg[elem][iter]._attributes.id === elementID){
-            this.createAnimationEdit(svg[elem][iter],animationId,target,value)
+             this.createAnimationEdit(svg[elem][iter],animationId,target,value)
+             prevSelected = svg[elem][iter];
           }
         }
       }else if(svg[elem]._attributes && svg[elem]._attributes.id){
         if(svg[elem]._attributes.id === elementID){
-          this.createAnimationEdit(svg[elem][iter],animationId,target,value)
+             this.createAnimationEdit(svg[elem][iter],animationId,target,value)
+             prevSelected = svg[elem];
         }
       }
     }
