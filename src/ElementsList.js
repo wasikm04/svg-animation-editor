@@ -68,7 +68,7 @@ class ElementsList extends React.Component {
             <div id="export" className="container tab-pane fade">  
             <br></br>
             {this.props.export ? 
-            <textarea key="3123" className="area" rows="8" cols="60" value={this.props.export} readOnly>
+            <textarea key="3123" className="area col-md" rows="8"  value={this.props.export} readOnly>
               </textarea>
               : null}
             </div>

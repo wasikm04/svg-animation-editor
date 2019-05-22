@@ -159,7 +159,9 @@ class EditionPanel extends React.Component {
   }
 
   handleSubmit(){
-    this.props.addAnimation(this.props.selectedElement._attributes.id,this.createAnimation);
+    if(this.props.selectedElement){
+      this.props.addAnimation(this.props.selectedElement._attributes.id,this.createAnimation);
+    }
   }
   
   deleteAnimation(){
