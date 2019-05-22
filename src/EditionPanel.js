@@ -61,12 +61,12 @@ class FiledInput extends React.Component {
     const name = this.props.name;
     return (
       <div className="row">
-      <fieldset className="inline">
+   
         <legend style={nameStyle}>{title}</legend>
-        <input name = {name} style={inputStyle} value={valueChange}
+        <input name = {name} class="form-control w-50" style={inputStyle} value={valueChange}
                onChange={this.handleChange} />
               
-      </fieldset>
+    
       </div>
     );
   }

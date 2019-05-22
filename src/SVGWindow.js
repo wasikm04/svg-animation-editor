@@ -188,12 +188,6 @@ class SVGWindow extends React.Component {
                 {/*zamiast SVGexample wczytywać z pliku w upload na starcie aplikacji */}
                 </div>
               </div>
-              <div className="panel-footer">
-                <div className="text-center">
-                  <button type="button" className="btn primary btn-lg">Start</button>
-                  <button type="button" className="btn primary btn-lg">Stop</button>
-                </div>
-              </div>
             </div>    
         </div>
       );

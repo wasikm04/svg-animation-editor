@@ -75,13 +75,11 @@ class App extends React.Component {
 
 
   createAnimationEdit(svg, selectedAnim, target, value, deleteIt){
-   // console.log('--------- anim')
     if(typeof svg !== "undefined" && svg.animate && Array.isArray(svg.animate)){
       for(var elem in svg.animate){ //0,1
         if(typeof svg.animate[elem]._attributes !== "undefined" && svg.animate[elem]._attributes.id === selectedAnim){
           if(deleteIt===true){ //delete anim
 
-            console.log('anim: '+svg.animate[elem])
             svg.animate[elem] = ''
             
           }else{ //update anim
@@ -98,10 +96,14 @@ class App extends React.Component {
       }
     }
     }else if(svg.animate && svg.animate._attributes && svg.animate._attributes.id){
-      for(anim in svg.animate._attributes){
-        if(anim === target){
+      for(var anim in svg.animate._attributes){    
+          if(deleteIt===true){ //delete anim
+            svg.animate=''
+          }else{
+            if(anim === target){
           svg.animate._attributes[anim] = value;
-        }
+            }
+          }
       }
      } 
 
@@ -115,7 +117,7 @@ class App extends React.Component {
       if(Array.isArray(svg[elem])){
         for(var iter in svg[elem]){
           if(svg[elem][iter]._attributes.id === elementID){
-      
+       
               this.createAnimationEdit(svg[elem][iter],animationId,target,value,deleteIt)
               prevSelected = svg[elem][iter];
             
@@ -137,17 +139,20 @@ class App extends React.Component {
       });
     };
   
+    
   
 render(){
   return (
-    <div className="col-12 row">
-      <div  className="col-6">
+    <div className="container-fluid h-100">
+    <div className="col-12 row h-100">
+      <div className="col-6">
       <Editor anim={this.state.selectedAnim} file={this.state.file} handleselectedAnim={this.handleselectedAnim} selectedElement={this.state.selectedElement} handleSelected={this.handleSelected} handleChange = {this.handleChange} handleChangeAnimation = {this.handleChangeAnimation} loadSVG = {this.loadSVG} handleElementCategory={this.handleElementCategory}/>
       </div>
-      <div className="col-6">
+      <div className="col-6 h-100">
         <SVGWindow file={this.state.file}/>
        
       </div>
+    </div>
     </div>
   );
 }
