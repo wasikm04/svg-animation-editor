@@ -247,7 +247,9 @@ createAnimationEdit(svg){
         }
     }
   }
+  
   }else if(svg.animate && svg.animate._attributes && svg.animate._attributes.id){
+    if(svg.animate._attributes.id == this.props.anim){
     for(anim in svg.animate._attributes){
       tempField = <FiledInput
       name = {anim}
@@ -257,7 +259,41 @@ createAnimationEdit(svg){
   
       resultArr.push(tempField)
     }
+  }
    }
+
+   if(svg.animateTransform && Array.isArray(svg.animateTransform)){
+    for(var elem in svg.animateTransform){ //0,1
+      if(typeof svg.animateTransform[elem]._attributes !== "undefined" && svg.animateTransform[elem]._attributes.id === this.props.anim){
+      for(var itr in svg.animateTransform[elem]){
+        for(var anim in svg.animateTransform[elem][itr]){
+          var tempField = <FiledInput
+          name = {anim}
+          valueChange={ svg.animateTransform[elem][itr][anim] }
+          fieldName= {'Change ' + anim + ' value:'}
+          onValueChange={this.handleChangeAnimation} />   
+      
+          resultArr.push(tempField)
+        }
+        }
+    }
+  }
+  
+  }else if(svg.animateTransform && svg.animateTransform._attributes && svg.animateTransform._attributes.id){
+    if(svg.animateTransform._attributes.id == this.props.anim){
+    for(anim in svg.animateTransform._attributes){
+      tempField = <FiledInput
+      name = {anim}
+      valueChange={ svg.animateTransform._attributes[anim]}
+      fieldName= {'Change ' +anim+ ' value:'}
+      onValueChange={this.handleChangeAnimation} />   
+  
+      resultArr.push(tempField)
+    }
+  }
+   }
+
+
    if(resultArr.length===0){
     return <div>Choose animation before edit!</div>
    }

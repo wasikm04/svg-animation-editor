@@ -138,6 +138,7 @@ class App extends React.Component {
       }
     }
     }else if(svg.animate && svg.animate._attributes && svg.animate._attributes.id){
+      if(svg.animate._attributes.id == selectedAnim ){
       for(anim in svg.animate._attributes){    
           if(deleteIt===true){ //delete anim
             svg.animate=''
@@ -147,6 +148,39 @@ class App extends React.Component {
             }
           }
       }
+    }
+     } 
+
+
+     if(typeof svg !== "undefined" && svg.animateTransform && Array.isArray(svg.animateTransform)){
+      for(var elem in svg.animateTransform){ //0,1
+        if(typeof svg.animateTransform[elem]._attributes !== "undefined" && svg.animateTransform[elem]._attributes.id === selectedAnim){
+          if(deleteIt===true){ //delete anim
+            svg.animateTransform[elem] = ''        
+          }else{ //update anim
+            for(var itr in svg.animateTransform[elem]){
+              for(var anim in svg.animateTransform[elem][itr]){
+                if(anim === target){
+                  svg.animateTransform[elem][itr][anim] = value;
+                }
+              }
+              }
+
+          }
+      }
+    }
+    }else if(svg.animateTransform && svg.animateTransform._attributes && svg.animateTransform._attributes.id){
+      if(svg.animateTransform._attributes.id == selectedAnim ){
+      for(anim in svg.animateTransform._attributes){    
+          if(deleteIt===true){ //delete anim
+            svg.animateTransform=''
+          }else{
+            if(anim === target){
+          svg.animateTransform._attributes[anim] = value;
+            }
+          }
+      }
+    }
      } 
 
      return 
