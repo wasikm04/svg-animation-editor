@@ -1,5 +1,6 @@
 import React from 'react';
 import "./styles/App.css";
+import ReactDOMServer from 'react-dom/server';
 
 function setCharAt(str,index,chr) {
   if(index > str.length-1) return str;
@@ -9,9 +10,15 @@ function setCharAt(str,index,chr) {
 class SVGWindow extends React.Component {
   constructor(props) {
     super(props);
+    this.svg1 = null;
     this.convertState = this.convertState.bind(this);
     this.createElements = this.createElements.bind(this);
     this.parseArray = this.parseArray.bind(this);
+    this.export = this.export.bind(this);
+  }
+
+  export(){
+    this.props.setExport(ReactDOMServer.renderToString(this.svg1));
   }
 
   fixName(text){
@@ -171,24 +178,21 @@ class SVGWindow extends React.Component {
         arr.push(<animate key={169} {...animates[0]}/>);
       }
     }
-
-    //console.log("Lista z convertState")
-    //console.log(arr);
-    return <svg  {...svgattributes}>{arr}</svg>; 
+    this.svg1 = <svg  {...svgattributes}>{arr}</svg>
+    return this.svg1; 
   }
   
     render() {
       return (
         <div className="container mt-2 border rounded h-100 d-inline-block">
+          <button className="btn btn-secondary btn-lg mt-3" onClick={this.export}>Konwertuj</button>
             <div className="container fill panel panel-primary">
-              <div className="panel-heading text-center">Plik SVG</div>
               <div className="panel-body container fill">
                 <div className="container fill text-center">
                 {this.props.file ? this.convertState(this.props.file) : null} 
-                {/*zamiast SVGexample wczytywać z pliku w upload na starcie aplikacji */}
                 </div>
-              </div>
             </div>    
+        </div>
         </div>
       );
     };

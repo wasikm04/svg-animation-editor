@@ -11,6 +11,7 @@ class App extends React.Component {
       file: null,
       elementCategory : null,
       selectedAnim: null,
+      export: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.loadSVG = this.loadSVG.bind(this);
@@ -19,7 +20,14 @@ class App extends React.Component {
     this.handleselectedAnim = this.handleselectedAnim.bind(this);
     this.handleChangeAnimation = this.handleChangeAnimation.bind(this);
     this.addAnimation = this.addAnimation.bind(this);
+    this.setExport = this.setExport.bind(this);
   };
+
+  setExport(text){
+    this.setState({
+      export: text
+    });
+  }
 
   addAnimation(elementId,animationType){
     var prevSelected = this.state.selectedElement;
@@ -180,10 +188,10 @@ render(){
     <div className="container-fluid h-100">
     <div className="col-12 row h-100">
       <div className="col-6">
-      <Editor addAnimation={this.addAnimation} anim={this.state.selectedAnim} file={this.state.file} handleselectedAnim={this.handleselectedAnim} selectedElement={this.state.selectedElement} handleSelected={this.handleSelected} handleChange = {this.handleChange} handleChangeAnimation = {this.handleChangeAnimation} loadSVG = {this.loadSVG} handleElementCategory={this.handleElementCategory}/>
+      <Editor export={this.state.export} addAnimation={this.addAnimation} anim={this.state.selectedAnim} file={this.state.file} handleselectedAnim={this.handleselectedAnim} selectedElement={this.state.selectedElement} handleSelected={this.handleSelected} handleChange = {this.handleChange} handleChangeAnimation = {this.handleChangeAnimation} loadSVG = {this.loadSVG} handleElementCategory={this.handleElementCategory}/>
       </div>
       <div className="col-6 h-100">
-        <SVGWindow file={this.state.file}/>
+        <SVGWindow setExport={this.setExport }file={this.state.file}/>
        
       </div>
     </div>

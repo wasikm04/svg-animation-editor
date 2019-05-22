@@ -6,7 +6,7 @@ class Editor extends React.Component {
     render() {
       return (
         <div  className="container">
-          <ElementsList file={this.props.file} handleSelected={this.props.handleSelected} loadSVG = {this.props.loadSVG} handleElementCategory={this.props.handleElementCategory}/>
+          <ElementsList export={this.props.export} file={this.props.file} handleSelected={this.props.handleSelected} loadSVG = {this.props.loadSVG} handleElementCategory={this.props.handleElementCategory}/>
           <EditionPanel addAnimation={this.props.addAnimation} anim = {this.props.anim} handleselectedAnim={this.props.handleselectedAnim} selectedElement={this.props.selectedElement} handleChange = {this.props.handleChange} handleChangeAnimation = {this.props.handleChangeAnimation}/>
         </div>
       );

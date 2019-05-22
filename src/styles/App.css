@@ -23,7 +23,11 @@
   min-height: 100%;
   height: 100%;
 }
-
+.area {
+  overflow-y: scroll;
+  height: 100px;
+  resize: none; /* Remove this if you want the user to resize the textarea */
+}
 .App-link {
   color: #61dafb;
 }

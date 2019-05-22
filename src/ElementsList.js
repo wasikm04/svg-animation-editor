@@ -66,8 +66,11 @@ class ElementsList extends React.Component {
               <Upload loadSVG={this.props.loadSVG}/>     
             </div>
             <div id="export" className="container tab-pane fade">  
-            <h3 className="text-center">Eksportuj plik SVG</h3>
-            
+            <br></br>
+            {this.props.export ? 
+            <textarea key="3123" className="area" rows="8" cols="60" value={this.props.export} readOnly>
+              </textarea>
+              : null}
             </div>
           </div>
       {/*this.selected ? <p>Edytujesz element <b>{this.selected}</b></p> : null*/}
