@@ -45,12 +45,6 @@ const title = {
   marginBottom: '10px',
 }
 
-function EditingTitle(props) {
-  return (
-    <p>Edytujesz element: <strong>{props.elemName}</strong></p>
-  );
-}
-
 class FiledInput extends React.Component {
   constructor(props) {
     super(props);
@@ -147,9 +141,9 @@ class ColorInput extends React.Component {
   }
 
 class EditionPanel extends React.Component {
-
   constructor(props) {
     super(props);
+    this.createAnimation = null;
     this.handleChangeAnimation = this.handleChangeAnimation.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handlefill = this.handlefill.bind(this);
@@ -161,8 +155,13 @@ class EditionPanel extends React.Component {
     this.OnSelectedAnimation = this.OnSelectedAnimation.bind(this);
     this.handleopacity = this.handleopacity.bind(this);
     this.deleteAnimation = this.deleteAnimation.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  handleSubmit(){
+    console.log(this.createAnimation);
+  }
+  
   deleteAnimation(){
     this.props.handleChangeAnimation(null,null,this.props.anim,this.props.selectedElement._attributes.id,true);
   }
@@ -207,11 +206,11 @@ createList(svg){
   var resultArr = [];
   if(svg.animate && Array.isArray(svg.animate)){
     for(var elem in svg.animate){ //0,1
-      for(var itr in svg.animate[elem]){
+     // for(var itr in svg.animate[elem]){
         //var tmparr=[[elem],[itr]];
+        if(svg.animate[elem]._attributes && svg.animate[elem]._attributes.id){
         resultArr.push(<option key={elem} value={svg.animate[elem]._attributes.id} className="col-md">{svg.animate[elem]._attributes.id}</option>);
-      }
-    
+      }   
     }
   }else if(svg.animate && svg.animate._attributes && svg.animate._attributes.id){
     resultArr.push(<option key={svg.animate._attributes.id} value={svg.animate._attributes.id} className="col-md">{svg.animate._attributes.id}</option>);
@@ -238,8 +237,8 @@ createAnimationEdit(svg){
     }
   }
   }else if(svg.animate && svg.animate._attributes && svg.animate._attributes.id){
-    for(var anim in svg.animate._attributes){
-      var tempField = <FiledInput
+    for(anim in svg.animate._attributes){
+      tempField = <FiledInput
       name = {anim}
       valueChange={ svg.animate._attributes[anim]}
       fieldName= {'Change ' +anim+ ' value:'}
@@ -270,14 +269,14 @@ OnSelectedAnimation(e) {
 
       for(var propAttr in this.props.selectedElement._attributes ){
       if(this.props.selectedElement._attributes[propAttr]){   
-        
+        var tempField = null;
         if(propAttr==='id'){
-          var tempField = <div style={title}> Editing element id: <strong>{this.props.selectedElement._attributes[propAttr]}</strong></div>
+          tempField = <div style={title}> Editing element id: <strong>{this.props.selectedElement._attributes[propAttr]}</strong></div>
           editor.push(tempField)
         }
         else if(propAttr==='fill'){
 
-          var tempField = <ColorInput
+          tempField = <ColorInput
           valueChange={this.props.selectedElement._attributes[propAttr]}
           fieldName= {'Change '+ propAttr +' color: '}
           onValueChange={this.handlefill} />
@@ -286,7 +285,7 @@ OnSelectedAnimation(e) {
 
         }else if(propAttr==='stroke'){
 
-          var tempField = <ColorInput
+          tempField = <ColorInput
           valueChange={this.props.selectedElement._attributes[propAttr]}
           fieldName= {'Change '+ propAttr +' color: '}
           onValueChange={this.handlestroke} />
@@ -294,7 +293,7 @@ OnSelectedAnimation(e) {
           editor.push(tempField)
 
         }else if(propAttr==='fill-opacity'){
-          var tempField = <SliderInput
+          tempField = <SliderInput
           valueChange={this.props.selectedElement._attributes[propAttr]}
           min = {0.01}
           max = {1}
@@ -305,7 +304,7 @@ OnSelectedAnimation(e) {
           editor.push(tempField)
 
         }else if(propAttr==='stroke-opacity'){
-          var tempField = <SliderInput
+          tempField = <SliderInput
           valueChange={this.props.selectedElement._attributes[propAttr]}
           min = {0.01}
           max = {1}
@@ -316,24 +315,21 @@ OnSelectedAnimation(e) {
           editor.push(tempField)
 
         }else if(propAttr==='opacity'){
-        var tempField = <SliderInput
+        tempField = <SliderInput
         valueChange={this.props.selectedElement._attributes[propAttr]}
         min = {0.01}
         max = {1}
         step = {0.01}
         fieldName= {'Change '+ propAttr +':'}
-        onValueChange={this.handleopacity} />
-        
+        onValueChange={this.handleopacity} />       
         editor.push(tempField)
-
         }else{
-
-          var tempField = <FiledInput
+          tempField = <FiledInput
           name = {propAttr}
           valueChange={ this.props.selectedElement._attributes[propAttr] }
           fieldName= {'Change ' + propAttr + ' value:'}
           onValueChange={this.handleChange} />   
-      
+     
           editor.push(tempField)
         }
       }
@@ -359,21 +355,25 @@ OnSelectedAnimation(e) {
           </div>
            </div>
           <div id="animations" className="container tab-pane"> 
- 
-    
-      
-        <div  className="col-12">
-          <br/>
-          <h5>Lista animacji elementu</h5>
+        <div  className="col-12 row mt-2" >
+              <div className="col-7">
+                <label className="mr-2">
+                <select className="form-control" onChange={(e) => {this.createAnimation = e.target.value}}>
+                      <option value="translate">Translacja</option>
+                      <option value="rotate">Rotacja</option>
+                </select>
+                </label>
+                <button  className="btn btn-primary mb-2" onClick={this.handleSubmit}>Dodaj</button>
+              </div>
+              <span className="col-5">
+              {this.props.anim ? <button className="btn btn-primary mb-2" onClick={this.deleteAnimation}>Usuń wybrane</button> : null}
+              </span>
           <select
                 className="custom-select" size="6"
                 onChange={this.OnSelectedAnimation}>
                 {(this.props.selectedElement !== null) ? this.createList(this.props.selectedElement) : null}
          </select>
         </div>
-
-  
-
         </div>
         <div id="editanimations" className="container tab-pane"> 
         <div  className="col-12">

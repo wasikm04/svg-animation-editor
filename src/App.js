@@ -75,7 +75,7 @@ class App extends React.Component {
 
 
   createAnimationEdit(svg, selectedAnim, target, value, deleteIt){
-    console.log('--------- anim')
+   // console.log('--------- anim')
     if(typeof svg !== "undefined" && svg.animate && Array.isArray(svg.animate)){
       for(var elem in svg.animate){ //0,1
         if(typeof svg.animate[elem]._attributes !== "undefined" && svg.animate[elem]._attributes.id === selectedAnim){
@@ -98,7 +98,7 @@ class App extends React.Component {
       }
     }
     }else if(svg.animate && svg.animate._attributes && svg.animate._attributes.id){
-      for(var anim in svg.animate._attributes){
+      for(anim in svg.animate._attributes){
         if(anim === target){
           svg.animate._attributes[anim] = value;
         }
@@ -115,7 +115,7 @@ class App extends React.Component {
       if(Array.isArray(svg[elem])){
         for(var iter in svg[elem]){
           if(svg[elem][iter]._attributes.id === elementID){
-       
+      
               this.createAnimationEdit(svg[elem][iter],animationId,target,value,deleteIt)
               prevSelected = svg[elem][iter];
             
