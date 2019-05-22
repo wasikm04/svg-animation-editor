@@ -6,7 +6,7 @@ rotate:{
         begin:"0s",
         dur:"9s",
         from:"0 0 0",
-        id:"default-translate",
+        id:"default-rotate",
         repeatCount:"indefinite",
         to:"360 50 50"
     }
@@ -20,7 +20,7 @@ translate:{
         begin:"0s",
         dur:"9s",
         repeatCount:"indefinite",
-        id:"default-rotation"
+        id:"default-translate"
     }
 }
 });

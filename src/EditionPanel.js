@@ -143,7 +143,7 @@ class ColorInput extends React.Component {
 class EditionPanel extends React.Component {
   constructor(props) {
     super(props);
-    this.createAnimation = null;
+    this.createAnimation = "translate";
     this.handleChangeAnimation = this.handleChangeAnimation.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handlefill = this.handlefill.bind(this);
@@ -214,7 +214,8 @@ createList(svg){
     }
   }else if(svg.animate && svg.animate._attributes && svg.animate._attributes.id){
     resultArr.push(<option key={svg.animate._attributes.id} value={svg.animate._attributes.id} className="col-md">{svg.animate._attributes.id}</option>);
-  }else if(svg.animateTransform && Array.isArray(svg.animateTransform)){
+  }
+  if(svg.animateTransform && Array.isArray(svg.animateTransform)){
     for(elem in svg.animateTransform){ //0,1
       // for(var itr in svg.animate[elem]){
          //var tmparr=[[elem],[itr]];

@@ -22,8 +22,43 @@ class App extends React.Component {
   };
 
   addAnimation(elementId,animationType){
+    var prevSelected = this.state.selectedElement;
+    var svg = this.state.file;
+    
+    if(prevSelected.animateTransform){
+      var newAnimationsArr = [];
+      if(Array.isArray(prevSelected.animateTransform)){
+        prevSelected.animateTransform.push(animations[animationType]);
+      }else{
+        newAnimationsArr.push(prevSelected.animateTransform);
+        newAnimationsArr.push(animations[animationType]);
+        prevSelected.animateTransform = newAnimationsArr;
+      }
+    } else {
+      prevSelected.animateTransform = animations[animationType];
+    }
+    for(var elem in svg){
+      if(Array.isArray(svg[elem])){
+        for(var iter in svg[elem]){
+          if(svg[elem][iter]._attributes.id === elementId){
+            svg[elem][iter] = prevSelected;
+            break;
+          }
+        }
+      }else if(svg[elem]._attributes && svg[elem]._attributes.id){
+        if(svg[elem]._attributes.id === elementId){
+          svg[elem] = prevSelected;
+          break;
+        }
+      }
+    } 
+    this.setState({
+      file: svg,
+      selectedElement : prevSelected  
+    });
+  };
+  
 
-  }
   handleElementCategory(category){
     this.setState({
       elementCategory: category
