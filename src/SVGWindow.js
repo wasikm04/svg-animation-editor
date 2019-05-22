@@ -36,7 +36,7 @@ class SVGWindow extends React.Component {
         var tmpelement = null;
          var tmpAnimates =[];
          for(var arrelem in elements){
-           if(elements[arrelem].type === "animate"){
+           if(elements[arrelem].type === "animate" || elements[arrelem].type === "animateTransform"){
               tmpAnimates.push(elements[arrelem]);
            }else{
              if(tmpelement){
@@ -62,28 +62,28 @@ class SVGWindow extends React.Component {
     var keyval = 100;
     if( Array.isArray(elem)){ //arrays
       for(var obj in elem){ //0: 1:
-        for(var attr in elem[obj]){ //_attributes: animate:
-          if(attr === "animate"){ //</animate>
-            for(var i in elem[obj][attr]){
-              if(Array.isArray(elem[obj][attr])){
-              for(var key3 in elem[obj][attr][i]._attributes){
-                attrobj[this.fixName(key3)] = elem[obj][attr][i]._attributes[key3];
+        for(var Attr in elem[obj]){ //_attributes: animate:
+          if(Attr === "animate" || Attr === "animateTransform"){ //</animate>
+            for(var i in elem[obj][Attr]){
+              if(Array.isArray(elem[obj][Attr])){
+              for(var key3 in elem[obj][Attr][i]._attributes){
+                attrobj[this.fixName(key3)] = elem[obj][Attr][i]._attributes[key3];
                 //console.log(this.fixName(elem[obj][attr]._attributes[key3]));
               }
-              resultarray.push(<animate key={keyval++} {...attrobj}/>); 
+              resultarray.push(<Attr key={keyval++} {...attrobj}/>); 
               attrobj = {};
             }else{
-              for(var key4 in elem[obj][attr]._attributes){
-                attrobj[this.fixName(key4)] = elem[obj][attr]._attributes[key4];
+              for(var key4 in elem[obj][Attr]._attributes){
+                attrobj[this.fixName(key4)] = elem[obj][Attr]._attributes[key4];
                 //console.log(this.fixName(elem[obj][attr]._attributes[key3]));
               }
-              resultarray.push(<animate key={keyval++} {...attrobj}/>); 
+            resultarray.push(<Attr key={keyval++} {...attrobj}/>); 
               attrobj = {};
             }
             }
           }else{ //_attributes
-              for(var key in elem[obj][attr]){
-                attrobj[this.fixName(key)] = elem[obj][attr][key];
+              for(var key in elem[obj][Attr]){
+                attrobj[this.fixName(key)] = elem[obj][Attr][key];
               }
               resultarray.push(attrobj);
               attrobj = {};
@@ -91,22 +91,22 @@ class SVGWindow extends React.Component {
         }
       };
     }else{ // single element
-      for(attr in elem){
-          if(attr === "animate"){ //</animate>
-            for(i in elem[attr]){
-              if(Array.isArray(elem[attr])){ //array of animates
-              for(var key5 in elem[attr][i]._attributes){
-                attrobj[this.fixName(key5)] = elem[attr][i]._attributes[key5];
+      for(Attr in elem){
+          if(Attr === "animate" || Attr === "animateTransform"){ //</animate>
+            for(i in elem[Attr]){
+              if(Array.isArray(elem[Attr])){ //array of animates
+              for(var key5 in elem[Attr][i]._attributes){
+                attrobj[this.fixName(key5)] = elem[Attr][i]._attributes[key5];
                 //console.log(this.fixName(elem[attr]._attributes[key3]));
               }
-              resultarray.push(<animate key={keyval++} {...attrobj}/>); 
+              resultarray.push(<Attr key={keyval++} {...attrobj}/>); 
               attrobj = {};
             }else{
-              for(var key6 in elem[attr]._attributes){
-                attrobj[this.fixName(key6)] = elem[attr]._attributes[key6];
+              for(var key6 in elem[Attr]._attributes){
+                attrobj[this.fixName(key6)] = elem[Attr]._attributes[key6];
                 //console.log(this.fixName(elem[attr]._attributes[key3]));
               }
-              resultarray.push(<animate key={keyval++} {...attrobj}/>); 
+              resultarray.push(<Attr key={keyval++} {...attrobj}/>); 
               attrobj = {};
             }
             }

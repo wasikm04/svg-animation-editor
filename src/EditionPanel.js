@@ -63,7 +63,7 @@ class FiledInput extends React.Component {
       <div className="row">
    
         <legend style={nameStyle}>{title}</legend>
-        <input name = {name} class="form-control w-50" style={inputStyle} value={valueChange}
+        <input name = {name} className="form-control w-50" style={inputStyle} value={valueChange}
                onChange={this.handleChange} />
               
     
@@ -159,7 +159,7 @@ class EditionPanel extends React.Component {
   }
 
   handleSubmit(){
-    console.log(this.createAnimation);
+    this.props.addAnimation(this.props.selectedElement._attributes.id,this.createAnimation);
   }
   
   deleteAnimation(){
@@ -214,6 +214,16 @@ createList(svg){
     }
   }else if(svg.animate && svg.animate._attributes && svg.animate._attributes.id){
     resultArr.push(<option key={svg.animate._attributes.id} value={svg.animate._attributes.id} className="col-md">{svg.animate._attributes.id}</option>);
+  }else if(svg.animateTransform && Array.isArray(svg.animateTransform)){
+    for(elem in svg.animateTransform){ //0,1
+      // for(var itr in svg.animate[elem]){
+         //var tmparr=[[elem],[itr]];
+         if(svg.animateTransform[elem]._attributes && svg.animateTransform[elem]._attributes.id){
+         resultArr.push(<option key={elem} value={svg.animateTransform[elem]._attributes.id} className="col-md">{svg.animateTransform[elem]._attributes.id}</option>);
+       }   
+     }
+  }else if(svg.animateTransform && svg.animateTransform._attributes && svg.animateTransform._attributes.id){
+    resultArr.push(<option key={svg.animateTransform._attributes.id} value={svg.animateTransform._attributes.id} className="col-md">{svg.animateTransform._attributes.id}</option>);
   }
   return resultArr;
 }

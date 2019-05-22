@@ -1,7 +1,7 @@
 import React from 'react';
 import SVGWindow from "./SVGWindow.js";
 import Editor from "./Editor.js";
-
+import animations from "./defaultElements.js"
 
 class App extends React.Component {
   constructor(props) {
@@ -18,8 +18,12 @@ class App extends React.Component {
     this.handleElementCategory = this.handleElementCategory.bind(this);
     this.handleselectedAnim = this.handleselectedAnim.bind(this);
     this.handleChangeAnimation = this.handleChangeAnimation.bind(this);
+    this.addAnimation = this.addAnimation.bind(this);
   };
 
+  addAnimation(elementId,animationType){
+
+  }
   handleElementCategory(category){
     this.setState({
       elementCategory: category
@@ -64,9 +68,7 @@ class App extends React.Component {
           break;
         }
       }
-    }
-  
-
+    } 
     this.setState({
       file: svg,
       selectedElement : prevSelected  
@@ -79,11 +81,8 @@ class App extends React.Component {
       for(var elem in svg.animate){ //0,1
         if(typeof svg.animate[elem]._attributes !== "undefined" && svg.animate[elem]._attributes.id === selectedAnim){
           if(deleteIt===true){ //delete anim
-
-            svg.animate[elem] = ''
-            
+            svg.animate[elem] = ''        
           }else{ //update anim
-
             for(var itr in svg.animate[elem]){
               for(var anim in svg.animate[elem][itr]){
                 if(anim === target){
@@ -96,7 +95,7 @@ class App extends React.Component {
       }
     }
     }else if(svg.animate && svg.animate._attributes && svg.animate._attributes.id){
-      for(var anim in svg.animate._attributes){    
+      for(anim in svg.animate._attributes){    
           if(deleteIt===true){ //delete anim
             svg.animate=''
           }else{
@@ -146,7 +145,7 @@ render(){
     <div className="container-fluid h-100">
     <div className="col-12 row h-100">
       <div className="col-6">
-      <Editor anim={this.state.selectedAnim} file={this.state.file} handleselectedAnim={this.handleselectedAnim} selectedElement={this.state.selectedElement} handleSelected={this.handleSelected} handleChange = {this.handleChange} handleChangeAnimation = {this.handleChangeAnimation} loadSVG = {this.loadSVG} handleElementCategory={this.handleElementCategory}/>
+      <Editor addAnimation={this.addAnimation} anim={this.state.selectedAnim} file={this.state.file} handleselectedAnim={this.handleselectedAnim} selectedElement={this.state.selectedElement} handleSelected={this.handleSelected} handleChange = {this.handleChange} handleChangeAnimation = {this.handleChangeAnimation} loadSVG = {this.loadSVG} handleElementCategory={this.handleElementCategory}/>
       </div>
       <div className="col-6 h-100">
         <SVGWindow file={this.state.file}/>

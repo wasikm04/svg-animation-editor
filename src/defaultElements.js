@@ -1,14 +1,28 @@
-const elements = Object.freeze({})
+const animations = Object.freeze({
+rotate:{
+    _attributes:{
+        attributeName: "transform",
+        type:"rotate",
+        begin:"0s",
+        dur:"9s",
+        from:"0 0 0",
+        id:"default-translate",
+        repeatCount:"indefinite",
+        to:"360 50 50"
+    }
+},
+translate:{
+    _attributes:{
+        attributeName:"transform",
+        type:"translate",
+        from:"0 0",
+        to:"50 50",
+        begin:"0s",
+        dur:"9s",
+        repeatCount:"indefinite",
+        id:"default-rotation"
+    }
+}
+});
 
-const translate = Object.freeze({_attributes:{
-    attributeName: "x",
-    begin:"0s",
-    dur:"5s",
-    fill:"freeze",
-    from:"20",
-    id:"rect-anim1",
-    repeatCount:"indefinite",
-    to:"70"}})
-
-
-const rotation = Object.freeze({_attributes:{}})
+export default animations;
