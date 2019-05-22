@@ -57,6 +57,7 @@ class App extends React.Component {
           }
         }
       }else if(svg[elem]._attributes && svg[elem]._attributes.id){
+
         if(svg[elem]._attributes.id === elementID){
           svg[elem]._attributes[propertyName] = propertyValue;
           prevSelected = svg[elem];
@@ -73,16 +74,26 @@ class App extends React.Component {
   };
 
 
-  createAnimationEdit(svg, selectedAnim, target,value){
-    if(svg.animate && Array.isArray(svg.animate)){
+  createAnimationEdit(svg, selectedAnim, target, value, deleteIt){
+    console.log('--------- anim')
+    if(typeof svg !== "undefined" && svg.animate && Array.isArray(svg.animate)){
       for(var elem in svg.animate){ //0,1
-        if(svg.animate[elem]._attributes.id === selectedAnim){
-        for(var itr in svg.animate[elem]){
-          for(var anim in svg.animate[elem][itr]){
-            if(anim === target){
-              svg.animate[elem][itr][anim] = value;
-            }
-          }
+        if(typeof svg.animate[elem]._attributes !== "undefined" && svg.animate[elem]._attributes.id === selectedAnim){
+          if(deleteIt===true){ //delete anim
+
+            console.log('anim: '+svg.animate[elem])
+            svg.animate[elem] = ''
+            
+          }else{ //update anim
+
+            for(var itr in svg.animate[elem]){
+              for(var anim in svg.animate[elem][itr]){
+                if(anim === target){
+                  svg.animate[elem][itr][anim] = value;
+                }
+              }
+              }
+
           }
       }
     }
@@ -93,6 +104,7 @@ class App extends React.Component {
         }
       }
      } 
+
      return 
   }
 
@@ -103,14 +115,18 @@ class App extends React.Component {
       if(Array.isArray(svg[elem])){
         for(var iter in svg[elem]){
           if(svg[elem][iter]._attributes.id === elementID){
-             this.createAnimationEdit(svg[elem][iter],animationId,target,value)
-             prevSelected = svg[elem][iter];
+       
+              this.createAnimationEdit(svg[elem][iter],animationId,target,value,deleteIt)
+              prevSelected = svg[elem][iter];
+            
           }
         }
       }else if(svg[elem]._attributes && svg[elem]._attributes.id){
         if(svg[elem]._attributes.id === elementID){
-             this.createAnimationEdit(svg[elem][iter],animationId,target,value)
+
+             this.createAnimationEdit(svg[elem],animationId,target,value,deleteIt)
              prevSelected = svg[elem];
+
         }
       }
     }

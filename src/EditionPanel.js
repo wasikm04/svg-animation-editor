@@ -160,6 +160,11 @@ class EditionPanel extends React.Component {
     this.createList = this.createList.bind(this);
     this.OnSelectedAnimation = this.OnSelectedAnimation.bind(this);
     this.handleopacity = this.handleopacity.bind(this);
+    this.deleteAnimation = this.deleteAnimation.bind(this);
+  }
+
+  deleteAnimation(event){
+    this.props.handleChangeAnimation(event.target.name,event.target.value,this.props.anim,this.props.selectedElement._attributes.id,true);
   }
 
   handleChangeAnimation(event) {
@@ -218,7 +223,7 @@ createAnimationEdit(svg){
   var resultArr = [];
   if(svg.animate && Array.isArray(svg.animate)){
     for(var elem in svg.animate){ //0,1
-      if(svg.animate[elem]._attributes.id === this.props.anim){
+      if(typeof svg.animate[elem]._attributes !== "undefined" && svg.animate[elem]._attributes.id === this.props.anim){
       for(var itr in svg.animate[elem]){
         for(var anim in svg.animate[elem][itr]){
           var tempField = <FiledInput
