@@ -163,8 +163,8 @@ class EditionPanel extends React.Component {
     this.deleteAnimation = this.deleteAnimation.bind(this);
   }
 
-  deleteAnimation(event){
-    this.props.handleChangeAnimation(event.target.name,event.target.value,this.props.anim,this.props.selectedElement._attributes.id,true);
+  deleteAnimation(){
+    this.props.handleChangeAnimation(null,null,this.props.anim,this.props.selectedElement._attributes.id,true);
   }
 
   handleChangeAnimation(event) {
