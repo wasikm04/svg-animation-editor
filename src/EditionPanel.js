@@ -1,113 +1,8 @@
 import React from "react";
-import { HuePicker } from "react-color";
-import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import "./styles/App.css";
-import {
-  title,
-  fillHeight,
-  width60,
-  heightBox,
-  inputStyle,
-  marginTitle,
-  nameSliderStyle,
-  nameColorStyle,
-  nameStyle
-} from "./EditionConfig.js";
-
-class FiledInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.props.onValueChange(event);
-  }
-
-  render() {
-    const valueChange = this.props.valueChange;
-    const title = this.props.fieldName;
-    const name = this.props.name;
-    return (
-      <div className="row">
-        <legend style={nameStyle}>{title}</legend>
-        <input
-          name={name}
-          className="form-control w-50"
-          style={inputStyle}
-          value={valueChange}
-          onChange={this.handleChange}
-        />
-      </div>
-    );
-  }
-}
-class ColorInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange = (color, event) => {
-    this.props.onValueChange(color.hex);
-  };
-
-  render() {
-    const valueChange = this.props.valueChange;
-    const title = this.props.fieldName;
-    return (
-      <div>
-        <div className="row">
-          <fieldset>
-            <legend style={nameColorStyle}>{title}</legend>
-          </fieldset>
-        </div>
-        <div className="row">
-          <HuePicker color={valueChange} onChangeComplete={this.handleChange} />
-        </div>
-      </div>
-    );
-  }
-}
-
-class SliderInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = { value: parseInt(this.props.valueChange) };
-  }
-
-  handleChange(e) {
-    this.setState(e);
-    this.props.onValueChange(this.state.value);
-  }
-
-  render() {
-    const title = this.props.fieldName;
-    const min = this.props.min;
-    const max = this.props.max;
-    const step = this.props.step;
-    return (
-      <div>
-        <div className="row">
-          <fieldset className="inline">
-            <legend style={nameSliderStyle}>{title}</legend>
-          </fieldset>
-        </div>
-        <div style={width60} className="row ">
-          <InputRange
-            maxValue={max}
-            step={step}
-            minValue={min}
-            value={this.state.value}
-            onChange={value => this.handleChange({ value })}
-          />
-        </div>
-      </div>
-    );
-  }
-}
+import { title, fillHeight, heightBox, marginTitle } from "./EditionConfig.js";
+import { FiledInput, ColorInput, SliderInput } from "./InputHelpers.js";
 
 class EditionPanel extends React.Component {
   constructor(props) {
@@ -283,10 +178,7 @@ class EditionPanel extends React.Component {
     return resultArr;
   }
 
-  createAnimationInput() {}
-
-  createAnimationEdit(svg) {
-    var resultArr = [];
+  createAnimationInput(svg, resultArr) {
     if (svg.animate && Array.isArray(svg.animate)) {
       for (var elem in svg.animate) {
         //0,1
@@ -330,7 +222,9 @@ class EditionPanel extends React.Component {
         }
       }
     }
+  }
 
+  createAnimationTtransformInput(svg, resultArr) {
     if (svg.animateTransform && Array.isArray(svg.animateTransform)) {
       for (var elem in svg.animateTransform) {
         //0,1
@@ -374,6 +268,14 @@ class EditionPanel extends React.Component {
         }
       }
     }
+  }
+
+  createAnimationEdit(svg) {
+    var resultArr = [];
+
+    this.createAnimationInput(svg, resultArr);
+
+    this.createAnimationTtransformInput(svg, resultArr);
 
     if (resultArr.length === 0) {
       return <div>Choose animation before edit!</div>;
