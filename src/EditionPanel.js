@@ -2,6 +2,7 @@ import React from "react";
 import { HuePicker } from "react-color";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
+import './styles/App.css'
 
 const nameStyle = {
   float: "left",
@@ -532,7 +533,7 @@ class EditionPanel extends React.Component {
             </a>
           </li>
         </ul>
-        <div style={heightBox} className=" tab-content container">
+        <div style={heightBox} className=" tab-content container scrollable-config">
           <div id="css" className="container tab-pane active">
             <div style={marginTitle} className="container">
               {editor}

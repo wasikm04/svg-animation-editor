@@ -2,6 +2,7 @@ import React from "react";
 import SVGWindow from "./SVGWindow.js";
 import Editor from "./Editor.js";
 import animations from "./defaultElements.js";
+import './styles/App.css'
 
 class App extends React.Component {
   constructor(props) {
