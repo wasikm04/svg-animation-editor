@@ -1,5 +1,7 @@
 import React from "react";
 import "./styles/App.css";
+import ModalWindow from "./ModalWindow.js";
+import Upload from "./Upload.js";
 import ReactDOMServer from "react-dom/server";
 
 function setCharAt(str, index, chr) {
@@ -7,36 +9,37 @@ function setCharAt(str, index, chr) {
   return str.substr(0, index) + chr + str.substr(index + 1);
 }
 
+function fixName(text) {
+  for (var i = 1; i <= text.length; i++) {
+    if (text[i] === "-") {
+      text = setCharAt(text, i, "");
+      text = setCharAt(text, i, text[i].toUpperCase());
+      break;
+    }
+    if (text[i] === ":") {
+      text = setCharAt(text, i, "");
+      text = setCharAt(text, i, text[i].toUpperCase());
+      break;
+    }
+  }
+  return text;
+}
+
 class SVGWindow extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showImport: false,
+      showExport: false,
+    };
     this.svg1 = null;
-    this.convertState = this.convertState.bind(this);
+    this.convertStateToJSX = this.convertStateToJSX.bind(this);
     this.createElements = this.createElements.bind(this);
     this.parseArray = this.parseArray.bind(this);
-    this.export = this.export.bind(this);
+    this.toggleModalImport = this.toggleModalImport.bind(this);
+    this.toggleModalEksport = this.toggleModalEksport.bind(this);
   }
 
-  export() {
-    this.props.setExport(ReactDOMServer.renderToString(this.svg1));
-  }
-
-  fixName(text) {
-    // var text = "position-pos"
-    for (var i = 1; i <= text.length; i++) {
-      if (text[i] === "-") {
-        text = setCharAt(text, i, "");
-        text = setCharAt(text, i, text[i].toUpperCase());
-        break;
-      }
-      if (text[i] === ":") {
-        text = setCharAt(text, i, "");
-        text = setCharAt(text, i, text[i].toUpperCase());
-        break;
-      }
-    }
-    return text;
-  }
 
   createElements(elements, Category) {
     var arr = [];
@@ -69,47 +72,37 @@ class SVGWindow extends React.Component {
         </Category>
       );
     }
-    //console.log("Lista z createElements")
-    //console.log(arr);
     return arr;
   }
 
   parseArray(elem) {
-    //wczytywanie atrybutów z obiektów lub tablic obiektów
     var resultarray = [];
     var attrobj = {};
     var keyval = 100;
     if (Array.isArray(elem)) {
-      //arrays
       for (var obj in elem) {
-        //0: 1:
         for (var Attr in elem[obj]) {
-          //_attributes: animate:
           if (Attr === "animate" || Attr === "animateTransform") {
-            //</animate>
             for (var i in elem[obj][Attr]) {
               if (Array.isArray(elem[obj][Attr])) {
                 for (var key3 in elem[obj][Attr][i]._attributes) {
-                  attrobj[this.fixName(key3)] =
+                  attrobj[fixName(key3)] =
                     elem[obj][Attr][i]._attributes[key3];
-                  //console.log(this.fixName(elem[obj][attr]._attributes[key3]));
                 }
                 resultarray.push(<Attr key={keyval++} {...attrobj} />);
                 attrobj = {};
               } else {
                 for (var key4 in elem[obj][Attr]._attributes) {
-                  attrobj[this.fixName(key4)] =
+                  attrobj[fixName(key4)] =
                     elem[obj][Attr]._attributes[key4];
-                  //console.log(this.fixName(elem[obj][attr]._attributes[key3]));
                 }
                 resultarray.push(<Attr key={keyval++} {...attrobj} />);
                 attrobj = {};
               }
             }
           } else {
-            //_attributes
             for (var key in elem[obj][Attr]) {
-              attrobj[this.fixName(key)] = elem[obj][Attr][key];
+              attrobj[fixName(key)] = elem[obj][Attr][key];
             }
             resultarray.push(attrobj);
             attrobj = {};
@@ -117,53 +110,42 @@ class SVGWindow extends React.Component {
         }
       }
     } else {
-      // single element
       for (Attr in elem) {
         if (Attr === "animate" || Attr === "animateTransform") {
-          //</animate>
           for (i in elem[Attr]) {
             if (Array.isArray(elem[Attr])) {
-              //array of animates
               for (var key5 in elem[Attr][i]._attributes) {
-                attrobj[this.fixName(key5)] = elem[Attr][i]._attributes[key5];
-                //console.log(this.fixName(elem[attr]._attributes[key3]));
+                attrobj[fixName(key5)] = elem[Attr][i]._attributes[key5];
               }
               resultarray.push(<Attr key={keyval++} {...attrobj} />);
               attrobj = {};
             } else {
               for (var key6 in elem[Attr]._attributes) {
-                attrobj[this.fixName(key6)] = elem[Attr]._attributes[key6];
-                //console.log(this.fixName(elem[attr]._attributes[key3]));
+                attrobj[fixName(key6)] = elem[Attr]._attributes[key6];
               }
               resultarray.push(<Attr key={keyval++} {...attrobj} />);
               attrobj = {};
             }
           }
         } else {
-          //attributes
           for (var key2 in elem._attributes) {
-            attrobj[this.fixName(key2)] = elem._attributes[key2];
+            attrobj[fixName(key2)] = elem._attributes[key2];
           }
           resultarray.push(attrobj);
           attrobj = {};
         }
       }
     }
-    //console.log("Lista z parseArray")
-    //console.log(resultarray);
     return resultarray;
   }
 
-  convertState(file) {
+  convertStateToJSX(file) {
     var arr = [];
     var svgattributes = {};
-
     for (var elem in file) {
-      //główna pętla
       if (elem === "_attributes") {
-        //poszczególne elementy, tu svg
         for (var key2 in file[elem]) {
-          svgattributes[this.fixName(key2)] = file[elem][key2];
+          svgattributes[fixName(key2)] = file[elem][key2];
         }
         continue;
       }
@@ -210,17 +192,43 @@ class SVGWindow extends React.Component {
     this.svg1 = <svg {...svgattributes}>{arr}</svg>;
     return this.svg1;
   }
+  
+  toggleModalImport() {
+    this.setState({ showImport: !this.state.showImport }) 
+ }
 
+ toggleModalEksport() {;
+  this.props.setExport(ReactDOMServer.renderToString(this.svg1));
+   this.setState({ 
+     showExport: !this.state.showExport,
+   })
+ }
   render() {
     return (
-      <div className="container mt-2 border rounded h-100 d-inline-block">
-        <button className="btn btn-secondary btn-lg mt-3" onClick={this.export}>
-          Konwertuj
+      <div className="container text-center mt-2 border rounded h-100 d-inline-block">
+        <button className="btn btn-secondary mr-1 mt-3" onClick={this.toggleModalImport}>
+          Importuj
         </button>
+        <ModalWindow show={this.state.showImport}
+          onHide={this.toggleModalImport}
+          header={"Importuj plik SVG"}
+          title={"Import"}
+          children={ <Upload loadSVG={this.props.loadSVG} />}
+          />
+        <button className="btn btn-secondary  mt-3" onClick={this.toggleModalEksport}>
+          Eksportuj
+        </button>
+        <ModalWindow show={this.state.showExport}
+          onHide={this.toggleModalEksport}
+          title={"Eksport"}
+          children={
+              this.props.export ? 
+              <textarea key="3123" className="area col-md" rows="8"  value={this.props.export} readOnly/> : null} 
+        />
         <div className="container fill panel panel-primary">
           <div className="panel-body container fill">
             <div className="container fill text-center">
-              {this.props.file ? this.convertState(this.props.file) : null}
+              {this.props.file ? this.convertStateToJSX(this.props.file) : null}
             </div>
           </div>
         </div>

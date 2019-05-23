@@ -1,4 +1,4 @@
-const animations = Object.freeze({
+const animations = {
   rotate: {
     _attributes: {
       attributeName: "transform",
@@ -8,6 +8,7 @@ const animations = Object.freeze({
       from: "0 0 0",
       id: "default-rotate",
       repeatCount: "indefinite",
+      additive:"sum",
       to: "360 50 50"
     }
   },
@@ -19,10 +20,11 @@ const animations = Object.freeze({
       to: "50 50",
       begin: "0s",
       dur: "9s",
+      additive:"sum",
       repeatCount: "indefinite",
       id: "default-translate"
     }
   }
-});
+};
 
 export default animations;

@@ -2,7 +2,7 @@ import React from "react";
 import SVGWindow from "./SVGWindow.js";
 import Editor from "./Editor.js";
 import animations from "./defaultElements.js";
-
+import { uniqueId } from 'lodash';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -31,38 +31,22 @@ class App extends React.Component {
 
   addAnimation(elementId, animationType) {
     var prevSelected = this.state.selectedElement;
-    var svg = this.state.file;
-
+    var newAnim = JSON.parse(JSON.stringify(animations[animationType]));
+    newAnim._attributes.id = "default_"+animationType+elementId+uniqueId();
     if (prevSelected.animateTransform) {
       var newAnimationsArr = [];
       if (Array.isArray(prevSelected.animateTransform)) {
-        prevSelected.animateTransform.push(animations[animationType]);
+        prevSelected.animateTransform.push(newAnim);
       } else {
         newAnimationsArr.push(prevSelected.animateTransform);
-        newAnimationsArr.push(animations[animationType]);
+        newAnimationsArr.push(newAnim);
         prevSelected.animateTransform = newAnimationsArr;
       }
     } else {
-      prevSelected.animateTransform = animations[animationType];
-    }
-    for (var elem in svg) {
-      if (Array.isArray(svg[elem])) {
-        for (var iter in svg[elem]) {
-          if (svg[elem][iter]._attributes.id === elementId) {
-            svg[elem][iter] = prevSelected;
-            break;
-          }
-        }
-      } else if (svg[elem]._attributes && svg[elem]._attributes.id) {
-        if (svg[elem]._attributes.id === elementId) {
-          svg[elem] = prevSelected;
-          break;
-        }
-      }
+      prevSelected.animateTransform = newAnim;
     }
     this.setState({
-      file: svg,
-      selectedElement: prevSelected
+      selectedElement: prevSelected,
     });
   }
 
@@ -251,8 +235,7 @@ class App extends React.Component {
       <div className="container-fluid h-100">
         <div className="col-12 row h-100">
           <div className="col-6">
-            <Editor
-              export={this.state.export}
+            <Editor  
               addAnimation={this.addAnimation}
               anim={this.state.selectedAnim}
               file={this.state.file}
@@ -261,12 +244,16 @@ class App extends React.Component {
               handleSelected={this.handleSelected}
               handleChange={this.handleChange}
               handleChangeAnimation={this.handleChangeAnimation}
-              loadSVG={this.loadSVG}
               handleElementCategory={this.handleElementCategory}
             />
           </div>
           <div className="col-6 h-100">
-            <SVGWindow setExport={this.setExport} file={this.state.file} />
+            <SVGWindow 
+            setExport={this.setExport} 
+            file={this.state.file} 
+            loadSVG={this.loadSVG}
+            export={this.state.export}
+            />
           </div>
         </div>
       </div>
