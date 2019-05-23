@@ -7,6 +7,7 @@ import {
   createAnimationTtransformInput,
   createAnimationInput
 } from "./AnimationHelpers.js";
+import AnimationsList from "./AnimationsList.js";
 
 class EditionPanel extends React.Component {
   constructor(props) {
@@ -19,8 +20,6 @@ class EditionPanel extends React.Component {
     this.handlefillopacity = this.handlefillopacity.bind(this);
     this.handlestrokeopacity = this.handlestrokeopacity.bind(this);
     this.isEmpty = this.isEmpty.bind(this);
-    this.createList = this.createList.bind(this);
-    this.OnSelectedAnimation = this.OnSelectedAnimation.bind(this);
     this.handleopacity = this.handleopacity.bind(this);
     this.deleteAnimation = this.deleteAnimation.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -110,78 +109,6 @@ class EditionPanel extends React.Component {
     return true;
   }
 
-  createList(svg) {
-    var resultArr = [];
-    if (svg.animate && Array.isArray(svg.animate)) {
-      for (var elem in svg.animate) {
-        //0,1
-        // for(var itr in svg.animate[elem]){
-        //var tmparr=[[elem],[itr]];
-        if (svg.animate[elem]._attributes && svg.animate[elem]._attributes.id) {
-          resultArr.push(
-            <option
-              key={elem}
-              value={svg.animate[elem]._attributes.id}
-              className="col-md"
-            >
-              {svg.animate[elem]._attributes.id}
-            </option>
-          );
-        }
-      }
-    } else if (
-      svg.animate &&
-      svg.animate._attributes &&
-      svg.animate._attributes.id
-    ) {
-      resultArr.push(
-        <option
-          key={svg.animate._attributes.id}
-          value={svg.animate._attributes.id}
-          className="col-md"
-        >
-          {svg.animate._attributes.id}
-        </option>
-      );
-    }
-    if (svg.animateTransform && Array.isArray(svg.animateTransform)) {
-      for (elem in svg.animateTransform) {
-        //0,1
-        // for(var itr in svg.animate[elem]){
-        //var tmparr=[[elem],[itr]];
-        if (
-          svg.animateTransform[elem]._attributes &&
-          svg.animateTransform[elem]._attributes.id
-        ) {
-          resultArr.push(
-            <option
-              key={elem}
-              value={svg.animateTransform[elem]._attributes.id}
-              className="col-md"
-            >
-              {svg.animateTransform[elem]._attributes.id}
-            </option>
-          );
-        }
-      }
-    } else if (
-      svg.animateTransform &&
-      svg.animateTransform._attributes &&
-      svg.animateTransform._attributes.id
-    ) {
-      resultArr.push(
-        <option
-          key={svg.animateTransform._attributes.id}
-          value={svg.animateTransform._attributes.id}
-          className="col-md"
-        >
-          {svg.animateTransform._attributes.id}
-        </option>
-      );
-    }
-    return resultArr;
-  }
-
   createAnimationEdit(svg) {
     var resultArr = [];
 
@@ -203,11 +130,6 @@ class EditionPanel extends React.Component {
       return <div>Choose animation before edit!</div>;
     }
     return resultArr;
-  }
-
-  OnSelectedAnimation(e) {
-    var elem = e.target.value;
-    this.props.handleselectedAnim(elem);
   }
 
   render() {
@@ -334,6 +256,7 @@ class EditionPanel extends React.Component {
             id="animations"
             className="container tab-pane"
           >
+            <h4>Lista animacji</h4>
             <div className="col-12 row mt-2">
               <div className="col-7 pl-0">
                 <label className="mr-2">
@@ -351,7 +274,7 @@ class EditionPanel extends React.Component {
                   className="btn btn-primary mb-2"
                   onClick={this.handleSubmit}
                 >
-                  Dodaj
+                  Dodaj animacje
                 </button>
               </div>
               <span className="col-5">
@@ -360,19 +283,13 @@ class EditionPanel extends React.Component {
                     className="btn btn-primary mb-2"
                     onClick={this.deleteAnimation}
                   >
-                    Usuń wybrane
+                    Usuń animacje
                   </button>
                 ) : null}
               </span>
-              <select
-                className="custom-select"
-                size="6"
-                onChange={this.OnSelectedAnimation}
-              >
-                {this.props.selectedElement !== null
-                  ? this.createList(this.props.selectedElement)
+              {this.props.selectedElement !== null
+                  ? <AnimationsList handleselectedAnim={this.props.handleselectedAnim} selectedElement={this.props.selectedElement}/>
                   : null}
-              </select>
               <div className="container pt-2">{animation}</div>
             </div>
           </div>

@@ -9,7 +9,20 @@ const animations = {
       id: "default-rotate",
       repeatCount: "indefinite",
       additive:"sum",
-      to: "360 50 50"
+      to: "360 20 20"
+    }
+  },
+  rotateInPlace: {
+    _attributes: {
+      attributeName: "transform",
+      type: "rotate",
+      begin: "0s",
+      dur: "9s",
+      from: "0 20 20",
+      id: "default-rotate",
+      repeatCount: "indefinite",
+      additive:"sum",
+      to: "360 20 20"
     }
   },
   translate: {

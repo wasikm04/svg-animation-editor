@@ -33,7 +33,7 @@ class App extends React.Component {
   addAnimation(elementId, animationType) {
     var prevSelected = this.state.selectedElement;
     var newAnim = JSON.parse(JSON.stringify(animations[animationType]));
-    newAnim._attributes.id = "default_"+animationType+elementId+uniqueId();
+    newAnim._attributes.id = "default_"+animationType+"_"+elementId+"_"+uniqueId();
     if (prevSelected.animateTransform) {
       var newAnimationsArr = [];
       if (Array.isArray(prevSelected.animateTransform)) {
@@ -132,7 +132,7 @@ class App extends React.Component {
       svg.animate._attributes &&
       svg.animate._attributes.id
     ) {
-      if (svg.animate._attributes.id == selectedAnim) {
+      if (svg.animate._attributes.id === selectedAnim) {
         for (anim in svg.animate._attributes) {
           if (deleteIt === true) {
             //delete anim
@@ -151,7 +151,7 @@ class App extends React.Component {
       svg.animateTransform &&
       Array.isArray(svg.animateTransform)
     ) {
-      for (var elem in svg.animateTransform) {
+      for (elem in svg.animateTransform) {
         //0,1
         if (
           typeof svg.animateTransform[elem]._attributes !== "undefined" &&
@@ -162,8 +162,8 @@ class App extends React.Component {
             svg.animateTransform[elem] = "";
           } else {
             //update anim
-            for (var itr in svg.animateTransform[elem]) {
-              for (var anim in svg.animateTransform[elem][itr]) {
+            for (itr in svg.animateTransform[elem]) {
+              for (anim in svg.animateTransform[elem][itr]) {
                 if (anim === target) {
                   svg.animateTransform[elem][itr][anim] = value;
                 }
@@ -177,7 +177,7 @@ class App extends React.Component {
       svg.animateTransform._attributes &&
       svg.animateTransform._attributes.id
     ) {
-      if (svg.animateTransform._attributes.id == selectedAnim) {
+      if (svg.animateTransform._attributes.id === selectedAnim) {
         for (anim in svg.animateTransform._attributes) {
           if (deleteIt === true) {
             //delete anim

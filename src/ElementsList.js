@@ -4,10 +4,10 @@ import "./styles/App.css";
 class ElementsList extends React.Component {
   constructor(props) {
     super(props);
-    this.selected = null;
     this.OnSelectedItem = this.OnSelectedItem.bind(this);
     this.createList = this.createList.bind(this);
   }
+
   OnSelectedItem(e) {
     var elem = e.target.value.split(",");
     var obj = null;
@@ -16,7 +16,6 @@ class ElementsList extends React.Component {
     } else {
       obj = this.props.file[elem[0]];
     }
-    //this.selected = obj.id;
     this.props.handleSelected(obj);
     this.props.handleElementCategory(elem[0]);
   }
@@ -33,7 +32,7 @@ class ElementsList extends React.Component {
               value={tmparr}
               className="col-md"
             >
-              {svg[elem][itr]._attributes.id}
+              {svg[elem][itr]._attributes.id + " - " + elem}
             </option>
           );
         }
@@ -44,7 +43,7 @@ class ElementsList extends React.Component {
             value={[elem]}
             className="col-md"
           >
-            {svg[elem]._attributes.id}
+            {svg[elem]._attributes.id + " - " + elem}
           </option>
         );
       }

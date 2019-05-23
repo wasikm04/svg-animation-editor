@@ -15,7 +15,6 @@ class Editor extends React.Component {
           export={this.props.export}
           file={this.props.file}
           handleSelected={this.props.handleSelected}
-          loadSVG={this.props.loadSVG}
           handleElementCategory={this.props.handleElementCategory}
         />
         <EditionPanel
