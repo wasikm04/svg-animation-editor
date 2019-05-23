@@ -31,13 +31,17 @@ const inputStyle = {
 };
 
 const heightBox = {
-  maxHeight:'250px',
+  height: 'calc(100vh/2.2)',
   overflowY: 'scroll',
 };
 
 const width60 = {
   width: '55%',
   marginBottom: '15px'
+}
+
+const fillHeight = {
+  height: "calc(100vh/2.2)",
 }
 
 const title = {
@@ -388,13 +392,10 @@ OnSelectedAnimation(e) {
         <div height='calc(100vh/2)' className="container">
         <ul className="nav nav-tabs justify-content-center nav-justified nav-fill container row" role="tablist">
              <li className="nav-item">
-               <a className="nav-link   active" data-toggle="tab" href="#css">Edycja obiektu</a>
+               <a className="nav-link   active" data-toggle="tab" href="#css">Edycja parametrów obiektu</a>
              </li>
              <li className="nav-item">
-               <a className="nav-link" data-toggle="tab" href="#animations">Lista animacji</a>
-             </li>
-             <li className="nav-item">
-               <a className="nav-link" data-toggle="tab" href="#editanimations">Edycja animacji</a>
+               <a className="nav-link" data-toggle="tab" href="#animations">Edycja parametrów animacji</a>
              </li>
          </ul>
        <div style={heightBox} className=" tab-content container">
@@ -403,7 +404,7 @@ OnSelectedAnimation(e) {
           {editor}
           </div>
            </div>
-          <div id="animations" className="container tab-pane"> 
+          <div style={fillHeight} id="animations" className="container tab-pane"> 
         <div  className="col-12 row mt-2" >
               <div className="col-7">
                 <label className="mr-2">
@@ -422,11 +423,7 @@ OnSelectedAnimation(e) {
                 onChange={this.OnSelectedAnimation}>
                 {(this.props.selectedElement !== null) ? this.createList(this.props.selectedElement) : null}
          </select>
-        </div>
-        </div>
-        <div id="editanimations" className="container tab-pane"> 
-        <div  className="col-12">
-        {animation}
+         {animation}
         </div>
         </div>
         </div> 
