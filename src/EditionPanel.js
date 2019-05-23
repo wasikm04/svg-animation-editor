@@ -2,57 +2,18 @@ import React from "react";
 import { HuePicker } from "react-color";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
-import './styles/App.css'
-
-const nameStyle = {
-  float: "left",
-  display: "inline",
-  marginBottom: "0px",
-  fontSize: "1em"
-};
-
-const nameColorStyle = {
-  float: "left",
-  display: "inline",
-  marginBottom: "5px",
-  fontSize: "1em"
-};
-
-const nameSliderStyle = {
-  float: "left",
-  display: "inline",
-  marginBottom: "14px",
-  fontSize: "1em"
-};
-
-const marginTitle = {
-  marginTop: "15px"
-};
-
-const inputStyle = {
-  float: "left",
-  display: "inline",
-  marginTop: "5px"
-};
-
-const heightBox = {
-  height: "calc(100vh/2.2)",
-  overflowY: "scroll"
-};
-
-const width60 = {
-  width: "55%",
-  marginBottom: "15px"
-};
-
-const fillHeight = {
-  height: "calc(100vh/2.2)"
-};
-
-const title = {
-  marginLeft: "-15px",
-  marginBottom: "10px"
-};
+import "./styles/App.css";
+import {
+  title,
+  fillHeight,
+  width60,
+  heightBox,
+  inputStyle,
+  marginTitle,
+  nameSliderStyle,
+  nameColorStyle,
+  nameStyle
+} from "./EditionConfig.js";
 
 class FiledInput extends React.Component {
   constructor(props) {
@@ -322,6 +283,8 @@ class EditionPanel extends React.Component {
     return resultArr;
   }
 
+  createAnimationInput() {}
+
   createAnimationEdit(svg) {
     var resultArr = [];
     if (svg.animate && Array.isArray(svg.animate)) {
@@ -533,7 +496,10 @@ class EditionPanel extends React.Component {
             </a>
           </li>
         </ul>
-        <div style={heightBox} className=" tab-content container scrollable-config">
+        <div
+          style={heightBox}
+          className=" tab-content container scrollable-config"
+        >
           <div id="css" className="container tab-pane active">
             <div style={marginTitle} className="container">
               {editor}
