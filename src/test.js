@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const SvgComponent = props => (
   <svg
@@ -49,6 +49,6 @@ const SvgComponent = props => (
       }
     </script>
   </svg>
-)
+);
 
-export default SvgComponent
+export default SvgComponent;
