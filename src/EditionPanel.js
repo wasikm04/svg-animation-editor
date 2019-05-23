@@ -3,6 +3,10 @@ import "react-input-range/lib/css/index.css";
 import "./styles/App.css";
 import { title, fillHeight, heightBox, marginTitle } from "./EditionConfig.js";
 import { FiledInput, ColorInput, SliderInput } from "./InputHelpers.js";
+import {
+  createAnimationTtransformInput,
+  createAnimationInput
+} from "./AnimationHelpers.js";
 
 class EditionPanel extends React.Component {
   constructor(props) {
@@ -178,104 +182,22 @@ class EditionPanel extends React.Component {
     return resultArr;
   }
 
-  createAnimationInput(svg, resultArr) {
-    if (svg.animate && Array.isArray(svg.animate)) {
-      for (var elem in svg.animate) {
-        //0,1
-        if (
-          typeof svg.animate[elem]._attributes !== "undefined" &&
-          svg.animate[elem]._attributes.id === this.props.anim
-        ) {
-          for (var itr in svg.animate[elem]) {
-            for (var anim in svg.animate[elem][itr]) {
-              var tempField = (
-                <FiledInput
-                  name={anim}
-                  valueChange={svg.animate[elem][itr][anim]}
-                  fieldName={"Change " + anim + " value:"}
-                  onValueChange={this.handleChangeAnimation}
-                />
-              );
-
-              resultArr.push(tempField);
-            }
-          }
-        }
-      }
-    } else if (
-      svg.animate &&
-      svg.animate._attributes &&
-      svg.animate._attributes.id
-    ) {
-      if (svg.animate._attributes.id === this.props.anim) {
-        for (anim in svg.animate._attributes) {
-          tempField = (
-            <FiledInput
-              name={anim}
-              valueChange={svg.animate._attributes[anim]}
-              fieldName={"Change " + anim + " value:"}
-              onValueChange={this.handleChangeAnimation}
-            />
-          );
-
-          resultArr.push(tempField);
-        }
-      }
-    }
-  }
-
-  createAnimationTtransformInput(svg, resultArr) {
-    if (svg.animateTransform && Array.isArray(svg.animateTransform)) {
-      for (var elem in svg.animateTransform) {
-        //0,1
-        if (
-          typeof svg.animateTransform[elem]._attributes !== "undefined" &&
-          svg.animateTransform[elem]._attributes.id === this.props.anim
-        ) {
-          for (var itr in svg.animateTransform[elem]) {
-            for (var anim in svg.animateTransform[elem][itr]) {
-              var tempField = (
-                <FiledInput
-                  name={anim}
-                  valueChange={svg.animateTransform[elem][itr][anim]}
-                  fieldName={"Change " + anim + " value:"}
-                  onValueChange={this.handleChangeAnimation}
-                />
-              );
-
-              resultArr.push(tempField);
-            }
-          }
-        }
-      }
-    } else if (
-      svg.animateTransform &&
-      svg.animateTransform._attributes &&
-      svg.animateTransform._attributes.id
-    ) {
-      if (svg.animateTransform._attributes.id === this.props.anim) {
-        for (anim in svg.animateTransform._attributes) {
-          tempField = (
-            <FiledInput
-              name={anim}
-              valueChange={svg.animateTransform._attributes[anim]}
-              fieldName={"Change " + anim + " value:"}
-              onValueChange={this.handleChangeAnimation}
-            />
-          );
-
-          resultArr.push(tempField);
-        }
-      }
-    }
-  }
-
   createAnimationEdit(svg) {
     var resultArr = [];
 
-    this.createAnimationInput(svg, resultArr);
+    createAnimationInput(
+      svg,
+      resultArr,
+      this.props.anim,
+      this.handleChangeAnimation
+    );
 
-    this.createAnimationTtransformInput(svg, resultArr);
+    createAnimationTtransformInput(
+      svg,
+      resultArr,
+      this.props.anim,
+      this.handleChangeAnimation
+    );
 
     if (resultArr.length === 0) {
       return <div>Choose animation before edit!</div>;
