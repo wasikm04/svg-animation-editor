@@ -427,7 +427,9 @@ OnSelectedAnimation(e) {
                 onChange={this.OnSelectedAnimation}>
                 {(this.props.selectedElement !== null) ? this.createList(this.props.selectedElement) : null}
          </select>
+         <div className="container pt-2">
          {animation}
+         </div>
         </div>
         </div>
         </div> 
