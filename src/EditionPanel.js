@@ -107,7 +107,7 @@ class ColorInput extends React.Component {
     constructor(props) {
       super(props);
       this.handleChange = this.handleChange.bind(this);
-      this.state = {value:this.props.valueChange};
+      this.state = {value:parseInt(this.props.valueChange)};
     }
   
     handleChange(e) {
@@ -251,7 +251,7 @@ createAnimationEdit(svg){
   }
   
   }else if(svg.animate && svg.animate._attributes && svg.animate._attributes.id){
-    if(svg.animate._attributes.id == this.props.anim){
+    if(svg.animate._attributes.id === this.props.anim){
     for(anim in svg.animate._attributes){
       tempField = <FiledInput
       name = {anim}
@@ -282,7 +282,7 @@ createAnimationEdit(svg){
   }
   
   }else if(svg.animateTransform && svg.animateTransform._attributes && svg.animateTransform._attributes.id){
-    if(svg.animateTransform._attributes.id == this.props.anim){
+    if(svg.animateTransform._attributes.id === this.props.anim){
     for(anim in svg.animateTransform._attributes){
       tempField = <FiledInput
       name = {anim}
