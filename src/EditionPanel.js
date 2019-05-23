@@ -24,6 +24,10 @@ const nameSliderStyle = {
   fontSize: '1em',
 };
 
+const marginTitle = {
+  marginTop: '15px',
+}
+
 const inputStyle = {
   float: 'left',
   display: 'inline',
@@ -389,7 +393,7 @@ OnSelectedAnimation(e) {
     }
     }
       return (      
-        <div height='calc(100vh/2)' className="container">
+        <div height='calc(100vh/2)' className="container pr-0 pl-0">
         <ul className="nav nav-tabs justify-content-center nav-justified nav-fill container row" role="tablist">
              <li className="nav-item">
                <a className="nav-link   active" data-toggle="tab" href="#css">Edycja parametrów obiektu</a>
@@ -400,13 +404,13 @@ OnSelectedAnimation(e) {
          </ul>
        <div style={heightBox} className=" tab-content container">
        <div id="css" className="container tab-pane active">    
-       <div className ="container">
+       <div style={marginTitle} className ="container">
           {editor}
           </div>
            </div>
           <div style={fillHeight} id="animations" className="container tab-pane"> 
         <div  className="col-12 row mt-2" >
-              <div className="col-7">
+              <div className="col-7 pl-0">
                 <label className="mr-2">
                 <select className="form-control" onChange={(e) => {this.createAnimation = e.target.value}}>
                       <option value="translate">Translacja</option>

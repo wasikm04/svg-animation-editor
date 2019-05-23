@@ -38,7 +38,7 @@ class ElementsList extends React.Component {
 
   render() {
       return (       
-        <div height='calc(100vh/2)' className="container row">
+        <div height='calc(100vh/2)' className="container row pl-0 pr-0 mr-0 ml-0">
           <h2 className="text-center container  " >SVG Editor</h2>
           <br></br>
           <ul className="nav nav-tabs justify-content-center nav-justified nav-fill container row" role="tablist">
@@ -52,8 +52,8 @@ class ElementsList extends React.Component {
                 <a className="nav-link" data-toggle="tab" href="#export">Eksport</a>
               </li>
           </ul>
-          <div className="tab-content container " style={{height: '200px'}}>
-            <div id="list" className="container tab-pane active">     
+          <div className="tab-content container pl-0 pr-0" style={{height: '200px'}}>
+            <div id="list" className="container tab-pane active pl-0 pr-0">     
             <br></br>
               <select
                 className="custom-select" size="6"
