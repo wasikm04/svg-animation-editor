@@ -62,8 +62,8 @@ class ElementsList extends React.Component {
         >
           <div id="list" className="container tab-pane active pl-0 pr-0">
             <select
-              style={{ height: "100px" }}
-              className="custom-select"
+              style={{ height: "100px", marginTop:"0px"}}
+              className="custom-select scrollable-config"
               size="6"
               onChange={this.OnSelectedItem}
             >
