@@ -16,6 +16,7 @@ const createAnimationInput = function(svg, resultArr, animateId, handle) {
             var tempField = (
               <FiledInput
                 name={anim}
+                key={'animation'+anim}
                 valueChange={svg.animate[elem][itr][anim]}
                 fieldName={"Change " + anim + " value:"}
                 onValueChange={handle}
@@ -37,6 +38,7 @@ const createAnimationInput = function(svg, resultArr, animateId, handle) {
         tempField = (
           <FiledInput
             name={anim}
+            key={'animation'+anim}
             valueChange={svg.animate._attributes[anim]}
             fieldName={"Change " + anim + " value:"}
             onValueChange={handle}
@@ -67,6 +69,7 @@ const createAnimationTtransformInput = function(
             var tempField = (
               <FiledInput
                 name={anim}
+                key={'animation'+anim}
                 valueChange={svg.animateTransform[elem][itr][anim]}
                 fieldName={"Change " + anim + " value:"}
                 onValueChange={handle}
@@ -88,6 +91,7 @@ const createAnimationTtransformInput = function(
         tempField = (
           <FiledInput
             name={anim}
+            key={'animation'+anim}
             valueChange={svg.animateTransform._attributes[anim]}
             fieldName={"Change " + anim + " value:"}
             onValueChange={handle}

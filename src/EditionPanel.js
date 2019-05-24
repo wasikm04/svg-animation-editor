@@ -143,7 +143,7 @@ class EditionPanel extends React.Component {
           var tempField = null;
           if (propAttr === "id") {
             tempField = (
-              <div style={title}>
+              <div key={"id"+propAttr} style={title}>
                 {" "}
                 Editing element id:{" "}
                 <strong>
@@ -155,6 +155,7 @@ class EditionPanel extends React.Component {
           } else if (propAttr === "fill") {
             tempField = (
               <ColorInput
+                key={'color'+propAttr}
                 valueChange={this.props.selectedElement._attributes[propAttr]}
                 fieldName={"Change " + propAttr + " color: "}
                 onValueChange={this.handlefill}
@@ -165,6 +166,7 @@ class EditionPanel extends React.Component {
           } else if (propAttr === "stroke") {
             tempField = (
               <ColorInput
+                key={'color'+propAttr}
                 valueChange={this.props.selectedElement._attributes[propAttr]}
                 fieldName={"Change " + propAttr + " color: "}
                 onValueChange={this.handlestroke}
@@ -176,6 +178,7 @@ class EditionPanel extends React.Component {
             tempField = (
               <SliderInput
                 valueChange={this.props.selectedElement._attributes[propAttr]}
+                key={'slider'+propAttr} 
                 min={0.01}
                 max={1}
                 step={0.01}
@@ -189,6 +192,7 @@ class EditionPanel extends React.Component {
             tempField = (
               <SliderInput
                 valueChange={this.props.selectedElement._attributes[propAttr]}
+                key={'slider'+propAttr} 
                 min={0.01}
                 max={1}
                 step={0.01}
@@ -202,6 +206,7 @@ class EditionPanel extends React.Component {
             tempField = (
               <SliderInput
                 valueChange={this.props.selectedElement._attributes[propAttr]}
+                key={'slider'+propAttr} 
                 min={0.01}
                 max={1}
                 step={0.01}
@@ -214,6 +219,7 @@ class EditionPanel extends React.Component {
             tempField = (
               <FiledInput
                 name={propAttr}
+                key={propAttr} 
                 valueChange={this.props.selectedElement._attributes[propAttr]}
                 fieldName={"Change " + propAttr + " value:"}
                 onValueChange={this.handleChange}
