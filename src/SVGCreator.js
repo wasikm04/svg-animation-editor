@@ -62,7 +62,7 @@ function createElements(elements, Category) {
             if (Array.isArray(elem)) {
               for (var obj in elem) {
                 for (var Attr in elem[obj]) {
-                  if (Attr === "animate" || Attr === "animateTransform") {
+                  if (Attr === "animate" || Attr === "animateTransform" || Attr=== "animateMotion") {
                     for (var i in elem[obj][Attr]) {
                       if (Array.isArray(elem[obj][Attr])) {
                         for (var key3 in elem[obj][Attr][i]._attributes) {
@@ -91,7 +91,7 @@ function createElements(elements, Category) {
               }
             } else {
               for (Attr in elem) {
-                if (Attr === "animate" || Attr === "animateTransform") {
+                if (Attr === "animate" || Attr === "animateTransform" || Attr === "animateMotion") {
                   for (i in elem[Attr]) {
                     if (Array.isArray(elem[Attr])) {
                       for (var key5 in elem[Attr][i]._attributes) {
@@ -153,6 +153,18 @@ function convertStateToJSX(file) {
                 arr = arr.concat(arrayOfJsxellipses);
                 continue;
               }
+              if (elem === "path") {
+                var paths = parseArray(file[elem]);
+                var arrayOfJsxpaths = createElements(paths, "path");
+                arr = arr.concat(arrayOfJsxpaths);
+                continue;
+              }
+              if (elem === "g") {
+                var groups = parseArray(file[elem]);
+                var arrayOfJsxgroups = createElements(groups, "g");
+                arr = arr.concat(arrayOfJsxgroups);
+                continue;
+              }
               if (elem === "script") {
                 arr.push(
                   <script key={184} type="text/ecmascript">
@@ -167,6 +179,14 @@ function convertStateToJSX(file) {
               if (elem === "animate") {
                 var animates = parseArray(file[elem]);
                 arr.push(<animate key={169} {...animates[0]} />);
+              }
+              if (elem === "animateTransform") {
+                var animates2 = parseArray(file[elem]);
+                arr.push(<animateTransform key={159} {...animates2[0]} />);
+              }
+              if (elem === "animateMotion") {
+                var animates3 = parseArray(file[elem]);
+                arr.push(<animateTransform key={150} {...animates3[0]} />);
               }
             }
             var svg1 = <svg {...svgattributes}>{arr}</svg>;
