@@ -272,8 +272,10 @@ class EditionPanel extends React.Component {
                       this.createAnimation = e.target.value;
                     }}
                   >
-                    <option value="translate">Translacja</option>
-                    <option value="rotate">Rotacja</option>
+                    <option value="rotate_animateTransform">Rotacja</option>
+                    <option value="translate_animateTransform">Translacja</option>
+                    <option value="fade_animate">Zanikanie</option>
+                    <option value="rotateInPlace_animateTransform">Obracanie</option>
                   </select>
                 </label>
                 <button
