@@ -226,7 +226,7 @@ class EditionPanel extends React.Component {
       }
     }
     return (
-      <div height="calc(100vh/2)" className="container pr-0 pl-0">
+      <div height="calc(100vh/2)" className="container pr-0 pl-15">
         <ul
           className="nav nav-tabs justify-content-center nav-justified nav-fill container row"
           role="tablist"
