@@ -82,18 +82,27 @@ class App extends React.Component {
       if (Array.isArray(svg[elem])) {
         for (var iter in svg[elem]) {
           if (svg[elem][iter]._attributes.id === elementID) {
+            if(propertyValue){
             svg[elem][iter]._attributes[propertyName] = propertyValue;
+            }else{
+              svg[elem][iter]._attributes[propertyName]  = 0
+            }
             prevSelected = svg[elem][iter];
           }
         }
       } else if (svg[elem]._attributes && svg[elem]._attributes.id) {
         if (svg[elem]._attributes.id === elementID) {
+          if(propertyValue){
           svg[elem]._attributes[propertyName] = propertyValue;
+          }else{
+            svg[elem]._attributes[propertyName] = 0
+          }
           prevSelected = svg[elem];
           break;
         }
       }
     }
+  
     this.setState({
       file: svg,
       selectedElement: prevSelected

@@ -1,7 +1,7 @@
 import React from "react";
 import "react-input-range/lib/css/index.css";
 import "./styles/App.css";
-import { title, fillHeight, heightBox, marginTitle } from "./EditionConfig.js";
+import { title, fillHeight, heightBox} from "./EditionConfig.js";
 import { FiledInput, ColorInput, SliderInput } from "./InputHelpers.js";
 import {
   createAnimationTtransformInput,
@@ -139,7 +139,6 @@ class EditionPanel extends React.Component {
       animation = this.createAnimationEdit(this.props.selectedElement);
 
       for (var propAttr in this.props.selectedElement._attributes) {
-        if (this.props.selectedElement._attributes[propAttr]) {
           var tempField = null;
           if (propAttr === "id") {
             tempField = (
@@ -228,7 +227,7 @@ class EditionPanel extends React.Component {
 
             editor.push(tempField);
           }
-        }
+        
       }
     }
     return (
