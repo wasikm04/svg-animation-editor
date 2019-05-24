@@ -80,6 +80,7 @@ createAnimationsList(svg) {
   render(){
     return (
             <select
+                style={{ height: "100px" }}
                 className="custom-select"
                 size="6"
                 onChange={this.OnSelectedAnimation}

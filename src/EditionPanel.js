@@ -232,7 +232,7 @@ class EditionPanel extends React.Component {
       }
     }
     return (
-      <div height="calc(100vh/2)" className="container pr-0 pl-15">
+      <div className="container pr-0 pl-15">
         <ul
           className="nav nav-tabs justify-content-center nav-justified nav-fill container row"
           role="tablist"
@@ -253,7 +253,7 @@ class EditionPanel extends React.Component {
           className=" tab-content container scrollable-config"
         >
           <div id="css" className="container tab-pane active">
-            <div style={marginTitle} className="container">
+            <div className="container">
               {editor}
             </div>
           </div>
@@ -264,7 +264,7 @@ class EditionPanel extends React.Component {
           >
             <h4>Lista animacji</h4>
             <div className="col-12 row mt-2">
-              <div className="col-7 pl-0">
+              <div style={{ float: "right", flex: "0 0 100%", maxWidth: "100%!important" }} className="col-7 pl-0">
                 <label className="mr-2">
                   <select
                     className="form-control"
@@ -277,16 +277,17 @@ class EditionPanel extends React.Component {
                   </select>
                 </label>
                 <button
-                  className="btn btn-primary mb-2"
+                  className="btn btn-primary mb-1"
                   onClick={this.handleSubmit}
                 >
                   Dodaj animacje
                 </button>
               </div>
-              <span className="col-5">
+              <span style={{ float: "right", paddingRight: "0px" }} className="col-5">
                 {this.props.anim ? (
                   <button
-                    className="btn btn-primary mb-2"
+                    style={{ float: "right" }}
+                    className="btn btn-primary mb-1"
                     onClick={this.deleteAnimation}
                   >
                     Usuń animacje

@@ -54,14 +54,15 @@ class ElementsList extends React.Component {
   render() {
     return (
       <div height="calc(100vh/2)" className="container row pl-0 pr-0 mr-0 ml-0">
-        <h2 className="container text-center">SVG Editor</h2>
+        <h2 className="container text-center mt-2 mb-3">SVG Editor</h2>
         <h4 className="text-center">Lista obiektów</h4>
         <div
           className="tab-content container pl-0 pr-0"
-          style={{ height: "200px" }}
+          style={{ height: "140px" }}
         >
           <div id="list" className="container tab-pane active pl-0 pr-0">
             <select
+              style={{ height: "100px" }}
               className="custom-select"
               size="6"
               onChange={this.OnSelectedItem}
