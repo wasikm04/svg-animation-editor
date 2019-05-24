@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/svg-animation-editor/static/css/main.d0b4fc6c.chunk.css",
-    "main.js": "/svg-animation-editor/static/js/main.7e009975.chunk.js",
-    "main.js.map": "/svg-animation-editor/static/js/main.7e009975.chunk.js.map",
+    "main.css": "/svg-animation-editor/static/css/main.61d8aa22.chunk.css",
+    "main.js": "/svg-animation-editor/static/js/main.419616d0.chunk.js",
+    "main.js.map": "/svg-animation-editor/static/js/main.419616d0.chunk.js.map",
     "runtime~main.js": "/svg-animation-editor/static/js/runtime~main.a709a186.js",
     "runtime~main.js.map": "/svg-animation-editor/static/js/runtime~main.a709a186.js.map",
     "static/css/2.1bdf284b.chunk.css": "/svg-animation-editor/static/css/2.1bdf284b.chunk.css",
-    "static/js/2.c0685c1d.chunk.js": "/svg-animation-editor/static/js/2.c0685c1d.chunk.js",
-    "static/js/2.c0685c1d.chunk.js.map": "/svg-animation-editor/static/js/2.c0685c1d.chunk.js.map",
+    "static/js/2.8d5eb8e8.chunk.js": "/svg-animation-editor/static/js/2.8d5eb8e8.chunk.js",
+    "static/js/2.8d5eb8e8.chunk.js.map": "/svg-animation-editor/static/js/2.8d5eb8e8.chunk.js.map",
     "index.html": "/svg-animation-editor/index.html",
-    "precache-manifest.0e3bf1960f555eefb019ddce00c658af.js": "/svg-animation-editor/precache-manifest.0e3bf1960f555eefb019ddce00c658af.js",
+    "precache-manifest.5cca571e2ddcd6488f4f4a2d0e4e2ee5.js": "/svg-animation-editor/precache-manifest.5cca571e2ddcd6488f4f4a2d0e4e2ee5.js",
     "service-worker.js": "/svg-animation-editor/service-worker.js",
     "static/css/2.1bdf284b.chunk.css.map": "/svg-animation-editor/static/css/2.1bdf284b.chunk.css.map",
-    "static/css/main.d0b4fc6c.chunk.css.map": "/svg-animation-editor/static/css/main.d0b4fc6c.chunk.css.map"
+    "static/css/main.61d8aa22.chunk.css.map": "/svg-animation-editor/static/css/main.61d8aa22.chunk.css.map"
   }
 }
