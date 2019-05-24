@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./styles/App.css";
 class AnimationsList extends React.Component {
     constructor(props) {
         super(props);      
@@ -81,7 +81,7 @@ createAnimationsList(svg) {
     return (
             <select
                 style={{ height: "100px" }}
-                className="custom-select"
+                className="custom-select scrollable-config"
                 size="6"
                 onChange={this.OnSelectedAnimation}
                 >

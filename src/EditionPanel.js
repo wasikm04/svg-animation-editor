@@ -1,7 +1,7 @@
 import React from "react";
 import "react-input-range/lib/css/index.css";
 import "./styles/App.css";
-import { title, fillHeight, heightBox, marginTitle } from "./EditionConfig.js";
+import { title, fillHeight, heightBox} from "./EditionConfig.js";
 import { FiledInput, ColorInput, SliderInput } from "./InputHelpers.js";
 import {
   createAnimationTtransformInput,
@@ -127,7 +127,7 @@ class EditionPanel extends React.Component {
     );
 
     if (resultArr.length === 0) {
-      return <div>Choose animation before edit!</div>;
+      return <div className="container text-center">Wybierz animacje z listy aby ją edytować</div>;
     }
     return resultArr;
   }

@@ -55,7 +55,7 @@ class SVGWindow extends React.Component {
         <div className="container fill panel panel-primary">
           <div className="panel-body container fill">
             <div className="container fill text-center">
-              {this.svg}
+              { this.svg ? this.svg : "Aby rozpocząć edycję zaimportuj plik z rozszerzeniem .svg"}
             </div>
           </div>
         </div>
