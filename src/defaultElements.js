@@ -1,5 +1,5 @@
 const animations = {
-  rotate: {
+  rotate_animateTransform: {
     _attributes: {
       attributeName: "transform",
       type: "rotate",
@@ -12,7 +12,7 @@ const animations = {
       to: "360 20 20"
     }
   },
-  rotateInPlace: {
+  rotateInPlace_animateTransform: {
     _attributes: {
       attributeName: "transform",
       type: "rotate",
@@ -25,7 +25,7 @@ const animations = {
       to: "360 20 20"
     }
   },
-  translate: {
+  translate_animateTransform: {
     _attributes: {
       attributeName: "transform",
       type: "translate",
@@ -36,6 +36,17 @@ const animations = {
       additive:"sum",
       repeatCount: "indefinite",
       id: "default-translate"
+    }
+  },
+  fade_animate: {
+    _attributes: {
+      attributeName: "opacity",
+      attributeType:"CSS",
+      from: "1",
+      to: "0",
+      dur: "6s",
+      repeatCount: "indefinite",
+      id: "default-fade"
     }
   }
 };

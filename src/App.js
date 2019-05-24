@@ -33,18 +33,19 @@ class App extends React.Component {
   addAnimation(elementId, animationType) {
     var prevSelected = this.state.selectedElement;
     var newAnim = JSON.parse(JSON.stringify(animations[animationType]));
-    newAnim._attributes.id = "default_"+animationType+"_"+elementId+"_"+uniqueId();
-    if (prevSelected.animateTransform) {
+    var animationTag = animationType.split("_")[1];
+    newAnim._attributes.id = "default_"+animationType.split("_")[0]+"_"+elementId+"_"+uniqueId();
+    if (prevSelected[animationTag]) {
       var newAnimationsArr = [];
-      if (Array.isArray(prevSelected.animateTransform)) {
-        prevSelected.animateTransform.push(newAnim);
+      if (Array.isArray(prevSelected[animationTag])) {
+        prevSelected[animationTag].push(newAnim);
       } else {
-        newAnimationsArr.push(prevSelected.animateTransform);
+        newAnimationsArr.push(prevSelected[animationTag]);
         newAnimationsArr.push(newAnim);
-        prevSelected.animateTransform = newAnimationsArr;
+        prevSelected[animationTag] = newAnimationsArr;
       }
     } else {
-      prevSelected.animateTransform = newAnim;
+      prevSelected[animationTag] = newAnim;
     }
     this.setState({
       selectedElement: prevSelected,
