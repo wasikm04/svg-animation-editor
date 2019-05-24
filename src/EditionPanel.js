@@ -232,9 +232,9 @@ class EditionPanel extends React.Component {
       }
     }
     return (
-      <div className="container pr-0 pl-15">
+      <div style={{ paddingLeft: "0px"}} className="container pr-0">
         <ul
-          className="nav nav-tabs justify-content-center nav-justified nav-fill container row"
+          className="nav nav-tabs justify-content-center nav-justified nav-fill container row pr-0 ml-0"
           role="tablist"
         >
           <li className="nav-item">
