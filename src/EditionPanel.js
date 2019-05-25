@@ -144,7 +144,7 @@ class EditionPanel extends React.Component {
             tempField = (
               <div key={"id"+propAttr} style={title}>
                 {" "}
-                Editing element id:{" "}
+                Edytujesz obiekt o id:{" "}
                 <strong>
                   {this.props.selectedElement._attributes[propAttr]}
                 </strong>
@@ -243,7 +243,7 @@ class EditionPanel extends React.Component {
           </li>
           <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#animations">
-              Edycja parametrów animacji
+              Lista animacji obiektu
             </a>
           </li>
         </ul>
@@ -261,10 +261,9 @@ class EditionPanel extends React.Component {
             id="animations"
             className="container tab-pane"
           >
-            <h4>Lista animacji</h4>
             <div className="col-12 row mt-2">
               <div style={{ float: "right", flex: "0 0 100%", maxWidth: "100%!important" }} className="col-7 pl-0">
-                <label className="mr-2">
+                <label className="mr-1">
                   <select
                     className="form-control"
                     onChange={e => {

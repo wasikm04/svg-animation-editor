@@ -1,0 +1,26 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+ <svg id="SVG7" viewBox="0 0 500 500" >
+ <rect id="rect" className="mouse" x="0" y="0" width="500" height="500"/>
+    <polygon id="diamond" className="diamondMo tulip" points="400, 280, 310, 150, 400, 20, 490, 150"/>
+    <style>
+        .mouse { fill: #E5E4E3; }
+        .tulip { fill: #CC2954; }
+        .diamondMo {
+            animation-name: diamondMoves;
+            animation-duration: 8s;
+            animation-iteration-count: infinite;
+            transform-origin: 50% 50%;
+        }
+        @keyframes diamondMoves {
+            0%   { transform: translate(0, 0); }
+            20%  { transform: translate(0, -200px); }
+            30%  { transform: translate(0, 0); }
+            40%  { transform: translate(0, 200px); }
+            50%  { transform: translate(0, 0); }
+            60%  { transform: translate(-200px, 0); }
+            70%  { transform: translate(0, 0); }
+            80%  { transform: translate(200px, 0); }
+            100% { transform: translate(0, 0); }
+        }
+    </style></svg>
