@@ -12,7 +12,7 @@ import AnimationsList from "./AnimationsList.js";
 class EditionPanel extends React.Component {
   constructor(props) {
     super(props);
-    this.createAnimation = "translate";
+    this.createAnimation = "rotate_animateTransform";
     this.handleChangeAnimation = this.handleChangeAnimation.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handlefill = this.handlefill.bind(this);
