@@ -7,7 +7,7 @@ class Upload extends React.Component {
     this.handleChoose = this.handleChoose.bind(this);
     this.handleLoad = this.handleLoad.bind(this);
   }
-  
+
   handleChoose(event) {
     event.preventDefault();
     this.reader = new FileReader();

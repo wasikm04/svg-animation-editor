@@ -1,7 +1,7 @@
 import React from "react";
 import "react-input-range/lib/css/index.css";
 import "./styles/App.css";
-import { title, fillHeight, heightBox} from "./EditionConfig.js";
+import { title, fillHeight, heightBox } from "./EditionConfig.js";
 import { FiledInput, ColorInput, SliderInput } from "./InputHelpers.js";
 import {
   createAnimationTtransformInput,
@@ -127,7 +127,11 @@ class EditionPanel extends React.Component {
     );
 
     if (resultArr.length === 0) {
-      return <div className="container text-center">Wybierz animacje z listy aby ją edytować</div>;
+      return (
+        <div className="container text-center">
+          Wybierz animacje z listy aby ją edytować
+        </div>
+      );
     }
     return resultArr;
   }
@@ -139,99 +143,98 @@ class EditionPanel extends React.Component {
       animation = this.createAnimationEdit(this.props.selectedElement);
 
       for (var propAttr in this.props.selectedElement._attributes) {
-          var tempField = null;
-          if (propAttr === "id") {
-            tempField = (
-              <div key={"id"+propAttr} style={title}>
-                {" "}
-                Edytujesz obiekt o id:{" "}
-                <strong>
-                  {this.props.selectedElement._attributes[propAttr]}
-                </strong>
-              </div>
-            );
-            editor.push(tempField);
-          } else if (propAttr === "fill") {
-            tempField = (
-              <ColorInput
-                key={'color'+propAttr}
-                valueChange={this.props.selectedElement._attributes[propAttr]}
-                fieldName={"Change " + propAttr + " color: "}
-                onValueChange={this.handlefill}
-              />
-            );
+        var tempField = null;
+        if (propAttr === "id") {
+          tempField = (
+            <div key={"id" + propAttr} style={title}>
+              {" "}
+              Edytujesz obiekt o nazwie:{" "}
+              <strong>
+                {this.props.selectedElement._attributes[propAttr]}
+              </strong>
+            </div>
+          );
+          editor.push(tempField);
+        } else if (propAttr === "fill") {
+          tempField = (
+            <ColorInput
+              key={"color" + propAttr}
+              valueChange={this.props.selectedElement._attributes[propAttr]}
+              fieldName={"Edytuj parametr " + propAttr + ":"}
+              onValueChange={this.handlefill}
+            />
+          );
 
-            editor.push(tempField);
-          } else if (propAttr === "stroke") {
-            tempField = (
-              <ColorInput
-                key={'color'+propAttr}
-                valueChange={this.props.selectedElement._attributes[propAttr]}
-                fieldName={"Change " + propAttr + " color: "}
-                onValueChange={this.handlestroke}
-              />
-            );
+          editor.push(tempField);
+        } else if (propAttr === "stroke") {
+          tempField = (
+            <ColorInput
+              key={"color" + propAttr}
+              valueChange={this.props.selectedElement._attributes[propAttr]}
+              fieldName={"Edytuj parametr " + propAttr + ":"}
+              onValueChange={this.handlestroke}
+            />
+          );
 
-            editor.push(tempField);
-          } else if (propAttr === "fill-opacity") {
-            tempField = (
-              <SliderInput
-                valueChange={this.props.selectedElement._attributes[propAttr]}
-                key={'slider'+propAttr} 
-                min={0.01}
-                max={1}
-                step={0.01}
-                fieldName={"Change " + propAttr + ":"}
-                onValueChange={this.handlefillopacity}
-              />
-            );
+          editor.push(tempField);
+        } else if (propAttr === "fill-opacity") {
+          tempField = (
+            <SliderInput
+              valueChange={this.props.selectedElement._attributes[propAttr]}
+              key={"slider" + propAttr}
+              min={0.01}
+              max={1}
+              step={0.01}
+              fieldName={"Edytuj parametr " + propAttr + ":"}
+              onValueChange={this.handlefillopacity}
+            />
+          );
 
-            editor.push(tempField);
-          } else if (propAttr === "stroke-opacity") {
-            tempField = (
-              <SliderInput
-                valueChange={this.props.selectedElement._attributes[propAttr]}
-                key={'slider'+propAttr} 
-                min={0.01}
-                max={1}
-                step={0.01}
-                fieldName={"Change " + propAttr + ":"}
-                onValueChange={this.handlestrokeopacity}
-              />
-            );
+          editor.push(tempField);
+        } else if (propAttr === "stroke-opacity") {
+          tempField = (
+            <SliderInput
+              valueChange={this.props.selectedElement._attributes[propAttr]}
+              key={"slider" + propAttr}
+              min={0.01}
+              max={1}
+              step={0.01}
+              fieldName={"Edytuj parametr " + propAttr + ":"}
+              onValueChange={this.handlestrokeopacity}
+            />
+          );
 
-            editor.push(tempField);
-          } else if (propAttr === "opacity") {
-            tempField = (
-              <SliderInput
-                valueChange={this.props.selectedElement._attributes[propAttr]}
-                key={'slider'+propAttr} 
-                min={0.01}
-                max={1}
-                step={0.01}
-                fieldName={"Change " + propAttr + ":"}
-                onValueChange={this.handleopacity}
-              />
-            );
-            editor.push(tempField);
-          } else {
-            tempField = (
-              <FiledInput
-                name={propAttr}
-                key={propAttr} 
-                valueChange={this.props.selectedElement._attributes[propAttr]}
-                fieldName={"Change " + propAttr + " value:"}
-                onValueChange={this.handleChange}
-              />
-            );
+          editor.push(tempField);
+        } else if (propAttr === "opacity") {
+          tempField = (
+            <SliderInput
+              valueChange={this.props.selectedElement._attributes[propAttr]}
+              key={"slider" + propAttr}
+              min={0.01}
+              max={1}
+              step={0.01}
+              fieldName={"Edytuj parametr " + propAttr + ":"}
+              onValueChange={this.handleopacity}
+            />
+          );
+          editor.push(tempField);
+        } else {
+          tempField = (
+            <FiledInput
+              name={propAttr}
+              key={propAttr}
+              valueChange={this.props.selectedElement._attributes[propAttr]}
+              fieldName={"Edytuj parametr " + propAttr + ":"}
+              onValueChange={this.handleChange}
+            />
+          );
 
-            editor.push(tempField);
-          }
-        
+          editor.push(tempField);
+        }
       }
     }
     return (
-      <div style={{ paddingLeft: "0px"}} className="container pr-0">
+      <div style={{ paddingLeft: "0px" }} className="container pr-0">
         <ul
           className="nav nav-tabs justify-content-center nav-justified nav-fill container row pr-0 ml-0"
           role="tablist"
@@ -252,9 +255,7 @@ class EditionPanel extends React.Component {
           className=" tab-content container scrollable-config"
         >
           <div id="css" className="container tab-pane active">
-            <div className="container">
-              {editor}
-            </div>
+            <div className="container">{editor}</div>
           </div>
           <div
             style={fillHeight}
@@ -262,7 +263,14 @@ class EditionPanel extends React.Component {
             className="container tab-pane"
           >
             <div className="col-12 row mt-2">
-              <div style={{ float: "right", flex: "0 0 100%", maxWidth: "100%!important" }} className="col-7 pl-0">
+              <div
+                style={{
+                  float: "right",
+                  flex: "0 0 100%",
+                  maxWidth: "100%!important"
+                }}
+                className="col-7 pl-0"
+              >
                 <label className="mr-1">
                   <select
                     className="form-control"
@@ -271,9 +279,13 @@ class EditionPanel extends React.Component {
                     }}
                   >
                     <option value="rotate_animateTransform">Rotacja</option>
-                    <option value="translate_animateTransform">Translacja</option>
+                    <option value="translate_animateTransform">
+                      Translacja
+                    </option>
                     <option value="fade_animate">Zanikanie</option>
-                    <option value="rotateInPlace_animateTransform">Obracanie</option>
+                    <option value="rotateInPlace_animateTransform">
+                      Obracanie
+                    </option>
                   </select>
                 </label>
                 <button
@@ -283,7 +295,10 @@ class EditionPanel extends React.Component {
                   Dodaj animacje
                 </button>
               </div>
-              <span style={{ float: "right", paddingRight: "0px" }} className="col-5">
+              <span
+                style={{ float: "right", paddingRight: "0px" }}
+                className="col-5"
+              >
                 {this.props.anim ? (
                   <button
                     style={{ float: "right" }}
@@ -294,9 +309,12 @@ class EditionPanel extends React.Component {
                   </button>
                 ) : null}
               </span>
-              {this.props.selectedElement !== null
-                  ? <AnimationsList handleselectedAnim={this.props.handleselectedAnim} selectedElement={this.props.selectedElement}/>
-                  : null}
+              {this.props.selectedElement !== null ? (
+                <AnimationsList
+                  handleselectedAnim={this.props.handleselectedAnim}
+                  selectedElement={this.props.selectedElement}
+                />
+              ) : null}
               <div className="container pt-2">{animation}</div>
             </div>
           </div>

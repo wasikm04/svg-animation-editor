@@ -1,13 +1,13 @@
 import React from "react";
 import "./styles/App.css";
 class AnimationsList extends React.Component {
-    constructor(props) {
-        super(props);      
-        this.createAnimationsList = this.createAnimationsList.bind(this);
-        this.OnSelectedAnimation = this.OnSelectedAnimation.bind(this);
-        };
+  constructor(props) {
+    super(props);
+    this.createAnimationsList = this.createAnimationsList.bind(this);
+    this.OnSelectedAnimation = this.OnSelectedAnimation.bind(this);
+  }
 
-createAnimationsList(svg) {
+  createAnimationsList(svg) {
     var resultArr = [];
     if (svg.animate && Array.isArray(svg.animate)) {
       for (var elem in svg.animate) {
@@ -77,17 +77,18 @@ createAnimationsList(svg) {
     var elem = e.target.value;
     this.props.handleselectedAnim(elem);
   }
-  render(){
+  render() {
     return (
-            <select
-                style={{ height: "100px" }}
-                className="custom-select scrollable-config"
-                size="6"
-                onChange={this.OnSelectedAnimation}
-                >
-                    {this.createAnimationsList(this.props.selectedElement)}
-            </select>
-    )};
+      <select
+        style={{ height: "100px" }}
+        className="custom-select scrollable-config"
+        size="6"
+        onChange={this.OnSelectedAnimation}
+      >
+        {this.createAnimationsList(this.props.selectedElement)}
+      </select>
+    );
+  }
 }
 
 export default AnimationsList;

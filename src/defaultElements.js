@@ -8,7 +8,7 @@ const animations = {
       from: "0 0 0",
       id: "default-rotate",
       repeatCount: "indefinite",
-      additive:"sum",
+      additive: "sum",
       to: "360 20 20"
     }
   },
@@ -21,7 +21,7 @@ const animations = {
       from: "0 20 20",
       id: "default-rotate",
       repeatCount: "indefinite",
-      additive:"sum",
+      additive: "sum",
       to: "360 20 20"
     }
   },
@@ -33,7 +33,7 @@ const animations = {
       to: "50 50",
       begin: "0s",
       dur: "9s",
-      additive:"sum",
+      additive: "sum",
       repeatCount: "indefinite",
       id: "default-translate"
     }
@@ -41,7 +41,7 @@ const animations = {
   fade_animate: {
     _attributes: {
       attributeName: "opacity",
-      attributeType:"CSS",
+      attributeType: "CSS",
       from: "1",
       to: "0",
       dur: "6s",

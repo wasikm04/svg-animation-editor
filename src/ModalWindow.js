@@ -1,11 +1,11 @@
 import React from "react";
-import Modal from 'react-bootstrap/Modal'
+import Modal from "react-bootstrap/Modal";
 import "./styles/App.css";
 class ModalWindow extends React.Component {
   render() {
     return (
       <Modal
-        show={this.props.show} 
+        show={this.props.show}
         onHide={this.props.onHide}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
@@ -27,4 +27,4 @@ class ModalWindow extends React.Component {
     );
   }
 }
-  export default ModalWindow;
+export default ModalWindow;

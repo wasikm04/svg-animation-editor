@@ -2,8 +2,8 @@ import React from "react";
 import SVGWindow from "./SVGWindow.js";
 import Editor from "./Editor.js";
 import animations from "./defaultElements.js";
-import './styles/App.css'
-import { uniqueId } from 'lodash';
+import "./styles/App.css";
+import { uniqueId } from "lodash";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -34,7 +34,13 @@ class App extends React.Component {
     var prevSelected = this.state.selectedElement;
     var newAnim = JSON.parse(JSON.stringify(animations[animationType]));
     var animationTag = animationType.split("_")[1];
-    newAnim._attributes.id = "default_"+animationType.split("_")[0]+"_"+elementId+"_"+uniqueId();
+    newAnim._attributes.id =
+      "default_" +
+      animationType.split("_")[0] +
+      "_" +
+      elementId +
+      "_" +
+      uniqueId();
     if (prevSelected[animationTag]) {
       var newAnimationsArr = [];
       if (Array.isArray(prevSelected[animationTag])) {
@@ -48,7 +54,7 @@ class App extends React.Component {
       prevSelected[animationTag] = newAnim;
     }
     this.setState({
-      selectedElement: prevSelected,
+      selectedElement: prevSelected
     });
   }
 
@@ -83,27 +89,27 @@ class App extends React.Component {
       if (Array.isArray(svg[elem])) {
         for (var iter in svg[elem]) {
           if (svg[elem][iter]._attributes.id === elementID) {
-            if(propertyValue){
-            svg[elem][iter]._attributes[propertyName] = propertyValue;
-            }else{
-              svg[elem][iter]._attributes[propertyName]  = 0
+            if (propertyValue) {
+              svg[elem][iter]._attributes[propertyName] = propertyValue;
+            } else {
+              svg[elem][iter]._attributes[propertyName] = 0;
             }
             prevSelected = svg[elem][iter];
           }
         }
       } else if (svg[elem]._attributes && svg[elem]._attributes.id) {
         if (svg[elem]._attributes.id === elementID) {
-          if(propertyValue){
-          svg[elem]._attributes[propertyName] = propertyValue;
-          }else{
-            svg[elem]._attributes[propertyName] = 0
+          if (propertyValue) {
+            svg[elem]._attributes[propertyName] = propertyValue;
+          } else {
+            svg[elem]._attributes[propertyName] = 0;
           }
           prevSelected = svg[elem];
           break;
         }
       }
     }
-  
+
     this.setState({
       file: svg,
       selectedElement: prevSelected
@@ -246,7 +252,7 @@ class App extends React.Component {
       <div className="container-fluid h-100">
         <div className="col-12 row h-100">
           <div className="col-6">
-            <Editor  
+            <Editor
               addAnimation={this.addAnimation}
               anim={this.state.selectedAnim}
               file={this.state.file}
@@ -259,11 +265,11 @@ class App extends React.Component {
             />
           </div>
           <div className="col-6 h-100">
-            <SVGWindow 
-            setExport={this.setExport} 
-            file={this.state.file} 
-            loadSVG={this.loadSVG}
-            export={this.state.export}
+            <SVGWindow
+              setExport={this.setExport}
+              file={this.state.file}
+              loadSVG={this.loadSVG}
+              export={this.state.export}
             />
           </div>
         </div>

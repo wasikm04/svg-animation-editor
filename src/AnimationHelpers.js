@@ -18,7 +18,7 @@ const createAnimationInput = function(svg, resultArr, animateId, handle) {
                 name={anim}
                 key={'animation'+anim}
                 valueChange={svg.animate[elem][itr][anim]}
-                fieldName={"Change " + anim + " value:"}
+                fieldName={"Edytuj parametr "+anim+":"}
                 onValueChange={handle}
               />
             );
@@ -40,7 +40,7 @@ const createAnimationInput = function(svg, resultArr, animateId, handle) {
             name={anim}
             key={'animation'+anim}
             valueChange={svg.animate._attributes[anim]}
-            fieldName={"Change " + anim + " value:"}
+            fieldName={"Edytuj parametr "+anim+":"}
             onValueChange={handle}
           />
         );
@@ -71,7 +71,7 @@ const createAnimationTtransformInput = function(
                 name={anim}
                 key={'animation'+anim}
                 valueChange={svg.animateTransform[elem][itr][anim]}
-                fieldName={"Change " + anim + " value:"}
+                fieldName={"Edytuj parametr "+anim+":"}
                 onValueChange={handle}
               />
             );
@@ -93,7 +93,7 @@ const createAnimationTtransformInput = function(
             name={anim}
             key={'animation'+anim}
             valueChange={svg.animateTransform._attributes[anim]}
-            fieldName={"Change " + anim + " value:"}
+            fieldName={"Edytuj parametr "+anim+":"}
             onValueChange={handle}
           />
         );
