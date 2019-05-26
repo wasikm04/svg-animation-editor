@@ -2,6 +2,15 @@ import React from "react";
 import { FiledInput } from "./InputHelpers.js";
 import "react-input-range/lib/css/index.css";
 import "./styles/App.css";
+import animationsDefault from "./defaultProperties";
+
+const setName = function(attr) {
+  var tempName = animationsDefault[attr];
+  if (typeof tempName === "undefined") {
+    tempName = attr + ":";
+  }
+  return tempName;
+};
 
 const createAnimationInput = function(svg, resultArr, animateId, handle) {
   if (svg.animate && Array.isArray(svg.animate)) {
@@ -16,9 +25,9 @@ const createAnimationInput = function(svg, resultArr, animateId, handle) {
             var tempField = (
               <FiledInput
                 name={anim}
-                key={'animation'+anim}
+                key={"animation" + anim}
                 valueChange={svg.animate[elem][itr][anim]}
-                fieldName={"Edytuj parametr "+anim+":"}
+                fieldName={setName(anim)}
                 onValueChange={handle}
               />
             );
@@ -38,9 +47,9 @@ const createAnimationInput = function(svg, resultArr, animateId, handle) {
         tempField = (
           <FiledInput
             name={anim}
-            key={'animation'+anim}
+            key={"animation" + anim}
             valueChange={svg.animate._attributes[anim]}
-            fieldName={"Edytuj parametr "+anim+":"}
+            fieldName={setName(anim)}
             onValueChange={handle}
           />
         );
@@ -69,9 +78,9 @@ const createAnimationTtransformInput = function(
             var tempField = (
               <FiledInput
                 name={anim}
-                key={'animation'+anim}
+                key={"animation" + anim}
                 valueChange={svg.animateTransform[elem][itr][anim]}
-                fieldName={"Edytuj parametr "+anim+":"}
+                fieldName={setName(anim)}
                 onValueChange={handle}
               />
             );
@@ -91,9 +100,9 @@ const createAnimationTtransformInput = function(
         tempField = (
           <FiledInput
             name={anim}
-            key={'animation'+anim}
+            key={"animation" + anim}
             valueChange={svg.animateTransform._attributes[anim]}
-            fieldName={"Edytuj parametr "+anim+":"}
+            fieldName={setName(anim)}
             onValueChange={handle}
           />
         );

@@ -8,7 +8,7 @@ import {
   createAnimationInput
 } from "./AnimationHelpers.js";
 import AnimationsList from "./AnimationsList.js";
-import animationsDefault from"./defaultProperties"
+import animationsDefault from "./defaultProperties";
 
 class EditionPanel extends React.Component {
   constructor(props) {
@@ -137,12 +137,12 @@ class EditionPanel extends React.Component {
     return resultArr;
   }
 
-  setName(attr){
-    var tempName = animationsDefault[attr]
-    if(typeof tempName === 'undefined'){
-      tempName = attr+":"
+  setName(attr) {
+    var tempName = animationsDefault[attr];
+    if (typeof tempName === "undefined") {
+      tempName = attr + ":";
     }
-    return tempName
+    return tempName;
   }
 
   render() {
