@@ -8,6 +8,7 @@ import {
   createAnimationInput
 } from "./AnimationHelpers.js";
 import AnimationsList from "./AnimationsList.js";
+import animationsDefault from"./defaultProperties"
 
 class EditionPanel extends React.Component {
   constructor(props) {
@@ -136,6 +137,14 @@ class EditionPanel extends React.Component {
     return resultArr;
   }
 
+  setName(attr){
+    var tempName = animationsDefault[attr]
+    if(typeof tempName === 'undefined'){
+      tempName = attr+":"
+    }
+    return tempName
+  }
+
   render() {
     var editor = [];
     var animation = [];
@@ -160,7 +169,7 @@ class EditionPanel extends React.Component {
             <ColorInput
               key={"color" + propAttr}
               valueChange={this.props.selectedElement._attributes[propAttr]}
-              fieldName={"Edytuj parametr " + propAttr + ":"}
+              fieldName={this.setName(propAttr)}
               onValueChange={this.handlefill}
             />
           );
@@ -171,7 +180,7 @@ class EditionPanel extends React.Component {
             <ColorInput
               key={"color" + propAttr}
               valueChange={this.props.selectedElement._attributes[propAttr]}
-              fieldName={"Edytuj parametr " + propAttr + ":"}
+              fieldName={this.setName(propAttr)}
               onValueChange={this.handlestroke}
             />
           );
@@ -185,7 +194,7 @@ class EditionPanel extends React.Component {
               min={0.01}
               max={1}
               step={0.01}
-              fieldName={"Edytuj parametr " + propAttr + ":"}
+              fieldName={this.setName(propAttr)}
               onValueChange={this.handlefillopacity}
             />
           );
@@ -199,7 +208,7 @@ class EditionPanel extends React.Component {
               min={0.01}
               max={1}
               step={0.01}
-              fieldName={"Edytuj parametr " + propAttr + ":"}
+              fieldName={this.setName(propAttr)}
               onValueChange={this.handlestrokeopacity}
             />
           );
@@ -213,7 +222,7 @@ class EditionPanel extends React.Component {
               min={0.01}
               max={1}
               step={0.01}
-              fieldName={"Edytuj parametr " + propAttr + ":"}
+              fieldName={this.setName(propAttr)}
               onValueChange={this.handleopacity}
             />
           );
@@ -224,7 +233,7 @@ class EditionPanel extends React.Component {
               name={propAttr}
               key={propAttr}
               valueChange={this.props.selectedElement._attributes[propAttr]}
-              fieldName={"Edytuj parametr " + propAttr + ":"}
+              fieldName={this.setName(propAttr)}
               onValueChange={this.handleChange}
             />
           );
