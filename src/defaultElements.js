@@ -51,4 +51,5 @@ const animations = {
   }
 };
 
-export default animations;
+const objects = ["circle","rect","polygon","ellipse","path","g"];
+export {animations, objects};
