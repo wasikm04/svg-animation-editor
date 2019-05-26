@@ -1,4 +1,5 @@
 import React from "react";
+import {objects} from "./defaultElements.js";
 
 function setCharAt(str, index, chr) {
   if (index > str.length - 1) return str;
@@ -135,40 +136,10 @@ function convertStateToJSX(file) {
       }
       continue;
     }
-    if (elem === "circle") {
-      var circles = parseArray(file[elem]);
-      var arrayOfJsxCircles = createElements(circles, "circle");
-      arr = arr.concat(arrayOfJsxCircles);
-      continue;
-    }
-    if (elem === "rect") {
-      var rects = parseArray(file[elem]);
-      var arrayOfJsxRects = createElements(rects, "rect");
-      arr = arr.concat(arrayOfJsxRects);
-      continue;
-    }
-    if (elem === "polygon") {
-      var polygons = parseArray(file[elem]);
-      var arrayOfJsxpolygons = createElements(polygons, "polygon");
-      arr = arr.concat(arrayOfJsxpolygons);
-      continue;
-    }
-    if (elem === "ellipse") {
-      var ellipses = parseArray(file[elem]);
-      var arrayOfJsxellipses = createElements(ellipses, "ellipse");
-      arr = arr.concat(arrayOfJsxellipses);
-      continue;
-    }
-    if (elem === "path") {
-      var paths = parseArray(file[elem]);
-      var arrayOfJsxpaths = createElements(paths, "path");
-      arr = arr.concat(arrayOfJsxpaths);
-      continue;
-    }
-    if (elem === "g") {
-      var groups = parseArray(file[elem]);
-      var arrayOfJsxgroups = createElements(groups, "g");
-      arr = arr.concat(arrayOfJsxgroups);
+    if (objects.includes(elem)) {
+      var elements = parseArray(file[elem]);
+      var arrayOfJsxComponents = createElements(elements, elem);
+      arr = arr.concat(arrayOfJsxComponents);
       continue;
     }
     if (elem === "script") {
@@ -192,7 +163,7 @@ function convertStateToJSX(file) {
     }
     if (elem === "animateMotion") {
       var animates3 = parseArray(file[elem]);
-      arr.push(<animateTransform key={150} {...animates3[0]} />);
+      arr.push(<animateMotion key={150} {...animates3[0]} />);
     }
   }
   var svg1 = <svg {...svgattributes}>{arr}</svg>;
