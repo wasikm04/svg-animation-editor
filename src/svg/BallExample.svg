@@ -7,7 +7,7 @@
            from="50"
            to="250" 
            dur="3s"
-           begin="1s"
+           begin="click"
            calcMode="spline"
            values="50; 250; 120; 250; 170; 250; 210; 250"
            keyTimes="0; 0.15; 0.3; 0.45; 0.6; 0.75; 0.9; 1"
