@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8be1cef9e9c9599dec0a12c00680c59b",
+    "revision": "266b823664464a30c3a4a8708d725451",
     "url": "/svg-animation-editor/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/svg-animation-editor/static/css/2.1bdf284b.chunk.css"
   },
   {
-    "revision": "7937fcb8a1b8d5ffc410",
+    "revision": "dd526dbc6f6f16b4a369",
     "url": "/svg-animation-editor/static/css/main.61d8aa22.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/svg-animation-editor/static/js/2.8d5eb8e8.chunk.js"
   },
   {
-    "revision": "7937fcb8a1b8d5ffc410",
-    "url": "/svg-animation-editor/static/js/main.419616d0.chunk.js"
+    "revision": "dd526dbc6f6f16b4a369",
+    "url": "/svg-animation-editor/static/js/main.c4e58c8f.chunk.js"
   },
   {
     "revision": "baaee94267b0620ba2bf",
