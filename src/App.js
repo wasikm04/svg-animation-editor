@@ -1,7 +1,7 @@
 import React from "react";
-import SVGWindow from "./SVGWindow.js";
-import Editor from "./Editor.js";
-import { animations } from "./defaultElements.js";
+import SVGWindow from "./components/SVGWindow.js";
+import Editor from "./components/Editor.js";
+import { animations } from "./consts/defaultElements.js";
 import "./styles/App.css";
 import { uniqueId } from "lodash";
 class App extends React.Component {

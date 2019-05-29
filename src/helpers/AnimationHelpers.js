@@ -1,8 +1,8 @@
 import React from "react";
 import { FiledInput } from "./InputHelpers.js";
 import "react-input-range/lib/css/index.css";
-import "./styles/App.css";
-import animationsDefault from "./defaultProperties";
+import "./../styles/App.css";
+import animationsDefault from "../consts/defaultProperties";
 
 const setName = function(attr) {
   var tempName = animationsDefault[attr];

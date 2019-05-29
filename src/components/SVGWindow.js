@@ -1,9 +1,9 @@
 import React from "react";
-import "./styles/App.css";
+import "./../styles/App.css";
 import ModalWindow from "./ModalWindow.js";
 import Upload from "./Upload.js";
 import ReactDOMServer from "react-dom/server";
-import convertStateToJSX from "./SVGCreator.js";
+import convertStateToJSX from "../helpers/SVGCreator.js";
 
 class SVGWindow extends React.Component {
   constructor(props) {

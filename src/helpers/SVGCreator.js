@@ -1,5 +1,5 @@
 import React from "react";
-import {objects} from "./defaultElements.js";
+import {objects} from "./../consts/defaultElements.js";
 
 function setCharAt(str, index, chr) {
   if (index > str.length - 1) return str;

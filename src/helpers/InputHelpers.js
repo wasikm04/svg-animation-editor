@@ -2,14 +2,14 @@ import React from "react";
 import { HuePicker } from "react-color";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
-import "./styles/App.css";
+import "./../styles/App.css";
 import {
   width60,
   inputStyle,
   nameSliderStyle,
   nameColorStyle,
   nameStyle
-} from "./EditionConfig.js";
+} from "./../consts/EditionConfig.js";
 
 class FiledInput extends React.Component {
   constructor(props) {

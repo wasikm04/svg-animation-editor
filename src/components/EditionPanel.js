@@ -1,14 +1,14 @@
 import React from "react";
 import "react-input-range/lib/css/index.css";
-import "./styles/App.css";
-import { title, fillHeight, heightBox } from "./EditionConfig.js";
-import { FiledInput, ColorInput, SliderInput } from "./InputHelpers.js";
+import "./../styles/App.css";
+import { title, fillHeight, heightBox } from "../consts/EditionConfig.js";
+import { FiledInput, ColorInput, SliderInput } from "../helpers/InputHelpers.js";
 import {
   createAnimationTtransformInput,
   createAnimationInput
-} from "./AnimationHelpers.js";
-import AnimationsList from "./AnimationsList.js";
-import animationsDefault from "./defaultProperties";
+} from "../helpers/AnimationHelpers.js";
+import AnimationsList from "../helpers/AnimationsList.js";
+import animationsDefault from "../consts/defaultProperties";
 
 class EditionPanel extends React.Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
-import "./styles/App.css";
+import "./../styles/App.css";
 class ModalWindow extends React.Component {
   render() {
     return (
