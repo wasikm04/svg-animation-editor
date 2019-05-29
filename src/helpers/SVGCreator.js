@@ -29,7 +29,8 @@ function createElements(elements, Category) {
   for (var arrelem in elements) {
     if (
       elements[arrelem].type === "animate" ||
-      elements[arrelem].type === "animateTransform"
+      elements[arrelem].type === "animateTransform" ||
+      elements[arrelem].type === "animateMotion" 
     ) {
       tmpAnimates.push(elements[arrelem]);
     } else {

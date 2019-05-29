@@ -288,6 +288,7 @@ class EditionPanel extends React.Component {
                     }}
                   >
                     <option value="rotate_animateTransform">Rotacja</option>
+                    <option value="move_animateMotion">Odbijanie</option>
                     <option value="translate_animateTransform">
                       Translacja
                     </option>

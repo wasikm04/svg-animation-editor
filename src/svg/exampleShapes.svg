@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg id="SVG-Circus-82d8a861-a731-69f8-88d7-23a79f24104a" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet"> 
- <path id="paths" fill="#1EB287">
+ <path fill="#1EB287" id="paths">
     <animate 
              attributeName="d" 
              dur="1440ms" 

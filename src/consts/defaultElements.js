@@ -12,6 +12,14 @@ const animations = {
       to: "360 20 20"
     }
   },
+  move_animateMotion:{
+    _attributes: {
+	      id:"default-motion",
+       path:"M 0 0 H 100 Z",
+       dur:"3s",
+        repeatCount:"indefinite" 
+    }
+  },
   rotateInPlace_animateTransform: {
     _attributes: {
       attributeName: "transform",

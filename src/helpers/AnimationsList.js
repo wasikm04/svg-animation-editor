@@ -80,6 +80,7 @@ class AnimationsList extends React.Component {
   render() {
     return (
       <select
+      key = {23241}
         style={{ height: "100px" }}
         className="custom-select scrollable-config"
         size="6"
